@@ -13,7 +13,7 @@ gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 
 gem 'uglifier', '>= 1.3.0'
-
+gem 'puma'
 gem 'figaro'
 
 gem 'github_api'
@@ -23,13 +23,13 @@ group :development, :test do
   gem 'pry'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'rspec-rails', '~> 3.0'
 end
 
 group :test do
   gem 'vcr'
   gem 'webmock'
   gem 'simplecov', :require => false
-  gem 'rspec-rails', '~> 3.0'
   gem 'database_cleaner'
 end
 
