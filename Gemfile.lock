@@ -51,6 +51,12 @@ GEM
       sass (~> 3.2)
     builder (3.2.2)
     byebug (6.0.2)
+    capybara (2.5.0)
+      mime-types (>= 1.16)
+      nokogiri (>= 1.3.3)
+      rack (>= 1.0.0)
+      rack-test (>= 0.5.4)
+      xpath (~> 2.0)
     coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -83,7 +89,20 @@ GEM
       oauth2
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    haml (4.0.7)
+      tilt
+    haml-rails (0.9.0)
+      actionpack (>= 4.0.1)
+      activesupport (>= 4.0.1)
+      haml (>= 4.0.6, < 5.0)
+      html2haml (>= 1.0.1)
+      railties (>= 4.0.1)
     hashie (3.4.2)
+    html2haml (2.0.0)
+      erubis (~> 2.7.0)
+      haml (~> 4.0.0)
+      nokogiri (~> 1.6.0)
+      ruby_parser (~> 3.5)
     i18n (0.7.0)
     jquery-rails (4.0.5)
       rails-dom-testing (~> 1.0)
@@ -91,6 +110,8 @@ GEM
       thor (>= 0.14, < 2.0)
     json (1.8.3)
     jwt (1.5.1)
+    launchy (2.4.3)
+      addressable (~> 2.3)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.3)
@@ -110,6 +131,15 @@ GEM
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (~> 1.2)
+    omniauth (1.2.2)
+      hashie (>= 1.2, < 4)
+      rack (~> 1.0)
+    omniauth-github (1.1.2)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (~> 1.1)
+    omniauth-oauth2 (1.3.1)
+      oauth2 (~> 1.0)
+      omniauth (~> 1.2)
     pg (0.18.3)
     pry (0.10.1)
       coderay (~> 1.1.0)
@@ -166,6 +196,8 @@ GEM
       rspec-mocks (~> 3.3.0)
       rspec-support (~> 3.3.0)
     rspec-support (3.3.0)
+    ruby_parser (3.7.1)
+      sexp_processor (~> 4.1)
     safe_yaml (1.0.4)
     sass (3.4.18)
     sass-rails (5.0.4)
@@ -174,6 +206,7 @@ GEM
       sprockets (>= 2.8, < 4.0)
       sprockets-rails (>= 2.0, < 4.0)
       tilt (>= 1.1, < 3)
+    sexp_processor (4.6.0)
     simplecov (0.10.0)
       docile (~> 1.1.0)
       json (~> 1.8)
@@ -198,6 +231,8 @@ GEM
     webmock (1.21.0)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
+    xpath (2.0.0)
+      nokogiri (~> 1.3)
 
 PLATFORMS
   ruby
@@ -208,11 +243,15 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-sass (~> 3.2.0)
   byebug
+  capybara
   coffee-rails (~> 4.1.0)
   database_cleaner
   figaro
   github_api
+  haml-rails (~> 0.9)
   jquery-rails
+  launchy
+  omniauth-github
   pg
   pry
   puma

@@ -1,0 +1,20 @@
+%nav.navbar.navbar-default.navbar-inverse
+  .container-fluid
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => "/"} OnTarget
+    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      %ul.nav.navbar-nav
+        %li
+          %span.sr-only
+            Toggle Navigation
+      %ul.nav.navbar-nav.navbar-right
+        %li
+          -if current_user
+            =link_to "Logout", logout_path, id: 'logout'
+          -else
+            =link_to 'Login with Github', login_path
