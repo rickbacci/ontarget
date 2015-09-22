@@ -16,4 +16,18 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import 'rails_bootstrap_forms';
 
+body {
+  background-color: black;
+}
+
+.blue {
+  border-width: 2px;
+  border-style: solid;
+  border-color: #0000ff;
+}
+
+.issue-btn {
+  margin-top: 15px;
+}
