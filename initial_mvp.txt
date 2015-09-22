@@ -21,3 +21,7 @@ Feature: Interface with Github issues with a timer
     If I continue the timer will restart.
     If I stop the card will move back to 'backlog'
 
+1. Ability to select a specific repository, from your existing repositories.
+    (start with a page that lists them, and you can select one.)
+*2. columns for each status ( a timeline on bottom)
+*3 timer
