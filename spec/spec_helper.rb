@@ -1,23 +1,6 @@
 require 'simplecov'
 SimpleCov.start 'rails'
 
-require 'vcr'
-require 'webmock/rspec'
-
-VCR.configure do |config|
-  config.hook_into :webmock
-  config.cassette_library_dir = 'spec/support/vcr_cassettes'
-
-  config.configure_rspec_metadata!
-
-  config.default_cassette_options = { serialize_with: :json }
-
-  config.before_record do |r|
-    r.request.headers.delete("Authorization")
-  end
-end
-
-
 RSpec.configure do |config|
 
   # rspec-expectations config goes here. You can use an alternate
