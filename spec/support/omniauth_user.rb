@@ -5,32 +5,30 @@ module OmniAuthUser
 
     OmniAuth.config.mock_auth[:github] = OmniAuth::AuthHash.new(
       {
-        provider: 'github',
-        uid:      ENV['github_test_uid'],
-        info: {
-          nickname:    "me",
-          name:        "JOE SMOE",
-          email:       "e@mail.com"
+        provider:   ENV['test_provider'],
+        uid:        ENV['test_uid'],
+          info: {
+          nickname: ENV['test_nickname'],
+          email:    ENV['test_email'],
         },
         credentials: {
-          token:  ENV['github_test_token'],
-          secret: ENV['github_test_secret']
+          token:    ENV['github_test_token'],
+          secret:   ENV['github_test_secret']
         }
       })
   end
 
   def mock_auth
     {
-      provider: 'github',
-      uid:      ENV['github_test_uid'],
-      info: {
-        nickname:    "me",
-        name:        "JOE SMOE",
-        email:       "e@mail.com"
+      provider:   ENV['test_provider'],
+      uid:        ENV['test_uid'],
+        info: {
+        nickname: ENV['test_nickname'],
+        email:    ENV['test_email'],
       },
       credentials: {
-        token:  ENV['github_test_token'],
-        secret: ENV['github_test_secret']
+        token:    ENV['github_test_token'],
+        secret:   ENV['github_test_secret']
       }
     }
   end
