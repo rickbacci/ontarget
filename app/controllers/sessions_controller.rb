@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     if user
       session[:user_id] = user.id
       flash[:success] = "You have successfully logged in!"
-      redirect_to dashboard_path
+      redirect_to issues_path
     else
       flash[:danger] = "Unable to authenticate you!"
       root_path

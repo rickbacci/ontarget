@@ -29,11 +29,17 @@ class IssuesController < ApplicationController
       body: params[:body],
       assignee: params[:owner],
       labels: [
-      "bug",
-      "In Progress"
+      "bug"
       ]
 
     flash[:success] = "Issue Updated!"
+    redirect_to issues_path
+  end
+
+  def add_label
+    current_user.github.issues.labels.add params[:owner], params[:repo], params[:number],
+     'In Progress'
+    flash[:success] = "label Updated!"
     redirect_to issues_path
   end
 
@@ -41,11 +47,7 @@ class IssuesController < ApplicationController
   private
 
   def client
-    current_user.github
+    current_user.github if current_user
   end
 end
 
-
-    # github = Github.new user: 'rickbacci', repo: 'test_repo'
-    # github = Github.new user: 'rickbacci', repo: 'test_repo'
-    # github.issues.edit(number: '107634353',

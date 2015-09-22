@@ -1,10 +1,4 @@
 .row
   .col-md-8.col-md-offset-2
     %h2.text-center
-      Welcome
-      = current_user.nickname
   .col-md-2
-    .btn-group-vertical.btn-group-lg{"aria-label" => "...", :role => "group"}
-      -# = link_to 'issues', repos_rickbacci_test_repo_labels_path, class: 'btn btn-default'
-      = link_to 'issues', issues_path, class: 'btn btn-default'
-      = link_to 'New Issue', new_issue_path, class: 'btn btn-default'
