@@ -19,6 +19,7 @@ gem 'figaro'
 
 gem 'omniauth-github'
 gem 'github_api'
+gem 'bootstrap_form'
 
 group :development, :test do
   gem 'byebug'
@@ -26,15 +27,15 @@ group :development, :test do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'rspec-rails', '~> 3.0'
+  gem 'database_cleaner'
+  gem 'capybara'
+  gem 'launchy'
 end
 
 group :test do
   gem 'vcr'
   gem 'webmock'
   gem 'simplecov', :require => false
-  gem 'database_cleaner'
-  gem 'capybara'
-  gem 'launchy'
 end
 
 gem 'rails_12factor', group: :production
