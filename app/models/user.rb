@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
       c.client_secret = ENV['github_secret']
       c.oauth_token   = token
       c.user          = nickname
+      c.repo          = 'test_repo'
     end
   end
 end
