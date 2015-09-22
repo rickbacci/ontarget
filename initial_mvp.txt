@@ -1,0 +1,23 @@
+
+
+Feature: Interface with Github issues with a timer
+
+  I'm a studet at Turing and I need to use an api in my
+  personal project. I want to make an app that helps me incorporate
+  the suggestions that Josh gave me to help me manage my time. When
+  I don't manage my time effectivly I go down rabbit-holes, stay stuck for
+  too long, and don't realize how long i am stuck. I'm making this app to help
+  me sandbox my workflow by using automatic timers to alert me. I
+  need to be able to meet dead-lines that are set by a client.
+
+  Scenerio: timebox my work
+    get a repo
+       authenticate me.
+    Create a user story "Create a CSV parser" that has a default state of 'backlog'
+    Has a button, to change the state to 'currently working on', that will start
+    a default timer automatically, and give me a message notifiying me when
+    the time is up.
+    Then I can decide to continue working or to stop.
+    If I continue the timer will restart.
+    If I stop the card will move back to 'backlog'
+
