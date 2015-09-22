@@ -1,0 +1,32 @@
+.row
+  .col-md-8.col-md-offset-2
+    %h2.text-center
+      Issues
+  .col-md-2
+.row
+  .col-md-8.col-md-offset-2
+    .panel.panel-default
+      .panel-body
+        - @issues.each do |issue|
+          %br
+          %br
+          Number
+          = issue.number
+          %br
+          Title:
+          = issue.title
+          %br
+          Body:
+          = issue.body
+          %br
+          Label Names:
+          %br
+          - issue.labels.each do |label|
+            = label.name
+            %br
+          -# = link_to 'Edit Issue', edit_issue_path(issue.id), number: issue.number
+          -# = link_to 'Edit Issue', edit_issue_path(issue.number), number: issue.number
+          = link_to 'Edit Issue', edit_issue_path(issue.number)
+
+          -# = link_to "edit issue", {:controller => "issues", method: :get, :action => "edit", number: issue.number }
+  .col-md-2

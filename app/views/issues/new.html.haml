@@ -1,0 +1,11 @@
+.row
+  .col-md-6.col-md-offset-3
+    %h1.text-center
+      New Issue
+    .panel.panel-default
+      .panel-body
+        = form_tag issues_path, class: "form", id: 'issue-form', method: :post do
+          = text_field_tag :title, nil, placeholder: "Title", class: "form-control"
+          = text_area_tag :body, nil, rows: 5, placeholder: "User story...", class: "form-control"
+
+          %button.btn.pull-right.btn-primary.issue-btn{:type => "submit"} Create Issue
