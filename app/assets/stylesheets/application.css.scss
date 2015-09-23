@@ -12,11 +12,13 @@
  *
  * require_tree .
  * require_self
+
  */
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import 'rails_bootstrap_forms';
+@import 'jquery.ui.all';
 
 body {
   background-color: black;

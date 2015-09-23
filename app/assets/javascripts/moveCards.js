@@ -6,7 +6,8 @@ $(document).ready(function() {
 
   $( ".panel" ).draggable({
     connectToSortable: ".sortable",
-    revert: "invalid",
+    // revert: "invalid",
+    cursor: "move"
   });
 
 });
