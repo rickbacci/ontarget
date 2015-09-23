@@ -1,26 +1,87 @@
 .row
-  .col-md-8.col-md-offset-2
+  .col-md-3
     %h2.text-center
-      Issues
-  .col-md-2
+      Backlog
+  .col-md-3
+    %h2.text-center
+      Ready
+  .col-md-3
+    %h2.text-center
+      In Progress
+  .col-md-3
+    %h2.text-center
+      completed
 .row
-  .col-md-10.col
-    - @issues.each do |issue|
-      .panel.panel-default
-        .panel-heading
-          %h3.panel-title
-            = issue.title
-            .issue.pull-right
-              \##{issue.number}
-        .panel-body
-          = simple_format(issue.body)
-        .panel-footer
-          .clearfix
-            - issue.labels.each do |label|
-              .test
-                = link_to "#{label.name}", "#", class: 'pull-left btn btn-default btn-xs'
-            = button_to "add in progress", in_progress_path(current_user.github.user, current_user.github.repo, issue.number), class: 'btn btn-primary btn-xs pull-right'
-            = link_to 'Edit Issue', edit_issue_path(issue.number), class: 'pull-right btn btn-primary btn-xs'
-  .col-md-2
-    .btn-group-vertical.center.btn-group-lg{"aria-label" => "...", :role => "group"}
-      = link_to 'New Issue', new_issue_path, class: 'btn btn-default'
+  .col-md-3.col
+    %ul.column.sortable.list-unstyled
+      - @backlog.each do |issue|
+        %li.panel.panel-default
+          .panel-heading
+            %h3.panel-title
+              = issue.title
+              .issue.pull-right
+                \##{issue.number}
+          .panel-body
+            = simple_format(issue.body)
+          .panel-footer
+            .clearfix
+              - issue.labels.each do |label|
+                .test
+                  = link_to "#{label.name}", "#", class: "pull-left btn btn-default btn-xs #{label.name}"
+              = button_to "add in progress", in_progress_path(current_user.github.user, current_user.github.repo, issue.number), class: 'btn btn-primary btn-xs pull-right'
+              = link_to 'Edit Issue', edit_issue_path(issue.number), class: 'pull-right btn btn-primary btn-xs'
+  .col-md-3.col
+    %ul.column.sortable.list-unstyled
+      - @ready.each do |issue|
+        %li.panel.panel-default
+          .panel-heading
+            %h3.panel-title
+              = issue.title
+              .issue.pull-right
+                \##{issue.number}
+          .panel-body
+            = simple_format(issue.body)
+          .panel-footer
+            .clearfix
+              - issue.labels.each do |label|
+                .test
+                  = link_to "#{label.name}", "#", class: "pull-left btn btn-default btn-xs #{label.name}"
+              = button_to "add in progress", in_progress_path(current_user.github.user, current_user.github.repo, issue.number), class: 'btn btn-primary btn-xs pull-right'
+              = link_to 'Edit Issue', edit_issue_path(issue.number), class: 'pull-right btn btn-primary btn-xs'
+  .col-md-3.col
+    %ul.column.sortable.list-unstyled
+      - @in_progress.each do |issue|
+        %li.panel.panel-default
+          .panel-heading
+            %h3.panel-title
+              = issue.title
+              .issue.pull-right
+                \##{issue.number}
+          .panel-body
+            = simple_format(issue.body)
+          .panel-footer
+            .clearfix
+              - issue.labels.each do |label|
+                .test
+                  = link_to "#{label.name}", "#", class: "pull-left btn btn-default btn-xs #{label.name}"
+              = button_to "add in progress", in_progress_path(current_user.github.user, current_user.github.repo, issue.number), class: 'btn btn-primary btn-xs pull-right'
+              = link_to 'Edit Issue', edit_issue_path(issue.number), class: 'pull-right btn btn-primary btn-xs'
+  .col-md-3.col
+    %ul.column.sortable.list-unstyled
+      - @completed.each do |issue|
+        %li.panel.panel-default
+          .panel-heading
+            %h3.panel-title
+              = issue.title
+              .issue.pull-right
+                \##{issue.number}
+          .panel-body
+            = simple_format(issue.body)
+          .panel-footer
+            .clearfix
+              - issue.labels.each do |label|
+                .test
+                  = link_to "#{label.name}", "#", class: "pull-left btn btn-default btn-xs #{label.name}"
+              = button_to "add in progress", in_progress_path(current_user.github.user, current_user.github.repo, issue.number), class: 'btn btn-primary btn-xs pull-right'
+              = link_to 'Edit Issue', edit_issue_path(issue.number), class: 'pull-right btn btn-primary btn-xs'
+

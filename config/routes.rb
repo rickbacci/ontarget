@@ -9,8 +9,12 @@ Rails.application.routes.draw do
   resources :issues, only: [:index, :new, :create, :edit]
 
   patch '/repos/:owner/:repo/issues/:id', to: 'issues#update'
-  post  '/repos/:owner/:repo/issues/:number/labels', to: 'issues#add_label', as: :in_progress
-  # post  '/in_progress', to: 'issues#add_label'
+
+  # add labels to an issue
+  post  '/repos/:owner/:repo/issues/:number/labels', to: 'issues#in_progress', as: :in_progress
+
+  post '/repos/:owner/:repo/labels/:name', to: 'issues#update_label', as: :update_label
 
   root 'dashboard#show'
+
 end

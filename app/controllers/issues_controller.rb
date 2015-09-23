@@ -1,6 +1,9 @@
 class IssuesController < ApplicationController
   def index
-    @issues = client.issues.list user: 'rickbacci', repo: 'test_repo'
+    @backlog = client.issues.list(user: 'rickbacci', repo: 'test_repo', labels: 'backlog')
+    @ready = client.issues.list(user: 'rickbacci', repo: 'test_repo', labels: 'ready')
+    @in_progress = client.issues.list(user: 'rickbacci', repo: 'test_repo', labels: 'in progress')
+    @completed = client.issues.list(user: 'rickbacci', repo: 'test_repo', labels: 'completed')
   end
 
   def new
@@ -23,22 +26,29 @@ class IssuesController < ApplicationController
   end
 
   def update
-    # current_user.github.issues.edit params[:owner], params[:repo], '28',
     current_user.github.issues.edit params[:owner], params[:repo], params[:number],
       title: params[:title],
       body: params[:body],
       assignee: params[:owner],
       labels: [
-      "bug"
+        "bug"
       ]
 
-    flash[:success] = "Issue Updated!"
-    redirect_to issues_path
+      flash[:success] = "Issue Updated!"
+      redirect_to issues_path
   end
 
-  def add_label
+  def update_label
+    current_user.github.issues.labels.update params[:owner], params[:repo], params[:name], name: 'bug', color: "FFFFFF"
+  end
+
+  def in_progress
+    current_user.github.issues.labels.remove params[:owner], params[:repo], params[:number],
+      label_name: 'backlog'
+
     current_user.github.issues.labels.add params[:owner], params[:repo], params[:number],
      'In Progress'
+
     flash[:success] = "label Updated!"
     redirect_to issues_path
   end
