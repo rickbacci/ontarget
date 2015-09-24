@@ -45,6 +45,31 @@ $(document).ready(function() {
         var newColumn = 'backlog'
         $(this).addClass('backlog');
         $(this).removeClass('in-progress ready completed');
+
+        var owner  = this.dataset.owner
+        var repo   = this.dataset.repo
+        var number = this.dataset.number
+
+        $.ajax({
+          type: "POST",
+          url: '/update_labels',
+          data: { owner: owner,
+                  repo: repo,
+                  number: number,
+                  oldcolumn: oldColumn,
+                  newcolumn: newColumn,
+                  },
+
+          success: function(post) {
+
+            debugger;
+            // success need to change the label name
+          },
+          error: function(xhr) {
+            console.log(xhr.responseText)
+          }
+        })
+
       }
 
 
@@ -52,6 +77,31 @@ $(document).ready(function() {
         var newColumn = 'ready'
         $(this).addClass('ready');
         $(this).removeClass('backlog in-progress completed');
+
+
+        var owner  = this.dataset.owner
+        var repo   = this.dataset.repo
+        var number = this.dataset.number
+
+        $.ajax({
+          type: "POST",
+          url: '/update_labels',
+          data: { owner: owner,
+                  repo: repo,
+                  number: number,
+                  oldcolumn: oldColumn,
+                  newcolumn: newColumn,
+                  },
+
+          success: function(post) {
+
+            // success need to change the label name
+          },
+          error: function(xhr) {
+            console.log(xhr.responseText)
+          }
+        })
+
       }
 
       if (toInprogress) {
@@ -67,23 +117,6 @@ $(document).ready(function() {
         $.ajax({
           type: "POST",
           url: '/update_labels',
-            // + owner
-            // + '/'
-            // + repo
-            // + '/issues/'
-            // + number
-            // + '/labels/'
-            // + oldColumn
-            // + '/',
-          // url: '/repos/'
-          //   + owner
-          //   + '/'
-          //   + repo
-          //   + '/issues/'
-          //   + number
-          //   + '/labels/'
-          //   + oldColumn
-          //   + '/',
           data: { owner: owner,
                   repo: repo,
                   number: number,
@@ -92,6 +125,7 @@ $(document).ready(function() {
                   },
 
           success: function(post) {
+
             // success need to change the label name
           },
           error: function(xhr) {
@@ -106,6 +140,30 @@ $(document).ready(function() {
         var newColumn = 'completed'
         $(this).addClass('completed');
         $(this).removeClass('backlog ready in-progress');
+
+        var owner  = this.dataset.owner
+        var repo   = this.dataset.repo
+        var number = this.dataset.number
+
+        $.ajax({
+          type: "POST",
+          url: '/update_labels',
+          data: { owner: owner,
+                  repo: repo,
+                  number: number,
+                  oldcolumn: oldColumn,
+                  newcolumn: newColumn,
+                  },
+
+          success: function(post) {
+
+            // success need to change the label name
+          },
+          error: function(xhr) {
+            console.log(xhr.responseText)
+          }
+        })
+
       }
 
     },
