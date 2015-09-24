@@ -2,7 +2,7 @@ class IssuesController < ApplicationController
   def index
     @backlog = client.issues.list(user: 'rickbacci', repo: 'test_repo', labels: 'backlog')
     @ready = client.issues.list(user: 'rickbacci', repo: 'test_repo', labels: 'ready')
-    @in_progress = client.issues.list(user: 'rickbacci', repo: 'test_repo', labels: 'in progress')
+    @in_progress = client.issues.list(user: 'rickbacci', repo: 'test_repo', labels: 'in-progress')
     @completed = client.issues.list(user: 'rickbacci', repo: 'test_repo', labels: 'completed')
   end
 
@@ -53,6 +53,18 @@ class IssuesController < ApplicationController
     redirect_to issues_path
   end
 
+  def update_column
+    current_user.github.issues.labels.remove params[:owner], params[:repo], params[:number],
+      label_name: params[:oldcolumn]
+
+    current_user.github.issues.labels.add params[:owner], params[:repo], params[:number],
+     params[:newcolumn]
+
+    flash[:success] = "label Updated!"
+    redirect_to issues_path
+
+
+  end
 
   private
 
