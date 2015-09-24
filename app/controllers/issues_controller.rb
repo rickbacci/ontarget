@@ -47,7 +47,7 @@ class IssuesController < ApplicationController
       label_name: 'backlog'
 
     current_user.github.issues.labels.add params[:owner], params[:repo], params[:number],
-     'In Progress'
+      'In Progress'
 
     flash[:success] = "label Updated!"
     redirect_to issues_path
@@ -58,12 +58,9 @@ class IssuesController < ApplicationController
       label_name: params[:oldcolumn]
 
     current_user.github.issues.labels.add params[:owner], params[:repo], params[:number],
-     params[:newcolumn]
-
-    flash[:success] = "label Updated!"
-    redirect_to issues_path
-
-
+      params[:newcolumn]
+    binding.pry
+    head :ok
   end
 
   private

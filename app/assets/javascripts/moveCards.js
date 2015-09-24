@@ -66,16 +66,30 @@ $(document).ready(function() {
 
         $.ajax({
           type: "POST",
-          url: '/repos/'
-            + owner
-            + '/'
-            + repo
-            + '/issues/'
-            + number
-            + '/labels/'
-            + oldColumn
-            + '/'
-            + newColumn,
+          url: '/update_labels',
+            // + owner
+            // + '/'
+            // + repo
+            // + '/issues/'
+            // + number
+            // + '/labels/'
+            // + oldColumn
+            // + '/',
+          // url: '/repos/'
+          //   + owner
+          //   + '/'
+          //   + repo
+          //   + '/issues/'
+          //   + number
+          //   + '/labels/'
+          //   + oldColumn
+          //   + '/',
+          data: { owner: owner,
+                  repo: repo,
+                  number: number,
+                  oldcolumn: oldColumn,
+                  newcolumn: newColumn,
+                  },
 
           success: function(post) {
             // success need to change the label name
