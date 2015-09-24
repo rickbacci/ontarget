@@ -13,9 +13,9 @@
       completed
 .row
   .col-md-3.col
-    %ul.column.sortable.list-unstyled
+    %ul.column.sortable.list-unstyled.backlog
       - @backlog.each do |issue|
-        %li.panel.panel-default
+        %li.panel.panel-default.backlog
           .panel-heading
             %h3.panel-title
               = issue.title
@@ -25,15 +25,16 @@
             = simple_format(issue.body)
           .panel-footer
             .clearfix
-              - issue.labels.each do |label|
-                .test
-                  = link_to "#{label.name}", "#", class: "pull-left btn btn-default btn-xs #{label.name}"
+              .row
+                .col-md-12
+                  - issue.labels.each do |label|
+                    = link_to "#{label.name}", "#", class: "pull-left btn btn-default btn-xs #{label.name}"
               = button_to "add in progress", in_progress_path(current_user.github.user, current_user.github.repo, issue.number), class: 'btn btn-primary btn-xs pull-right'
               = link_to 'Edit Issue', edit_issue_path(issue.number), class: 'pull-right btn btn-primary btn-xs'
   .col-md-3.col
-    %ul.column.sortable.list-unstyled
+    %ul.column.sortable.list-unstyled.ready
       - @ready.each do |issue|
-        %li.panel.panel-default
+        %li.panel.panel-default.ready
           .panel-heading
             %h3.panel-title
               = issue.title
@@ -43,15 +44,16 @@
             = simple_format(issue.body)
           .panel-footer
             .clearfix
-              - issue.labels.each do |label|
-                .test
-                  = link_to "#{label.name}", "#", class: "pull-left btn btn-default btn-xs #{label.name}"
+              .row
+                .col-md-12
+                  - issue.labels.each do |label|
+                    = link_to "#{label.name}", "#", class: "pull-left btn btn-default btn-xs #{label.name}"
               = button_to "add in progress", in_progress_path(current_user.github.user, current_user.github.repo, issue.number), class: 'btn btn-primary btn-xs pull-right'
               = link_to 'Edit Issue', edit_issue_path(issue.number), class: 'pull-right btn btn-primary btn-xs'
   .col-md-3.col
-    %ul.column.sortable.list-unstyled
+    %ul.column.sortable.list-unstyled.in-progress
       - @in_progress.each do |issue|
-        %li.panel.panel-default
+        %li.i.panel.panel-default.in-progress
           .panel-heading
             %h3.panel-title
               = issue.title
@@ -61,15 +63,16 @@
             = simple_format(issue.body)
           .panel-footer
             .clearfix
-              - issue.labels.each do |label|
-                .test
-                  = link_to "#{label.name}", "#", class: "pull-left btn btn-default btn-xs #{label.name}"
+              .row
+                .col-md-12
+                  - issue.labels.each do |label|
+                    = link_to "#{label.name}", "#", class: "pull-left btn btn-default btn-xs #{label.name}"
               = button_to "add in progress", in_progress_path(current_user.github.user, current_user.github.repo, issue.number), class: 'btn btn-primary btn-xs pull-right'
               = link_to 'Edit Issue', edit_issue_path(issue.number), class: 'pull-right btn btn-primary btn-xs'
   .col-md-3.col
-    %ul.column.sortable.list-unstyled
+    %ul.column.sortable.list-unstyled.completed
       - @completed.each do |issue|
-        %li.panel.panel-default
+        %li.panel.panel-default.completed
           .panel-heading
             %h3.panel-title
               = issue.title
@@ -79,9 +82,10 @@
             = simple_format(issue.body)
           .panel-footer
             .clearfix
-              - issue.labels.each do |label|
-                .test
-                  = link_to "#{label.name}", "#", class: "pull-left btn btn-default btn-xs #{label.name}"
+              .row
+                .col-md-12
+                  - issue.labels.each do |label|
+                    = link_to "#{label.name}", "#", class: "pull-left btn btn-default btn-xs #{label.name}"
               = button_to "add in progress", in_progress_path(current_user.github.user, current_user.github.repo, issue.number), class: 'btn btn-primary btn-xs pull-right'
               = link_to 'Edit Issue', edit_issue_path(issue.number), class: 'pull-right btn btn-primary btn-xs'
 
