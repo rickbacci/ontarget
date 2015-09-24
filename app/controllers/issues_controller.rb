@@ -59,7 +59,6 @@ class IssuesController < ApplicationController
 
     current_user.github.issues.labels.add params[:owner], params[:repo], params[:number],
       params[:newcolumn]
-    binding.pry
     head :ok
   end
 
