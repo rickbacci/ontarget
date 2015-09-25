@@ -34,10 +34,8 @@ body {
   margin-top: 15px;
 }
 
-.column {
-  min-height: 800px;
+ul.column {
   border: 1px #FFF dotted;
-  // min-width: 100%;
 }
 
 .project_list {
@@ -56,4 +54,13 @@ body {
 
 .project-name-button {
   width: 100%;
+}
+
+.row {
+  display: flex;
+}
+
+.col {
+  flex: 1;
+  border: 1px #FFF dotted;
 }

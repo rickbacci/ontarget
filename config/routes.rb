@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :issues, only: [:index, :new, :create, :edit]
   resources :projects, only: [:index, :show, :new, :create, :destroy]
 
-  patch '/repos/:owner/:repo/issues/:id', to: 'issues#update'
+  patch '/repos/:owner/:repo/issues/:number', to: 'issues#update', as: :update_issue
 
   # add labels to an issue
   # post  '/repos/:owner/:repo/issues/:number/labels/:oldcolumn/:newcolumn', to: 'issues#update_column'
@@ -17,7 +17,7 @@ Rails.application.routes.draw do
 
 
 
-  post  '/repos/:owner/:repo/issues/:number/labels', to: 'issues#in_progress', as: :in_progress
+  # post  '/repos/:owner/:repo/issues/:number/labels', to: 'issues#in_progress', as: :in_progress
 
   post '/repos/:owner/:repo/labels/:name', to: 'issues#update_label', as: :update_label
 

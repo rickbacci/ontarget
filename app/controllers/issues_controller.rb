@@ -30,27 +30,14 @@ class IssuesController < ApplicationController
       title: params[:title],
       body: params[:body],
       assignee: params[:owner],
-      labels: [
-        "bug"
-      ]
+      labels: params[:labels].split
 
-      flash[:success] = "Issue Updated!"
-      redirect_to issues_path
+    flash[:success] = "Issue Updated!"
+    redirect_to issues_path
   end
 
   def update_label
     current_user.github.issues.labels.update params[:owner], params[:repo], params[:name], name: 'bug', color: "FFFFFF"
-  end
-
-  def in_progress
-    current_user.github.issues.labels.remove params[:owner], params[:repo], params[:number],
-      label_name: 'backlog'
-
-    current_user.github.issues.labels.add params[:owner], params[:repo], params[:number],
-      'In Progress'
-
-    flash[:success] = "label Updated!"
-    redirect_to issues_path
   end
 
   def update_column
