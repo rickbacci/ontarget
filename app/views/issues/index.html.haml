@@ -23,7 +23,6 @@
 
               -# - issue_labels = []
               -# - issue.labels.each { |label| issue_labels << label.name }
-              -# - binding.pry
               =form_tag update_issue_path('rickbacci', 'test_repo', issue.number), class: "update-issue-#{issue.number}", method: :patch do
                 =text_field_tag :title, issue.title
                 =hidden_field_tag :body, issue.body
