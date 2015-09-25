@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
 
   resources :issues, only: [:index, :new, :create, :edit]
+  resources :projects, only: [:index, :show, :new, :create, :destroy]
 
   patch '/repos/:owner/:repo/issues/:number', to: 'issues#update', as: :update_issue
 
