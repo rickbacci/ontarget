@@ -7,5 +7,6 @@
         = form_tag issues_path, class: "form", id: 'issue-form', method: :post do
           = text_field_tag :title, nil, placeholder: "Title", class: "form-control"
           = text_area_tag :body, nil, rows: 5, placeholder: "User story...", class: "form-control"
+          = hidden_field_tag :id, @project.id
 
           %button.btn.pull-right.btn-primary.issue-btn{:type => "submit"} Create Issue

@@ -6,8 +6,11 @@ Rails.application.routes.draw do
   get '/logout',                  to: 'sessions#destroy'
 
 
-  resources :issues, only: [:index, :new, :create, :edit]
+  resources :issues, only: [:index, :create, :edit]
   resources :projects, only: [:index, :show, :new, :create, :destroy]
+
+  get '/projects/:id/issues/new', to: 'issues#new', as: :new_project_issue
+
 
   patch '/repos/:owner/:repo/issues/:number', to: 'issues#update', as: :update_issue
 

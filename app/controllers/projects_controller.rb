@@ -1,17 +1,18 @@
 class ProjectsController < ApplicationController
+
   def index
     @projects = Project.all
   end
 
   def show
-    project = Project.find(params[:id])
+    @project = Project.find(params[:id])
 
-    current_user.github.repo = project.name
+    # current_user.github.repo = @project.name
 
-    @backlog     = client.issues.list(user: 'rickbacci', repo: project.name, labels: 'backlog')
-    @ready       = client.issues.list(user: 'rickbacci', repo: project.name, labels: 'ready')
-    @in_progress = client.issues.list(user: 'rickbacci', repo: project.name, labels: 'in-progress')
-    @completed   = client.issues.list(user: 'rickbacci', repo: project.name, labels: 'completed')
+    @backlog     = client.issues.list(user: 'rickbacci', repo: @project.name, labels: 'backlog')
+    @ready       = client.issues.list(user: 'rickbacci', repo: @project.name, labels: 'ready')
+    @in_progress = client.issues.list(user: 'rickbacci', repo: @project.name, labels: 'in-progress')
+    @completed   = client.issues.list(user: 'rickbacci', repo: @project.name, labels: 'completed')
   end
 
   def new

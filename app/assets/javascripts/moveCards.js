@@ -1,5 +1,24 @@
 $(document).ready(function() {
 
+
+
+  $(function() {
+    $('.noscrollbars').submit( function() {
+      alert ("hello :)");
+      add_custom_validation_methods();
+      force_ckeditor_to_update();
+      $(this).validate({
+        meta:"validate",
+        onkeyup:true,
+        validClass:"ok-input",
+        errorPlacement: function(error, element) {}
+      });
+    });
+  });
+
+
+
+
   $('.column').height($('.col').height());
 
   $( ".sortable" ).sortable({
@@ -64,7 +83,6 @@ $(document).ready(function() {
 
             success: function(post) {
 
-              debugger;
               // success need to change the label name
             },
             error: function(xhr) {
@@ -181,3 +199,8 @@ function giveAlert() {
 }
 
 
+function autoGrow (oField) {
+  if (oField.scrollHeight > oField.clientHeight) {
+    oField.style.height = oField.scrollHeight + "px";
+  }
+}

@@ -30,7 +30,7 @@ body {
   border-color: #0000ff;
 }
 
-.issue-btn {
+.issue-btn, .dropup-btn {
   margin-top: 15px;
 }
 
@@ -63,4 +63,12 @@ ul.column {
 .col {
   flex: 1;
   border: 1px #FFF dotted;
+}
+
+textarea.noscrollbars {
+  overflow: hidden;
+}
+
+ul.dropdown-menu.issue-dropup-menu {
+    bottom: 20%;
 }

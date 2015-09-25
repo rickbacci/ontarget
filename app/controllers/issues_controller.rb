@@ -7,9 +7,11 @@ class IssuesController < ApplicationController
   end
 
   def new
+    @project = Project.find(params[:id])
   end
 
   def create
+
     current_user.github.issues.create(
       title: params[:title],
       body: params[:body],
@@ -19,7 +21,7 @@ class IssuesController < ApplicationController
       ])
 
     flash[:success] = "Issue Created!"
-    redirect_to issues_path
+    redirect_to project_path(params[:id])
   end
 
   def edit
@@ -33,7 +35,7 @@ class IssuesController < ApplicationController
       labels: params[:labels].split
 
     flash[:success] = "Issue Updated!"
-    redirect_to issues_path
+    redirect_to project_path(params[:project_id])
   end
 
   def update_label

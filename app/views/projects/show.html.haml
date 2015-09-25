@@ -1,4 +1,7 @@
 .row
+  .col-md-12
+    = link_to 'New Issue', new_project_issue_path(@project.id)
+.row
   .col-md-3
     %h2.text-center
       Backlog
@@ -23,15 +26,36 @@
               = issue.title
               .issue.pull-right
                 \##{issue.number}
-          .panel-body
-            = simple_format(issue.body)
+            =form_tag update_issue_path('rickbacci', 'test_repo', issue.number), class: "form", id: "issue-form-#{issue.number}", method: :patch do
+              .panel-heading
+                %h3.panel-title
+                  =text_field_tag :title, issue.title, rows: 1, class: "form-control"
+                  .issue.pull-right
+                    \##{issue.number}
+              .panel-body
+                =text_area_tag :body, issue.body, { rows: 5, class: "form-control noscrollbars", :onkeyup => "autoGrow(this);"}
+                =hidden_field_tag :labels, issue.labels.map { |label| label.name}
+                =hidden_field_tag :project_id, @project.id
+                %button.btn.pull-right.btn-default.btn-xs.issue-btn{:type => "submit"} Update
           .panel-footer
             .clearfix
               .row
                 .col-md-12
-                  - issue.labels.each do |label|
-                    = link_to "#{label.name}", "#", class: "pull-left btn btn-default btn-xs #{label.name}"
-              = link_to 'Edit Issue', edit_issue_path(issue.number), class: 'pull-right btn btn-primary btn-xs'
+                  .clearfix
+                    .dropup
+                      %button.dropup-btn.btn.btn-xs.btn-default.dropdown-toggle{ "id" => "dropup-#{issue.number}", "aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+                        Dropup
+                        %span.caret
+                      %ul.dropdown-menu.issue-dropup-menu{"aria-labelledby" => "dropup-#{issue.number}" }
+                        %li
+                          %a{:href => "#"} Action
+                        %li
+                          %a{:href => "#"} Another action
+                        %li
+                          %a{:href => "#"} Something else here
+                        %li
+                          %a{:href => "#"} Separated link
+
   .col-md-3.col
     %ul.ready.column.sortable.list-unstyled
       - @ready.each do |issue|
