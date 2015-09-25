@@ -21,7 +21,7 @@
 @import 'jquery.ui.all';
 
 body {
-  background-color: black;
+  background-color: #D0BCC2;
 }
 
 .blue {
@@ -38,4 +38,22 @@ body {
   min-height: 800px;
   border: 1px #FFF dotted;
   // min-width: 100%;
+}
+
+.project_list {
+  width: 100%;
+}
+
+
+.added-project {
+  background-color: #99C299;
+}
+
+.minus-button {
+  padding: 6px 14px;
+  width: 100%;
+}
+
+.project-name-button {
+  width: 100%;
 }
