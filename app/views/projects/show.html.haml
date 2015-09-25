@@ -31,7 +31,6 @@
                 .col-md-12
                   - issue.labels.each do |label|
                     = link_to "#{label.name}", "#", class: "pull-left btn btn-default btn-xs #{label.name}"
-              = button_to "add in progress", in_progress_path(current_user.github.user, current_user.github.repo, issue.number), class: 'btn btn-primary btn-xs pull-right'
               = link_to 'Edit Issue', edit_issue_path(issue.number), class: 'pull-right btn btn-primary btn-xs'
   .col-md-3.col
     %ul.ready.column.sortable.list-unstyled
@@ -52,7 +51,6 @@
                 .col-md-12
                   - issue.labels.each do |label|
                     = link_to "#{label.name}", "#", class: "pull-left btn btn-default btn-xs #{label.name}"
-              = button_to "add in progress", in_progress_path(current_user.github.user, current_user.github.repo, issue.number), class: 'btn btn-primary btn-xs pull-right'
               = link_to 'Edit Issue', edit_issue_path(issue.number), class: 'pull-right btn btn-primary btn-xs'
   .col-md-3.col
     %ul.in-progress.column.sortable.list-unstyled
@@ -73,7 +71,6 @@
                 .col-md-12
                   - issue.labels.each do |label|
                     = link_to "#{label.name}", "#", class: "pull-left btn btn-default btn-xs #{label.name}"
-              = button_to "add in progress", in_progress_path(current_user.github.user, current_user.github.repo, issue.number), class: 'btn btn-primary btn-xs pull-right'
               = link_to 'Edit Issue', edit_issue_path(issue.number), class: 'pull-right btn btn-primary btn-xs'
   .col-md-3.col
     %ul.completed.column.sortable.list-unstyled
@@ -94,6 +91,5 @@
                 .col-md-12
                   - issue.labels.each do |label|
                     = link_to "#{label.name}", "#", class: "pull-left btn btn-default btn-xs #{label.name}"
-              = button_to "add in progress", in_progress_path(current_user.github.user, current_user.github.repo, issue.number), class: 'btn btn-primary btn-xs pull-right'
               = link_to 'Edit Issue', edit_issue_path(issue.number), class: 'pull-right btn btn-primary btn-xs'
 
