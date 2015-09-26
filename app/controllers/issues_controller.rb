@@ -1,60 +1,86 @@
 class IssuesController < ApplicationController
-  def index
-    @backlog = client.issues.list(user: 'rickbacci', repo: 'test_repo', labels: 'backlog')
-    @ready = client.issues.list(user: 'rickbacci', repo: 'test_repo', labels: 'ready')
-    @in_progress = client.issues.list(user: 'rickbacci', repo: 'test_repo', labels: 'in-progress')
-    @completed = client.issues.list(user: 'rickbacci', repo: 'test_repo', labels: 'completed')
-  end
+  include GithubColumnUpdater
+  include GithubIssueCreater
+  include GithubIssueUpdater
+
 
   def new
     @project = Project.find(params[:id])
   end
 
-  def create
+  def self.create
+    @create || GithubIssueCreater
+  end
 
-    current_user.github.issues.create(
-      title: params[:title],
-      body: params[:body],
-      assignee: "rickbacci",
-      labels: [
-        "backlog"
-      ])
+  def self.create=(create)
+    @create = create
+  end
+
+  def create
+    @project = Project.find(params[:id])
+
+    IssuesController.create
+                    .call(client_id:     ENV['github_id'],
+                          client_secret: ENV['github_secret'],
+                          oauth_token:   current_user.token,
+                          user:          current_user.nickname,
+                          repo:          current_user.current_project,
+                          title:         params[:title],
+                          body:          params[:body],
+                          labels:        ["backlog"])
 
     flash[:success] = "Issue Created!"
     redirect_to project_path(params[:id])
   end
 
-  def edit
+
+  def self.update
+    @update || GithubIssueUpdater
+  end
+
+  def self.update=(update)
+    @update = update
   end
 
   def update
-    current_user.github.issues.edit params[:owner], params[:repo], params[:number],
-      title: params[:title],
-      body: params[:body],
-      assignee: params[:owner],
-      labels: params[:labels].split
+    @project = Project.find(params[:project_id])
+
+    IssuesController.update
+                    .call(client_id:     ENV['github_id'],
+                          client_secret: ENV['github_secret'],
+                          oauth_token:   current_user.token,
+                          user:          current_user.nickname,
+                          repo:          current_user.current_project,
+                          number:        params[:number],
+                          title:         params[:title],
+                          body:          params[:body],
+                          labels:        params[:labels].split)
 
     flash[:success] = "Issue Updated!"
     redirect_to project_path(params[:project_id])
   end
 
-  def update_label
-    current_user.github.issues.labels.update params[:owner], params[:repo], params[:name], name: 'bug', color: "FFFFFF"
+
+  def self.update_column
+    @update_column || GithubColumnUpdater
+  end
+
+  def self.update_column=(update_column)
+    @update_column = update_column
   end
 
   def update_column
-    current_user.github.issues.labels.remove params[:owner], params[:repo], params[:number],
-      label_name: params[:oldcolumn]
-
-    current_user.github.issues.labels.add params[:owner], params[:repo], params[:number],
-      params[:newcolumn]
+    IssuesController.update_column
+                    .call(client_id:     ENV['github_id'],
+                          client_secret: ENV['github_secret'],
+                          oauth_token:   current_user.token,
+                          user:          current_user.nickname,
+                          repo:          current_user.current_project,
+                          number:        params[:number],
+                          old_column:    params[:oldcolumn],
+                          new_column:    params[:newcolumn],
+                          owner:         params[:owner])
     head :ok
-  end
-
-  private
-
-  def client
-    current_user.github if current_user
   end
 end
 

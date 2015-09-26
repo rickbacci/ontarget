@@ -7,7 +7,7 @@ class ProjectsController < ApplicationController
   def show
     @project = Project.find(params[:id])
 
-    # current_user.github.repo = @project.name
+    client.repo = @project.name
 
     @backlog     = client.issues.list(user: 'rickbacci', repo: @project.name, labels: 'backlog')
     @ready       = client.issues.list(user: 'rickbacci', repo: @project.name, labels: 'ready')
@@ -16,21 +16,21 @@ class ProjectsController < ApplicationController
   end
 
   def new
-    @repos = current_user.github.repos.list(per_page: 100).map do |repo|
+    @repos = client.repos.list(per_page: 100).map do |repo|
       repo.name
     end
-
   end
 
   def create
     project = current_user.projects.create(name: params[:name])
 
-    current_user.github.repo = project.name
+    client.repo = project.name
+    current_user.current_project = project.name
 
-    current_user.github.issues.labels.create name: 'backlog', color: '1FFFFF'
-    current_user.github.issues.labels.create name: 'ready', color: 'F3FFFF'
-    current_user.github.issues.labels.create name: 'in-progress', color: 'FF5FFF'
-    current_user.github.issues.labels.create name: 'completed', color: 'FFF7FF'
+    client.issues.labels.create name: 'backlog', color: '1FFFFF'
+    client.issues.labels.create name: 'ready', color: 'F3FFFF'
+    client.issues.labels.create name: 'in-progress', color: 'FF5FFF'
+    client.issues.labels.create name: 'completed', color: 'FFF7FF'
 
     if project
       flash[:success] = "Repository successfully added to your project list!"
@@ -42,14 +42,12 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-
-    project = Project.find(params[:id])
-
-    project.destroy
+    Project.find(params[:id]).destroy
 
     flash[:success] = "Repository removed from your project list!"
     redirect_to projects_path
   end
+
 
   private
 
@@ -58,6 +56,11 @@ class ProjectsController < ApplicationController
   end
 
   def client
-    current_user.github if current_user
+    IssuesController::GithubColumnUpdater
+      .github_for(client_id:     ENV['github_id'],
+                  client_secret: ENV['github_secret'],
+                  oauth_token:   current_user.token,
+                  user:          current_user.nickname,
+                  repo:          current_user.current_project)
   end
 end
