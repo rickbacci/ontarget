@@ -11,14 +11,4 @@ class User < ActiveRecord::Base
     user.save
     user
   end
-
-  def github
-    @github ||= Github.new do |c|
-      c.client_id     = ENV['github_id']
-      c.client_secret = ENV['github_secret']
-      c.oauth_token   = token
-      c.user          = nickname
-      c.repo          = 'test_repo'
-    end
-  end
 end
