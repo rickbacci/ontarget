@@ -1,10 +1,17 @@
 $(document).ready(function() {
 
+  $('.form').on('keydown', function(e) {
+    if(!(e.keyCode == 13 && e.metaKey)) return;
+
+    var target = e.target;
+    if(target.form) {
+      target.form.submit();
+    }
+  });
 
 
   $(function() {
     $('.noscrollbars').submit( function() {
-      alert ("hello :)");
       add_custom_validation_methods();
       force_ckeditor_to_update();
       $(this).validate({
@@ -17,22 +24,31 @@ $(document).ready(function() {
   });
 
 
-
-
   $('.column').height($('.col').height());
 
+
   $( ".sortable" ).sortable({
+    tolerance: "pointer",
+
+    dropOnEmpty: false,
     revert: true,
+    refreshPositions: true,
+    stack: ".cards",
+    scroll: true,
   });
+
+
+  $( ".panel" ).draggable({
+    zIndex: 100
+  });
+
 
   $( ".panel" ).draggable({
 
-    start: function(event, ui) {
-      console.log('dragging started');
-    },
-    drag: function() {
-      console.log('dragging in progress');
-    },
+    stack: ".cards",
+    refreshPositions: true,
+    scroll: true,
+
     stop: function(event, ui) {
       console.log('dragging stopped');
 
@@ -64,6 +80,7 @@ $(document).ready(function() {
 
       if (toBacklog) {
         var newColumn = 'backlog'
+
           $(this).addClass('backlog');
         $(this).removeClass('in-progress ready completed');
 
@@ -82,7 +99,6 @@ $(document).ready(function() {
             },
 
             success: function(post) {
-
               // success need to change the label name
             },
             error: function(xhr) {
@@ -114,7 +130,6 @@ $(document).ready(function() {
             },
 
             success: function(post) {
-
               // success need to change the label name
             },
             error: function(xhr) {
@@ -128,7 +143,6 @@ $(document).ready(function() {
         var newColumn = 'in-progress'
           $(this).addClass('in-progress');
         $(this).removeClass('backlog ready completed');
-
 
         var owner  = this.dataset.owner
           var repo   = this.dataset.repo
@@ -145,7 +159,6 @@ $(document).ready(function() {
             },
 
             success: function(post) {
-
               // success need to change the label name
             },
             error: function(xhr) {
@@ -176,7 +189,6 @@ $(document).ready(function() {
             },
 
             success: function(post) {
-
               // success need to change the label name
             },
             error: function(xhr) {
@@ -185,11 +197,10 @@ $(document).ready(function() {
           })
 
       }
-
     },
     connectToSortable: ".sortable",
     revert: "invalid",
-    cursor: "move"
+    // cursor: "move"
   });
 
 });
@@ -197,7 +208,6 @@ $(document).ready(function() {
 function giveAlert() {
   alert("Times up!");
 }
-
 
 function autoGrow (oField) {
   if (oField.scrollHeight > oField.clientHeight) {
