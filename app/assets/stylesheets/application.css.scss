@@ -20,9 +20,17 @@
 @import 'rails_bootstrap_forms';
 @import 'jquery.ui.all';
 
+
+$gray1: #A1949A;
+$primary-color: #333;
+
 body {
-  background-color: #D0BCC2;
+  background-color: $gray1;
 }
+
+
+// .top {z-index: 100!important;}
+// .bottom {z-index: 10!important;}
 
 .blue {
   border-width: 2px;
@@ -30,13 +38,26 @@ body {
   border-color: #0000ff;
 }
 
-.issue-btn, .dropup-btn {
-  margin-top: 15px;
+// .issue-btn, .dropup-btn {
+//   margin-top: 15px;
+// }
+
+div.row.no-gutters {
+
+  border-color: $gray1;
 }
 
-ul.column {
-  border: 1px #FFF dotted;
+
+li.ui-draggable {
+  margin-left: 10px;
+  margin-right: 10px;
+  // z-index: 0;
 }
+
+// ul.column {
+//   border: 5px $gray1 solid;
+//
+// }
 
 .project_list {
   width: 100%;
@@ -62,7 +83,11 @@ ul.column {
 
 .col {
   flex: 1;
-  border: 1px #FFF dotted;
+  // border: 1px #FFF dotted;
+}
+
+textarea[name=title], textarea[name=body] {
+    resize: none;
 }
 
 textarea.noscrollbars {
@@ -70,7 +95,7 @@ textarea.noscrollbars {
 }
 
 ul.dropdown-menu.issue-dropup-menu {
-    bottom: 20%;
+    bottom: 25%;
 }
 
 .row.no-gutters {
@@ -82,4 +107,49 @@ ul.dropdown-menu.issue-dropup-menu {
     padding-right: 0;
     padding-left: 0;
   }
+}
+
+.border-gutters {
+
+  // border-left: 10px solid $gray1;
+  // border-right: 10px solid $gray1;
+}
+
+
+.cards {
+  box-sizing: border-box;
+  background-image: -webkit-linear-gradient(rgba( 238, 238, 238, 1), rgba( 238, 238, 238, 1));
+  background-image: linear-gradient(rgba( 238, 238, 238, 1),rgba( 238, 238, 238, 1));
+  border: 5px ridge #333333;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  border-bottom-left-radius: 15px;
+  border-bottom-right-radius: 15px;
+  -moz-box-sizing: border-box;
+}
+
+.panel-heading {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+
+}
+
+
+.card {
+  padding: 10px;
+
+}
+
+#title {
+
+  margin-bottom: 10px;
+}
+
+.form.form-control {
+  margin: 5px;
+
+}
+
+.well.card {
+  margin-bottom: 10px;
 }
