@@ -26,11 +26,14 @@ $(document).ready(function() {
 
   $('.column').height($('.col').height());
 
+  $( ".no-gutters" ).draggable({
+  });
 
   $( ".sortable" ).sortable({
     tolerance: "pointer",
     dropOnEmpty: true,
     revert: true,
+    containment: "parent"
   });
 
   $( ".panel" ).draggable({
@@ -39,6 +42,7 @@ $(document).ready(function() {
     // revert: "invalid",
     cursor: "move",
     zIndex: 100,
+    containment: "body",
 
     stop: function(event, ui) {
       console.log('dragging stopped');
