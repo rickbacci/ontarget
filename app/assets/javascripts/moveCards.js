@@ -29,25 +29,16 @@ $(document).ready(function() {
 
   $( ".sortable" ).sortable({
     tolerance: "pointer",
-
-    dropOnEmpty: false,
+    dropOnEmpty: true,
     revert: true,
-    refreshPositions: true,
-    stack: ".cards",
-    scroll: true,
   });
-
-
-  $( ".panel" ).draggable({
-    zIndex: 100
-  });
-
 
   $( ".panel" ).draggable({
 
-    stack: ".cards",
-    refreshPositions: true,
-    scroll: true,
+    connectToSortable: ".sortable",
+    // revert: "invalid",
+    cursor: "move",
+    zIndex: 100,
 
     stop: function(event, ui) {
       console.log('dragging stopped');
@@ -78,7 +69,7 @@ $(document).ready(function() {
       var toInprogress = this.parentElement.className.includes('in-progress');
       var toCompleted  = this.parentElement.className.includes('completed');
 
-      if (toBacklog) {
+      if (toBacklog && oldColumn !== 'backlog') {
         var newColumn = 'backlog'
 
           $(this).addClass('backlog');
@@ -109,9 +100,9 @@ $(document).ready(function() {
       }
 
 
-      if (toReady) {
+      if (toReady && oldColumn !== 'ready') {
         var newColumn = 'ready'
-          $(this).addClass('ready');
+        $(this).addClass('ready');
         $(this).removeClass('backlog in-progress completed');
 
 
@@ -139,9 +130,9 @@ $(document).ready(function() {
 
       }
 
-      if (toInprogress) {
+      if (toInprogress && oldColumn !== 'in-progress') {
         var newColumn = 'in-progress'
-          $(this).addClass('in-progress');
+        $(this).addClass('in-progress');
         $(this).removeClass('backlog ready completed');
 
         var owner  = this.dataset.owner
@@ -169,9 +160,9 @@ $(document).ready(function() {
         window.setTimeout(giveAlert, 2000);
       }
 
-      if (toCompleted) {
+      if (toCompleted && oldColumn !== 'completed') {
         var newColumn = 'completed'
-          $(this).addClass('completed');
+        $(this).addClass('completed');
         $(this).removeClass('backlog ready in-progress');
 
         var owner  = this.dataset.owner
@@ -195,12 +186,8 @@ $(document).ready(function() {
               console.log(xhr.responseText)
             }
           })
-
       }
     },
-    connectToSortable: ".sortable",
-    revert: "invalid",
-    // cursor: "move"
   });
 
 });
@@ -214,3 +201,4 @@ function autoGrow (oField) {
     oField.style.height = oField.scrollHeight + "px";
   }
 }
+

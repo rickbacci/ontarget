@@ -24,45 +24,33 @@
 $gray1: #A1949A;
 $primary-color: #333;
 
+
 body {
   background-color: $gray1;
 }
 
-
-// .top {z-index: 100!important;}
-// .bottom {z-index: 10!important;}
-
-.blue {
-  border-width: 2px;
-  border-style: solid;
-  border-color: #0000ff;
-}
-
-// .issue-btn, .dropup-btn {
-//   margin-top: 15px;
-// }
-
 div.row.no-gutters {
-
   border-color: $gray1;
 }
 
 
+.border-gutters {
+  border-left: 5px solid $gray1;
+  border-right: 5px solid $gray1;
+}
+
 li.ui-draggable {
-  margin-left: 10px;
-  margin-right: 10px;
-  // z-index: 0;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 // ul.column {
 //   border: 5px $gray1 solid;
-//
 // }
 
 .project_list {
   width: 100%;
 }
-
 
 .added-project {
   background-color: #99C299;
@@ -83,11 +71,10 @@ li.ui-draggable {
 
 .col {
   flex: 1;
-  // border: 1px #FFF dotted;
 }
 
 textarea[name=title], textarea[name=body] {
-    resize: none;
+  resize: none;
 }
 
 textarea.noscrollbars {
@@ -95,7 +82,7 @@ textarea.noscrollbars {
 }
 
 ul.dropdown-menu.issue-dropup-menu {
-    bottom: 25%;
+  bottom: 25%;
 }
 
 .row.no-gutters {
@@ -108,13 +95,6 @@ ul.dropdown-menu.issue-dropup-menu {
     padding-left: 0;
   }
 }
-
-.border-gutters {
-
-  // border-left: 10px solid $gray1;
-  // border-right: 10px solid $gray1;
-}
-
 
 .cards {
   box-sizing: border-box;
@@ -133,7 +113,6 @@ ul.dropdown-menu.issue-dropup-menu {
   border-top-right-radius: 15px;
 
 }
-
 
 .card {
   padding: 10px;
