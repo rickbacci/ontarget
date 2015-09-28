@@ -30,8 +30,8 @@ $(document).ready(function() {
 
   $('.column').height($('.col').height());
 
-  $( ".no-gutters" ).draggable({
-  });
+  // $( ".no-gutters" ).draggable({
+  // });
 
   $( ".sortable" ).sortable({
     tolerance: "pointer",

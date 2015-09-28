@@ -8,21 +8,11 @@
                           user:          user,
                           repo:          repo
 
+      github.issues.labels.replace user, repo, number, labels.shift
 
-      # github.issues.labels.replace(user, repo, number, labels)
-      # github.issues.labels.replace user, repo, number, labels
-
-      # github.issues.labels.replace 'rickbacci', 'ontarget', 18, 'backlog', 'wontfix', 'bug'
-      github.issues.labels.replace user, repo, number, "backlog"
-      github.issues.labels.replace user, repo, number, "bug"
-
-
-                                    # "backlog", "bug"
-      #
-
-      # github.issues.labels.replace 'user-name', 'repo-name', 'issue-number',
-      #   'label1', 'label2', ...
-
+      labels.each do |label|
+        github.issues.labels.add user, repo, number, label
+      end
     end
 
     def self.github_for(client_id:, client_secret:, oauth_token:, user:, repo:)

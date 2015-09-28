@@ -24,8 +24,8 @@
                 = text_area_tag :body, issue.body, { rows: 5, class: "form-control noscrollbars ctrl-enter", :onkeyup => "autoGrow(this);"}
                 = hidden_field_tag :labels, issue.labels.map { |label| label.name}
                 = hidden_field_tag :project_id, @project.id
-
                 - issue.labels.map do |label|
+                - next if label.name == 'backlog' || 'ready' || 'in-progress' || 'completed'
                   %li{ class: "btn btn-xs", style: "background-color:\##{label.color};margin-top:10px" }
                     = label.name
             %button.btn.pull-right.btn-default.btn-xs.issue-btn{:type => "submit"} Update

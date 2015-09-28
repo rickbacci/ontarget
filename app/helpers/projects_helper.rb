@@ -7,4 +7,12 @@ module ProjectsHelper
   def has_label?(labels, name)
     labels.any?{ |label| label.name == name}
   end
+
+  def get_labels(labels)
+    # labels.map do |label|
+      # next if label.name == 'backlog' || 'ready' || 'in-progress' || 'completed'
+      # %li{ class: "btn btn-xs", style: "background-color:\##{label.color};margin-top:10px" }
+      # = label.name
+    # end
+  end
 end
