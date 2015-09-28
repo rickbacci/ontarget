@@ -1,5 +1,9 @@
 $(document).ready(function() {
 
+  $('.dropdown-menu input, .dropdown-menu label').click(function(e) {
+      e.stopPropagation();
+  });
+
   $('.form').on('keydown', function(e) {
     if(!(e.keyCode == 13 && e.metaKey)) return;
 
@@ -26,8 +30,8 @@ $(document).ready(function() {
 
   $('.column').height($('.col').height());
 
-  $( ".no-gutters" ).draggable({
-  });
+  // $( ".no-gutters" ).draggable({
+  // });
 
   $( ".sortable" ).sortable({
     tolerance: "pointer",

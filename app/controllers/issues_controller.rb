@@ -2,11 +2,36 @@ class IssuesController < ApplicationController
   include GithubColumnUpdater
   include GithubIssueCreater
   include GithubIssueUpdater
-
+  include GithubIssueLabelUpdater
 
   def new
     @project = Project.find(params[:id])
   end
+
+  def self.update_issue_labels
+    @update_issue_labels || GithubIssueLabelUpdater
+  end
+
+  def self.update_issue_labels=(update_issue_labels)
+    @update_issue_labels = update_issue_labels
+  end
+
+  def update_issue_labels
+    project = Project.find_by(name: params[:repo])
+
+    IssuesController.update_issue_labels
+                    .call(client_id:     ENV['github_id'],
+                          client_secret: ENV['github_secret'],
+                          oauth_token:   current_user.token,
+                          user:          current_user.nickname,
+                          repo:          current_user.current_project,
+                          number:        params[:number],
+                          labels:        params[:updates][:labels])
+
+    flash[:success] = "Labels Updated!"
+    redirect_to project_path(project.id)
+  end
+
 
   def self.create
     @create || GithubIssueCreater

@@ -29,6 +29,30 @@ body {
   background-color: $gray1;
 }
 
+
+.box {
+ width: 45%;
+ padding-left: 10%;
+ margin-left: 3%;
+ text-align: left;
+ vertical-align: sub;
+}
+
+.label-btn {
+  margin-top: 5%;
+  margin-right: 2%;
+}
+
+.dropup-btn {
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.issue-btn {
+  margin-top: 4%;
+  margin-bottom: 4%;
+}
+
 div.row.no-gutters {
   border-color: $gray1;
 }
@@ -78,11 +102,14 @@ textarea[name=title], textarea[name=body] {
 }
 
 textarea.noscrollbars {
-  overflow: hidden;
+  // overflow: hidden;
 }
 
-ul.dropdown-menu.issue-dropup-menu {
-  bottom: 25%;
+.dropdown-menu.issue-dropup-menu {
+  bottom: 14%;
+  left: 4%;
+  right: 4%;
+  top: 15%;
 }
 
 .row.no-gutters {
@@ -115,12 +142,11 @@ ul.dropdown-menu.issue-dropup-menu {
 }
 
 .card {
-  padding: 10px;
+  padding: 4%;
 
 }
 
 #title {
-
   margin-bottom: 10px;
 }
 
@@ -130,5 +156,7 @@ ul.dropdown-menu.issue-dropup-menu {
 }
 
 .well.card {
-  margin-bottom: 10px;
+  // margin-bottom: 10px;
+  margin-bottom: 0%;
+  padding-bottom: 8%;
 }

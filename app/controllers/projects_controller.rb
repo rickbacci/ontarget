@@ -11,6 +11,7 @@ class ProjectsController < ApplicationController
     current_user.save
 
     @issues = client.issues.list(repo: @project.name)
+    @labels = client.issues.labels.list
   end
 
   def new

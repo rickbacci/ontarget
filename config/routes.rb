@@ -14,5 +14,6 @@ Rails.application.routes.draw do
   patch '/repos/:owner/:repo/issues/:number', to: 'issues#update', as: :update_issue
   post  '/update_labels', to: 'issues#update_column'
 
+  post '/repos/:owner/:repo/issues/:number/labels', to: 'issues#update_issue_labels', as: 'update_issue_labels'
   root 'dashboard#show'
 end
