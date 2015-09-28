@@ -25,7 +25,6 @@ class ProjectsController < ApplicationController
 
     update_project_name(project)
 
-    destroy_labels
     create_labels
 
     if project
