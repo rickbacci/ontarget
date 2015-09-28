@@ -29,6 +29,21 @@ body {
   background-color: $gray1;
 }
 
+
+.box {
+ width: 45%;
+ padding-left: 10%;
+ margin-left: 3%;
+ text-align: left;
+ vertical-align: sub;
+}
+
+.label-btn {
+  margin-top: 5%;
+  margin-right: 2%;
+}
+
+
 div.row.no-gutters {
   border-color: $gray1;
 }
@@ -81,8 +96,11 @@ textarea.noscrollbars {
   overflow: hidden;
 }
 
-ul.dropdown-menu.issue-dropup-menu {
-  bottom: 25%;
+.dropdown-menu.issue-dropup-menu {
+  bottom: 14%;
+  left: 4%;
+  right: 4%;
+  top: 15%;
 }
 
 .row.no-gutters {

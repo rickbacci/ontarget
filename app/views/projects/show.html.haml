@@ -14,7 +14,8 @@
               %h3.panel-title.pull-right
                 \##{issue.number}
               %h3.panel-title.text-left
-                = current_user.current_project
+                = issue.milestone.title if issue.milestone
+                = current_user.current_project unless issue.milestone
           .panel-body.card
             .well.card
               =form_tag update_issue_path(@project.user.nickname, @project.name, issue.number),
@@ -33,10 +34,16 @@
                 %button.dropup-btn.btn.btn-xs.btn-default.dropdown-toggle{ "id" => "dropup-#{issue.number}", "aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
                   Labels
                   %span.caret
-                %ul.dropdown-menu.issue-dropup-menu{"aria-labelledby" => "dropup-#{issue.number}" }
-                  - issue.labels.map do |label|
-                    %li{ class: "btn btn-xs", style: "background-color:\##{label.color}" }
-                      = label.name
+                .dropdown-menu.issue-dropup-menu{"aria-labelledby" => "dropup-#{issue.number}" }
+                  = form_tag update_issue_labels_path(@project.user.nickname, @project.name, issue.number),
+                    class: "form", id: "issue-popup-form-#{issue.number}", method: :post do
+                    - @labels.each do |label|
+                      .box{ class: "checkbox btn btn-xs", style: "background-color:\##{label.color}" }
+                        = check_box_tag "updates[labels][]", [label.name], has_label?(issue.labels, label.name), id: label.id, class: 'checkbox'
+                        = label.name
+                        -# %label{ :for => issue.number }
+                  .panel
+                    %button.btn.pull-right.btn-default.btn-xs.label-btn{:type => "submit"} Update
 
   .col-md-3.col.border-gutters
     %h2.text-center
