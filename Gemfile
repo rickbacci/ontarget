@@ -22,6 +22,7 @@ gem 'figaro'
 
 gem 'omniauth-github'
 gem 'github_api'
+gem 'skylight'
 
 group :development, :test do
   gem 'byebug'
