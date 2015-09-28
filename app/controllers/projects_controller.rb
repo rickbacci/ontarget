@@ -43,6 +43,19 @@ class ProjectsController < ApplicationController
   end
 
 
+  def create_labels
+    client.issues.labels.create name: 'backlog', color: '1FFFFF'
+    client.issues.labels.create name: 'ready', color: 'F3FFFF'
+    client.issues.labels.create name: 'in-progress', color: 'FF5FFF'
+    client.issues.labels.create name: 'completed', color: 'FFF7FF'
+  end
+
+  def update_project_name(project)
+    client.repo = project.name
+    current_user.current_project = project.name
+    current_user.save
+  end
+
   private
 
   def project_params
@@ -58,17 +71,6 @@ class ProjectsController < ApplicationController
                   repo:          current_user.current_project)
   end
 
-  def create_labels
-    client.issues.labels.create name: 'backlog', color: '1FFFFF'
-    client.issues.labels.create name: 'ready', color: 'F3FFFF'
-    client.issues.labels.create name: 'in-progress', color: 'FF5FFF'
-    client.issues.labels.create name: 'completed', color: 'FFF7FF'
-  end
 
-  def update_project_name(project)
-    client.repo = project.name
-    current_user.current_project = project.name
-    current_user.save
-  end
 
 end

@@ -13,8 +13,7 @@
           = link_to 'New Project', new_project_path
         %li
           = link_to 'View Projects', projects_path
-        -# - if current_user && current_user.current_project && @project
-        - if @project
+        - if current_user && current_user.current_project && @project
           %li
             = link_to 'View Issues', project_path(@project)
           %li
