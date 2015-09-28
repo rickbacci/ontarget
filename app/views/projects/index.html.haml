@@ -11,5 +11,5 @@
                 = link_to project.name, project_path(project), class: 'btn btn-default btn-large project-name-button'
               .col-md-2
                 .pull-right
-                  = link_to '-', project_path(project), method: :delete, class: 'btn btn-default btn-large minus-button'
+                  = link_to '-', project_path(project.name), method: :delete, class: 'btn btn-default btn-small minus-button'
 
