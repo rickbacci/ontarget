@@ -24,6 +24,8 @@ class ProjectsController < ApplicationController
     project = current_user.projects.create(name: params[:name])
 
     update_project_name(project)
+
+    destroy_labels
     create_labels
 
     if project
@@ -38,7 +40,7 @@ class ProjectsController < ApplicationController
   def destroy
     project_name = Project.find_by(name: params[:id]).destroy
 
-    destroy_labels(project_name)
+    destroy_labels
 
     flash[:success] = "Repository removed from your project list!"
     redirect_to projects_path
@@ -52,7 +54,7 @@ class ProjectsController < ApplicationController
     client.issues.labels.create name: 'completed', color: 'FFF7FF'
   end
 
-  def destroy_labels(project_name)
+  def destroy_labels
     client.issues.labels.delete client.user, client.repo, 'backlog'
     client.issues.labels.delete client.user, client.repo, 'ready'
     client.issues.labels.delete client.user, client.repo, 'in-progress'
