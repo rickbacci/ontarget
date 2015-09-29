@@ -12,7 +12,6 @@ $(document).ready(function() {
       $(".radio").each(function(index, button){
           var timeValue = this.value;
           console.log(timeValue);
-        }
       });
   });
 
