@@ -1,15 +1,7 @@
 $(document).ready(function() {
 
-  // $(function(){
-  //     $("input[type='radio'][name='timer_time']").each(function(index, button){
-  //       if(this.checked === true) {
-  //         var timeValue = this.value;
-  //       }
-  //     });
-  // });
-
   $(function(){
-      $(".radio").each(function(index, button){
+      $(".radio :checked").each(function(index, button){
           var timeValue = this.value;
           console.log(timeValue);
       });
@@ -44,9 +36,6 @@ $(document).ready(function() {
 
 
   $('.column').height($('.col').height());
-
-  // $( ".no-gutters" ).draggable({
-  // });
 
   $( ".sortable" ).sortable({
     tolerance: "pointer",
@@ -180,15 +169,13 @@ $(document).ready(function() {
             }
           })
 
+          timeString = this.dataset.timerMilliseconds
+          timeInt = parseInt(timeString)
 
-        $(function(){
-            $("input[type='radio'][name='timer_time']").each(function(index, button){
-              if(this.checked === true) {
-                var timeValue = this.value;
-                window.setTimeout(giveAlert, timeValue);
-              }
-            });
-        });
+
+          console.log("Timer set for " + timeString)
+          window.setTimeout(giveAlert, timeInt);
+
       }
 
       if (toCompleted && oldColumn !== 'completed') {

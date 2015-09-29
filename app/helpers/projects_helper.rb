@@ -15,6 +15,7 @@ module ProjectsHelper
   def different_repo(issue, current_user)
     issue.repository.name != current_user.current_project
   end
+
   def different_column(issue, status)
     issue.labels.none? { |label| label.name == status }
   end
@@ -24,13 +25,26 @@ module ProjectsHelper
   end
 
   def get_time(labels)
-    return 25 if labels.include?('25')
-    return 50 if labels.include?('50')
+    labels = labels.map { |label| label.name }
+
+    return 1500000 if labels.include?('1500000')
+    return 3000000 if labels.include?('3000000')
     5000
   end
 
   def set_time(time, value)
     return true if time == value
     false
+  end
+
+  def convert_time(milliseconds)
+    case milliseconds
+    when 5000
+      "5 Seconds"
+    when 1500000
+      "25 Minutes"
+    when 3000000
+      "50 Minutes"
+    end
   end
 end
