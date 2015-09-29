@@ -12,6 +12,6 @@
       - flash.each do |name, msg|
         = content_tag :div, msg, class: "text-center alert alert-#{name}", role: "alert"
       = yield
-      %script{:src => "http://code.jquery.com/ui/1.11.4/jquery-ui.js"}
+      %script{:src => "https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"}
       -# %script{:src => "https://cdnjs.cloudflare.com/ajax/libs/jquery-timeago/1.4.3/jquery.timeago.min.js "}
       -# %script{:src => "jquery.min.js", :type => "text/javascript"}
