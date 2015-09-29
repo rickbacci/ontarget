@@ -1,5 +1,9 @@
 module ProjectsHelper
 
+  def statuses
+    ['backlog', 'ready', 'in-progress', 'completed']
+  end
+
   def added_to_projects(project_name)
     current_user.projects.pluck(:name).include?(project_name)
   end
@@ -8,11 +12,14 @@ module ProjectsHelper
     labels.any?{ |label| label.name == name}
   end
 
-  def get_labels(labels)
-    # labels.map do |label|
-      # next if label.name == 'backlog' || 'ready' || 'in-progress' || 'completed'
-      # %li{ class: "btn btn-xs", style: "background-color:\##{label.color};margin-top:10px" }
-      # = label.name
-    # end
+  def different_repo(issue, current_user)
+    issue.repository.name != current_user.current_project
+  end
+  def different_column(issue, status)
+    issue.labels.none? { |label| label.name == status }
+  end
+
+  def different?(issue, status, current_user)
+    different_repo(issue, current_user) || different_column(issue, status)
   end
 end

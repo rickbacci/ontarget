@@ -1,0 +1,9 @@
+.dropdown-menu.issue-dropup-menu{"aria-labelledby" => "dropup-#{issue_number}" }
+  = form_tag update_issue_labels_path(project.user.nickname, project.name, issue_number),
+    class: "label-check-boxes well form", id: "issue-popup-form-#{issue_number}", method: :post do
+    - @labels.each do |label|
+      .box{ class: "checkbox btn btn-xs", style: "background-color:\##{label.color}" }
+        = check_box_tag "updates[labels][]", [label.name], has_label?(issue_labels, label.name), id: label.id, class: 'checkbox'
+        = label.name
+        %label{ :for => issue_number }
+  %button.btn.pull-right.btn-default.btn-xs.label-btn{:type => "submit"} Update
