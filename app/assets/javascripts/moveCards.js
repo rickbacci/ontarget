@@ -1,5 +1,21 @@
 $(document).ready(function() {
 
+  // $(function(){
+  //     $("input[type='radio'][name='timer_time']").each(function(index, button){
+  //       if(this.checked === true) {
+  //         var timeValue = this.value;
+  //       }
+  //     });
+  // });
+
+  $(function(){
+      $(".radio").each(function(index, button){
+          var timeValue = this.value;
+          console.log(timeValue);
+        }
+      });
+  });
+
   $('.dropdown-menu input, .dropdown-menu label').click(function(e) {
       e.stopPropagation();
   });
@@ -165,7 +181,15 @@ $(document).ready(function() {
             }
           })
 
-        window.setTimeout(giveAlert, 2000);
+
+        $(function(){
+            $("input[type='radio'][name='timer_time']").each(function(index, button){
+              if(this.checked === true) {
+                var timeValue = this.value;
+                window.setTimeout(giveAlert, timeValue);
+              }
+            });
+        });
       }
 
       if (toCompleted && oldColumn !== 'completed') {

@@ -22,4 +22,15 @@ module ProjectsHelper
   def different?(issue, status, current_user)
     different_repo(issue, current_user) || different_column(issue, status)
   end
+
+  def get_time(labels)
+    return 25 if labels.include?('25')
+    return 50 if labels.include?('50')
+    5000
+  end
+
+  def set_time(time, value)
+    return true if time == value
+    false
+  end
 end

@@ -25,7 +25,7 @@
                 = render partial: 'shared/issue_labels',
                          locals:  { issue_labels: issue.labels }
               .clearfix
-                .dropup
+                .dropup.pull-left
                   %button{ class: "dropup-btn btn btn-xs btn-default dropdown-toggle",
                            id:    "dropup-#{issue.number}",
                            'aria-expanded': "true",
@@ -39,3 +39,14 @@
                                          issue_number: issue.number,
                                          issue_labels: issue.labels }
 
+                .dropup.pull-right
+                  %button{ class: "pull-right dropup-btn btn btn-xs btn-default dropdown-toggle",
+                           id:    "dropup-#{issue.number}",
+                           'aria-expanded': "true",
+                    'aria-haspopup': "true",
+                    'data-toggle': "dropdown", type: "button" }
+                    Timers
+                    %span.caret
+                  = render partial: 'shared/dropup_timer_form',
+                    locals: { issue_number: issue.number,
+                              timer_time: get_time(issue.labels) }
