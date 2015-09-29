@@ -1,13 +1,15 @@
 .row.no-gutters
-  -['backlog', 'ready', 'in-progress', 'completed'].each do |status|
+  - statuses.each do |status|
     .col-md-3.col.border-gutters
       %h2.text-center
         = status.titlecase
       %ul{ class: "#{status} column sortable list-unstyled"}
         - @issues.each do |issue|
-          - next if issue.repository.name != current_user.current_project
-          - next unless issue.labels.any? { |label| label.name == status }
-          %li{ class: "panel cards panel-default #{status}", data: { owner: @project.user.nickname, repo: @project.name, number: issue.number } }
+          - next if different?(issue, status, current_user)
+          %li{ class: "panel cards panel-default #{status}",
+               data: { owner:  @project.user.nickname,
+                       repo:   @project.name,
+                       number: issue.number } }
             .panel-heading
               .issue
                 %h3.panel-title.pull-right
@@ -17,13 +19,23 @@
                   = current_user.current_project unless issue.milestone
             .panel-body.card
               .well.card
-                =render partial: 'shared/issue_form', locals: { project: @project, issue: issue }
+                =render partial: 'shared/issue_form',
+                        locals:  { project: @project, issue: issue }
               .clearfix
-                = render partial: 'shared/issue_labels', locals: { issue_labels: issue.labels }
+                = render partial: 'shared/issue_labels',
+                         locals:  { issue_labels: issue.labels }
               .clearfix
                 .dropup
-                  %button.dropup-btn.btn.btn-xs.btn-default.dropdown-toggle{ "id" => "dropup-#{issue.number}", "aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+                  %button{ class: "dropup-btn btn btn-xs btn-default dropdown-toggle",
+                           id:    "dropup-#{issue.number}",
+                           'aria-expanded': "true",
+                    'aria-haspopup': "true",
+                    'data-toggle': "dropdown", type: "button" }
                     Labels
                     %span.caret
-                  = render partial: 'shared/dropup_label_form', collection: @labels, locals: { project: @project, issue_number: issue.number, issue_labels: issue.labels }
+                  = render partial:    'shared/dropup_label_form',
+                           collection: @labels,
+                           locals:     { project:      @project,
+                                         issue_number: issue.number,
+                                         issue_labels: issue.labels }
 
