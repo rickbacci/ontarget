@@ -3,7 +3,11 @@
     class: "label-check-boxes well form", id: "issue-popup-form-#{issue_number}", method: :post do
     - @labels.each do |label|
       .box{ class: "checkbox btn btn-xs", style: "background-color:\##{label.color}" }
-        = check_box_tag "updates[labels][]", [label.name], has_label?(issue_labels, label.name), id: label.id, class: 'checkbox'
+        = check_box_tag "updates[labels][]", [label.name],
+          has_label?(issue_labels, label.name), id: label.id, class: 'checkbox'
         = label.name
         %label{ :for => issue_number }
-  %button.btn.pull-right.btn-default.btn-xs.label-btn{:type => "submit"} Update
+    .box
+    .row
+      .col-md-12
+        %button.btn.pull-right.btn-default.btn-xs.label-btn{:type => "submit"} Update
