@@ -1,0 +1,8 @@
+=form_tag update_issue_path(project.user.nickname, project.name, issue.number),
+  class: "form", id: "issue-form-#{issue.number}", method: :patch do
+  = text_area_tag :title, issue.title, { rows: 1, class: "form-control noscrollbars ctrl-enter", :onkeyup => "autoGrow(this);"}
+  = text_area_tag :body, issue.body, { rows: 5, class: "form-control noscrollbars ctrl-enter", :onkeyup => "autoGrow(this);"}
+  = hidden_field_tag :labels, issue.labels.map { |label| label.name}
+  = hidden_field_tag :project_id, @project.id
+  %label{ :for => issue.number }
+  %button.btn.pull-right.btn-default.btn-xs.issue-btn{:type => "submit"} Update
