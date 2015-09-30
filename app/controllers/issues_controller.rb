@@ -52,7 +52,7 @@ class IssuesController < ApplicationController
                           repo:          current_user.current_project,
                           title:         params[:title],
                           body:          params[:body],
-                          labels:        ["backlog"])
+                          labels:        ["backlog", params[:timer_time]])
 
     flash[:success] = "Issue Created!"
     redirect_to project_path(params[:id])

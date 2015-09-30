@@ -1,5 +1,12 @@
 $(document).ready(function() {
 
+  $(function(){
+      $(".radio :checked").each(function(index, button){
+          var timeValue = this.value;
+          console.log(timeValue);
+      });
+  });
+
   $('.dropdown-menu input, .dropdown-menu label').click(function(e) {
       e.stopPropagation();
   });
@@ -29,9 +36,6 @@ $(document).ready(function() {
 
 
   $('.column').height($('.col').height());
-
-  // $( ".no-gutters" ).draggable({
-  // });
 
   $( ".sortable" ).sortable({
     tolerance: "pointer",
@@ -165,7 +169,13 @@ $(document).ready(function() {
             }
           })
 
-        window.setTimeout(giveAlert, 2000);
+          timeString = this.dataset.timerMilliseconds
+          timeInt = parseInt(timeString)
+
+
+          console.log("Timer set for " + timeString)
+          window.setTimeout(giveAlert, timeInt);
+
       }
 
       if (toCompleted && oldColumn !== 'completed') {

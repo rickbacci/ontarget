@@ -9,7 +9,9 @@
           %li{ class: "panel cards panel-default #{status}",
                data: { owner:  @project.user.nickname,
                        repo:   @project.name,
-                       number: issue.number } }
+                       number: issue.number,
+                       timer: convert_time(get_time(issue.labels)),
+                       timer_milliseconds: get_time(issue.labels) } }
             .panel-heading
               .issue
                 %h3.panel-title.pull-right
@@ -25,7 +27,7 @@
                 = render partial: 'shared/issue_labels',
                          locals:  { issue_labels: issue.labels }
               .clearfix
-                .dropup
+                .dropup.pull-left
                   %button{ class: "dropup-btn btn btn-xs btn-default dropdown-toggle",
                            id:    "dropup-#{issue.number}",
                            'aria-expanded': "true",
@@ -38,4 +40,15 @@
                            locals:     { project:      @project,
                                          issue_number: issue.number,
                                          issue_labels: issue.labels }
+
+                .dropup.pull-right
+                  %button{ class: "pull-right dropup-btn btn btn-xs btn-default dropdown-toggle",
+                           id:    "dropup-#{issue.number}", 'aria-expanded': "true", 'aria-haspopup': "true",
+                           'data-toggle': "dropdown",
+                           'data-time': convert_time(get_time(issue.labels)),
+                           type: "button" }
+                    = convert_time(get_time(issue.labels))
+                  = render partial: 'shared/dropup_timer_form',
+                    locals: { issue_number: issue.number,
+                              timer_time: get_time(issue.labels) }
 

@@ -8,5 +8,17 @@
           = text_field_tag :title, nil, placeholder: "Title", class: "form-control"
           = text_area_tag :body, nil, rows: 5, placeholder: "User story...", class: "form-control"
           = hidden_field_tag :id, @project.id
-
-          %button.btn.pull-right.btn-primary.issue-btn{:type => "submit"} Create Issue
+          .radio
+            %label
+              %input.timer{checked: true, name: "timer_time", type: "radio", value: "5000" }
+                5 seconds
+          .radio
+            %label
+              %input.timer{ name: "timer_time", type: "radio", value: "1500000" }
+                25 minutes
+          .radio
+            %label
+              %input.timer{ name: "timer_time", type: "radio", value: "3000000" }
+                50 minutes
+          %button.btn.pull-right.btn-primary.issue-btn{:type => "submit"}
+            Create Issue
