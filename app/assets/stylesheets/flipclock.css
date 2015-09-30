@@ -1,250 +1,5 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
- * require_tree .
- * require_self
-
- */
-
-@import "bootstrap-sprockets";
-@import "bootstrap";
-@import 'rails_bootstrap_forms';
-  // @import 'jquery.ui.all';
-
-
-$gray1: #A1949A;
-$primary-color: #333;
-
-
-body {
-  background-color: $gray1;
-}
-
-.center-block {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 300px;
-}
-
-.timer {
-
-  margin-right: auto;
-  margin-left: auto;
-  width: 15%;
-}
-
-.column-border {
-  box-sizing: border-box;
-  background-image: -webkit-linear-gradient(rgba( 238, 238, 238, 1), rgba( 238, 238, 238, 1));
-  background-image: linear-gradient(rgba( 238, 238, 238, 1),rgba( 238, 238, 238, 1));
-  // border: 5px ridge #333333;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
-  -moz-box-sizing: border-box;
-  background-color: blue;
-  border: 1px solid black;
-  border-right: 2px solid black;
-  border-left: 2px solid black;
-}
-
-.label-check-boxes {
-  padding-left: 10%;
-  padding-right: 10%;
-}
-
-.box {
- width: 45%;
- padding-left: 10%;
- margin-left: 3%;
- text-align: left;
- vertical-align: sub;
-}
-
-.label-btn {
-  margin-top: 17%;
-  margin-right: 0%;
-}
-
-.dropup-btn {
-  margin-top: 5%;
-  margin-bottom: 5%;
-}
-
-.issue-btn {
-  margin-top: 4%;
-  margin-bottom: 4%;
-}
-
-div.row.no-gutters {
-  border-color: $gray1;
-}
-
-// keep
-.border-gutters {
-  border-left: 1% solid transparent;
-  border-right: 1% solid transparent;
-}
-
-
-.project_list {
-  width: 100%;
-}
-
-.added-project {
-  background-color: #99C299;
-}
-
-.minus-button {
-  padding: 6px 14px;
-  width: 100%;
-}
-
-.project-name-button {
-  width: 100%;
-}
-
-.row {
-  display: flex;
-}
-
-.col {
-  flex: 1;
-}
-
-textarea[name=title], textarea[name=body] {
-  resize: none;
-}
-
-textarea.noscrollbars {
-  overflow: hidden;
-}
-
-.dropdown-menu.issue-labels-dropdown-menu {
-  // bottom: 15%;
-  // top: 15%;
-  right: 5%;
-  left: 5%;
-  padding: 5%;
-  // max-height: 300px;
-}
-
-.row.no-gutters {
-  margin-right: 1%;
-  margin-left: 1%;
-
-  & > [class^="col-"],
-  & > [class*=" col-"] {
-    padding-right: 1%;
-    padding-left: 1%;
-  }
-}
-
-.cards {
-  box-sizing: border-box;
-  background-image: -webkit-linear-gradient(rgba( 238, 238, 238, 1), rgba( 238, 238, 238, 1));
-  background-image: linear-gradient(rgba( 238, 238, 238, 1),rgba( 238, 238, 238, 1));
-  border: 2px ridge #333333;
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
-  -moz-box-sizing: border-box;
-}
-
-.panel-heading {
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
-}
-
-.card {
-  padding: 4%;
-
-}
-
-#title {
-  margin-bottom: 10px;
-}
-
-.form.form-control {
-  margin: 2%;
-}
-
-.well.card {
-  margin-bottom: 10px;
-  margin-bottom: 0%;
-  padding-bottom: 8%;
-}
-
-
-
-// spinner css
-
-.spinner {
-  margin: 100px auto;
-  width: 40px;
-  height: 40px;
-  position: relative;
-}
-
-.cube1, .cube2 {
-  background-color: #333;
-  width: 15px;
-  height: 15px;
-  position: absolute;
-  top: 0;
-  left: 0;
-
-  -webkit-animation: sk-cubemove 1.8s infinite ease-in-out;
-  animation: sk-cubemove 1.8s infinite ease-in-out;
-}
-
-.cube2 {
-  -webkit-animation-delay: -0.9s;
-  animation-delay: -0.9s;
-}
-
-@-webkit-keyframes sk-cubemove {
-  25% { -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5) }
-  50% { -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg) }
-  75% { -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5) }
-  100% { -webkit-transform: rotate(-360deg) }
-}
-
-@keyframes sk-cubemove {
-  25% {
-    transform: translateX(42px) rotate(-90deg) scale(0.5);
-    -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5);
-  } 50% {
-    transform: translateX(42px) translateY(42px) rotate(-179deg);
-    -webkit-transform: translateX(42px) translateY(42px) rotate(-179deg);
-  } 50.1% {
-    transform: translateX(42px) translateY(42px) rotate(-180deg);
-    -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg);
-  } 75% {
-    transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
-    -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
-  } 100% {
-    transform: rotate(-360deg);
-    -webkit-transform: rotate(-360deg);
-  }
-}
-
-// end spinner
-
-
-
+/* Get the bourbon mixin from http://bourbon.io */
+/* Reset */
 .flip-clock-wrapper * {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -329,6 +84,7 @@ textarea.noscrollbars {
   top: 0;
   width: 100%;
   height: 100%;
+  line-height: 87px;
   text-decoration: none !important;
 }
 
@@ -352,7 +108,7 @@ textarea.noscrollbars {
   width: 100%;
   height: 50%;
   font-size: 80px;
-  overflow: hidden;
+  overflow: hidden; 
   outline: 1px solid transparent; }
 
 .flip-clock-wrapper ul li a div .shadow {
@@ -386,7 +142,10 @@ textarea.noscrollbars {
   -ms-transform-origin: 50% 0;
   -o-transform-origin: 50% 0;
   transform-origin: 50% 0;
-  bottom: 0; }
+  bottom: 0;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+}
 
 .flip-clock-wrapper ul li a div div.inn {
   position: absolute;
