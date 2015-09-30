@@ -10,12 +10,12 @@ class ProjectsController < ApplicationController
     current_user.current_project = @project.name
     current_user.save
 
-    @issues = client.issues.list(repo: @project.name)
-    @labels = client.issues.labels.list
+    @issues = current_user.client.issues.list(repo: @project.name)
+    @labels = current_user.client.issues.labels.list
   end
 
   def new
-    @repos = client.repos.list(per_page: 100).map do |repo|
+    @repos = current_user.client.repos.list().map do |repo|
       repo.name
     end
   end
@@ -51,47 +51,47 @@ class ProjectsController < ApplicationController
 
 
   def create_labels
-    labels = client.issues.labels.list.map { |label| label.name }
+    labels = current_user.client.issues.labels.list.map { |label| label.name }
 
     unless labels.include?('backlog')
-      client.issues.labels.create name: 'backlog', color: '1FFFFF'
+      current_user.client.issues.labels.create name: 'backlog', color: '1FFFFF'
     end
 
     unless labels.include?('ready')
-      client.issues.labels.create name: 'ready', color: 'F3FFFF'
+      current_user.client.issues.labels.create name: 'ready', color: 'F3FFFF'
     end
 
     unless labels.include?('in-progress')
-      client.issues.labels.create name: 'in-progress', color: 'FF5FFF'
+      current_user.client.issues.labels.create name: 'in-progress', color: 'FF5FFF'
     end
 
     unless labels.include?('completed')
-      client.issues.labels.create name: 'completed', color: 'FFF7FF'
+      current_user.client.issues.labels.create name: 'completed', color: 'FFF7FF'
     end
   end
 
   def destroy_labels
-    labels = client.issues.labels.list.map { |label| label.name }
+    labels = current_user.client.issues.labels.list.map { |label| label.name }
 
     if labels.include?('backlog')
-      client.issues.labels.delete client.user, client.repo, 'backlog'
+      current_user.client.issues.labels.delete client.user, client.repo, 'backlog'
     end
 
     if labels.include?('ready')
-      client.issues.labels.delete client.user, client.repo, 'ready'
+      current_user.client.issues.labels.delete client.user, client.repo, 'ready'
     end
 
     if labels.include?('in-progress')
-      client.issues.labels.delete client.user, client.repo, 'in-progress'
+      current_user.client.issues.labels.delete client.user, client.repo, 'in-progress'
     end
 
     if labels.include?('completed')
-      client.issues.labels.delete client.user, client.repo, 'completed'
+      current_user.client.issues.labels.delete client.user, client.repo, 'completed'
     end
   end
 
   def update_project_name(project)
-    client.repo = project.name
+    current_user.client.repo = project.name
     current_user.current_project = project.name
     current_user.save
   end
@@ -101,16 +101,4 @@ class ProjectsController < ApplicationController
   def project_params
     params.require(:project).permit(:id, :name)
   end
-
-  def client
-    IssuesController::GithubColumnUpdater
-      .github_for(client_id:     ENV['github_id'],
-                  client_secret: ENV['github_secret'],
-                  oauth_token:   current_user.token,
-                  user:          current_user.nickname,
-                  repo:          current_user.current_project)
-  end
-
-
-
 end
