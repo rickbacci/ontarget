@@ -12,11 +12,6 @@
       github.issues.labels.add(owner, repo, number, new_column)
     end
 
-    def self.update_column
-      github.issues.labels.remove(owner, repo, number, label_name: old_column)
-      github.issues.labels.add(owner, repo, number, new_column)
-    end
-
     def self.github_for(client_id:, client_secret:, oauth_token:, user:, repo:)
       Github.new do |c|
         c.client_id     = client_id

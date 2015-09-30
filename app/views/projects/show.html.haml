@@ -1,6 +1,11 @@
+.row
+  .col-md-12
+    .timer-box.center-block
+      .timer
 .row.no-gutters
   - statuses.each do |status|
-    .col-md-3.col.border-gutters
+    .col-md-3.col.border-gutters.column-border
+
       %h2.text-center
         = status.titlecase
       %ul{ class: "#{status} column sortable list-unstyled"}
@@ -19,36 +24,40 @@
                 %h3.panel-title.text-left
                   = issue.milestone.title if issue.milestone
                   = current_user.current_project unless issue.milestone
-            .panel-body.card
+            -# .panel-body.card
+            .panel-body
+              .clearfix
+                .dropdown.pull-left
+                  %button{ class: "dropup-btn btn btn-xs btn-default dropdown-toggle",
+                           id:    "dropup-#{issue.number}",
+                           'aria-expanded': "true",
+                           'aria-haspopup': "true",
+                           'data-toggle': "dropdown", type: "button" }
+                    %span
+                    Labels
+                    %span.caret
+                  = render partial:    'shared/dropdown_label_form',
+                            collection: @labels,
+                            locals:     { project:      @project,
+                                          issue_number: issue.number,
+                                          issue_labels: issue.labels }
+
+                .dropdown.pull-right
+                  %button{ class: "dropup-btn btn btn-xs btn-default dropdown-toggle",
+                           id:    "dropup-#{issue.number}",
+                           'aria-expanded': "true",
+                           'aria-haspopup': "true",
+                           'data-toggle': "dropdown", type: "button" }
+                    %span
+                      = convert_time(get_time(issue.labels))
+                    %span.caret
+                  = render partial: 'shared/dropup_timer_form',
+                    locals: { issue_number: issue.number,
+                              timer_time: get_time(issue.labels) }
               .well.card
                 =render partial: 'shared/issue_form',
                         locals:  { project: @project, issue: issue }
               .clearfix
                 = render partial: 'shared/issue_labels',
                          locals:  { issue_labels: issue.labels }
-              .clearfix
-                .dropup.pull-left
-                  %button{ class: "dropup-btn btn btn-xs btn-default dropdown-toggle",
-                           id:    "dropup-#{issue.number}",
-                           'aria-expanded': "true",
-                    'aria-haspopup': "true",
-                    'data-toggle': "dropdown", type: "button" }
-                    Labels
-                    %span.caret
-                  = render partial:    'shared/dropup_label_form',
-                           collection: @labels,
-                           locals:     { project:      @project,
-                                         issue_number: issue.number,
-                                         issue_labels: issue.labels }
-
-                .dropup.pull-right
-                  %button{ class: "pull-right dropup-btn btn btn-xs btn-default dropdown-toggle",
-                           id:    "dropup-#{issue.number}", 'aria-expanded': "true", 'aria-haspopup': "true",
-                           'data-toggle': "dropdown",
-                           'data-time': convert_time(get_time(issue.labels)),
-                           type: "button" }
-                    = convert_time(get_time(issue.labels))
-                  = render partial: 'shared/dropup_timer_form',
-                    locals: { issue_number: issue.number,
-                              timer_time: get_time(issue.labels) }
 

@@ -1,6 +1,6 @@
 .dropdown-menu.issue-dropup-menu{"aria-labelledby" => "dropup-#{issue_number}" }
   .well
-    %form
+    %form.label-check-boxes
       .radio
         %label
           %input.timer{ checked: set_time(timer_time, 5000), name: "timer_time", type: "radio", value: "5000" }
@@ -13,3 +13,4 @@
         %label
           %input.timer.form{ checked: set_time(timer_time, 3000000), name: "timer_time", type: "radio", value: "3000000" }
           50 minutes
+
