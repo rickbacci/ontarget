@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  attr_reader :github
   has_many :projects
 
   def self.find_or_create_from_auth(data)
