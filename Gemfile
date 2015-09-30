@@ -8,10 +8,8 @@ gem 'pg'
 gem "haml-rails", "~> 0.9"
 gem 'sass-rails', '~> 5.0'
 gem 'autoprefixer-rails'
-# gem 'coffee-rails', '~> 4.1.0'
+
 gem 'jquery-rails'
-gem 'jquery-ui-rails'
-gem 'jquery-ui-sass-rails'
 
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'bootstrap_form'
