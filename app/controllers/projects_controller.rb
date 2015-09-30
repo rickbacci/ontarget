@@ -1,33 +1,39 @@
 class ProjectsController < ApplicationController
 
   def index
-    @projects = Project.all
-  end
-
-  def show
-    @project = Project.find(params[:id])
-
-    current_user.current_project = @project.name
-    current_user.save
-
-    @issues = client.issues.list(repo: @project.name)
-    @labels = client.issues.labels.list
-  end
-
-  def new
-    @repos = client.repos.list(per_page: 100).map do |repo|
-      repo.name
+    if current_user
+      @projects = Project.all
+    else
+      redirect_to root_path
     end
   end
 
-  def create
-    project = current_user.projects.create(name: params[:name])
+  def show
+    if current_user
+      @project = Project.find(params[:id])
 
-    update_project_name(project)
+      current_user.current_project = @project.name
+      current_user.save
+
+      @issues ||= current_user.client.issues.list(repo: @project.name)
+      @labels ||= current_user.client.issues.labels.list
+    else
+      redirect_to root_path
+    end
+  end
+
+  def new
+    @repos ||= current_user.client.repos.list user: current_user.client.user, auto_pagination: true
+  end
+
+  def create
+    @project = current_user.projects.create(name: params[:name])
+
+    update_project_name(@project)
 
     create_labels
 
-    if project
+    if @project
       flash[:success] = "Repository successfully added to your project list!"
       redirect_to new_project_path
     else
@@ -37,7 +43,6 @@ class ProjectsController < ApplicationController
   end
 
   def destroy
-
     project_name = Project.find_by(name: params[:id])
 
     if project_name
@@ -48,7 +53,6 @@ class ProjectsController < ApplicationController
     flash[:success] = "Repository removed from your project list!"
     redirect_to projects_path
   end
-
 
   def create_labels
     labels = client.issues.labels.list.map { |label| label.name }
@@ -91,7 +95,7 @@ class ProjectsController < ApplicationController
   end
 
   def update_project_name(project)
-    client.repo = project.name
+    current_user.client.repo = project.name
     current_user.current_project = project.name
     current_user.save
   end
@@ -103,14 +107,6 @@ class ProjectsController < ApplicationController
   end
 
   def client
-    IssuesController::GithubColumnUpdater
-      .github_for(client_id:     ENV['github_id'],
-                  client_secret: ENV['github_secret'],
-                  oauth_token:   current_user.token,
-                  user:          current_user.nickname,
-                  repo:          current_user.current_project)
+    current_user.github
   end
-
-
-
 end

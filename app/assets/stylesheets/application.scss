@@ -18,7 +18,7 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import 'rails_bootstrap_forms';
-@import 'jquery.ui.all';
+// @import 'jquery.ui.all';
 
 
 $gray1: #A1949A;
@@ -63,8 +63,8 @@ div.row.no-gutters {
 
 
 .border-gutters {
-  border-left: 5px solid $gray1;
-  border-right: 5px solid $gray1;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
 }
 
 li.ui-draggable {
@@ -72,9 +72,10 @@ li.ui-draggable {
   margin-right: 5px;
 }
 
-// ul.column {
-//   border: 5px $gray1 solid;
-// }
+ul.column {
+
+  border: 1px solid black;
+}
 
 .project_list {
   width: 100%;

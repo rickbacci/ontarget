@@ -3,18 +3,27 @@
     %h3.text-center
       Your Repositories
     %ul.list-unstyled.pagination.project_list
-      - @repos.each do |repo_name|
+      - @repos.each do |repo|
         %li
-          - if added_to_projects(repo_name)
+          - if added_to_projects(repo.name)
             .panel.panel-body.added-project
               .pull-left
-                = repo_name
+                = repo.name
               .pull-right
-                = link_to '-', project_path(repo_name), method: :delete, class: 'btn btn-default btn-small minus-button'
+                = link_to '-', project_path(repo.name), method: :delete, class: 'btn btn-default btn-small minus-button'
           -else
             .panel.panel-body
               .pull-left
-                = repo_name
+                = repo.name
               .pull-right
-                = link_to '+', {controller: "projects", action: "create", name: repo_name }, method: :post, class: 'btn btn-default btn-small'
+                = link_to '+', {controller: "projects", action: "create", name: repo.name }, method: :post, class: 'btn btn-default btn-small'
+
+
+%nav
+  %ul.pager
+    %li
+      = link_to "previous", @repos.links.prev
+    %li
+      = link_to "Next",  @repos.links.next
+
 
