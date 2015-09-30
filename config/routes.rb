@@ -1,10 +1,13 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
+
+  mount Sidekiq::Web, at: '/sidekiq'
 
   get '/home',                    to: 'home#show'
   get '/auth/github',             as: 'login'
   get '/auth/github/callback',    to: 'sessions#create'
   get '/logout',                  to: 'sessions#destroy'
-
 
   resources :projects, only: [:index, :show, :new, :create, :destroy]
 
