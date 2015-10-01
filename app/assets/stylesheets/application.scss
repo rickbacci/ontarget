@@ -29,7 +29,10 @@ body {
   background: url(image-path('6a01287.jpg'));
   background-size: cover;
   -moz-background-size: cover;
+  background-repeat:no-repeat;
 }
+
+
 
 
 .slategray, #new-projects {
@@ -38,8 +41,13 @@ body {
 
 .white {
   color: white;
-  margin-left: 15%;
 }
+
+
+.padding-left {
+  padding-left: 15px;
+}
+
 .center-block {
   display: block;
   margin-left: auto;
