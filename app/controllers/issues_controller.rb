@@ -82,7 +82,7 @@ class IssuesController < ApplicationController
   end
 
   def update_column
-    IssuesController.update_column.call(client:     current_user.client,
+    IssuesController.update_column.call(client:    current_user.github,
                                         number:     params[:number],
                                         old_column: params[:oldcolumn],
                                         new_column: params[:newcolumn])
