@@ -16,7 +16,7 @@
               .pull-left
                 = repo.name
               .pull-right
-                = link_to '+', {controller: "projects", action: "create", name: repo.name }, method: :post, class: 'btn btn-default btn-small'
+                = link_to '+', {controller: "projects", action: "create", name: repo.name }, method: :post, class: "#{repo.name} btn btn-default btn-small"
 
 
 %nav

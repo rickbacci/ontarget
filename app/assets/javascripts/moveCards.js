@@ -99,7 +99,7 @@ $(document).ready(function() {
 
           $.ajax({
             type: "POST",
-            url: '/update_labels',
+            url: '/update_column_issue',
             data: { owner: owner,
               repo: repo,
               number: number,
@@ -130,7 +130,7 @@ $(document).ready(function() {
 
           $.ajax({
             type: "POST",
-            url: '/update_labels',
+            url: '/update_column_issue',
             data: { owner: owner,
               repo: repo,
               number: number,
@@ -159,7 +159,7 @@ $(document).ready(function() {
 
           $.ajax({
             type: "POST",
-            url: '/update_labels',
+            url: '/update_column_issue',
             data: { owner: owner,
               repo: repo,
               number: number,
@@ -207,7 +207,7 @@ $(document).ready(function() {
 
           $.ajax({
             type: "POST",
-            url: '/update_labels',
+            url: '/update_column_issue',
             data: { owner: owner,
               repo: repo,
               number: number,

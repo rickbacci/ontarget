@@ -17,16 +17,12 @@ class IssuesController < ApplicationController
   end
 
   def update_issue_labels
-    project = Project.find_by(name: params[:repo])
+    project = Project.find_by(name: current_user.github.repo)
 
     IssuesController.update_issue_labels
-                    .call(client_id:     ENV['github_id'],
-                          client_secret: ENV['github_secret'],
-                          oauth_token:   current_user.token,
-                          user:          current_user.nickname,
-                          repo:          current_user.current_project,
-                          number:        params[:number],
-                          labels:        params[:updates][:labels])
+                    .call(client: current_user.github,
+                          number: params[:number],
+                          labels: params[:updates][:labels])
 
     flash[:success] = "Labels Updated!"
     redirect_to project_path(project.id)
@@ -45,14 +41,10 @@ class IssuesController < ApplicationController
     @project = Project.find(params[:id])
 
     IssuesController.create
-                    .call(client_id:     ENV['github_id'],
-                          client_secret: ENV['github_secret'],
-                          oauth_token:   current_user.token,
-                          user:          current_user.nickname,
-                          repo:          current_user.current_project,
-                          title:         params[:title],
-                          body:          params[:body],
-                          labels:        ["backlog", params[:timer_time]])
+                    .call(client: current_user.github,
+                          title:  params[:title],
+                          body:   params[:body],
+                          labels: ["backlog", params[:timer_time]])
 
     flash[:success] = "Issue Created!"
     redirect_to project_path(params[:id])
@@ -70,16 +62,11 @@ class IssuesController < ApplicationController
   def update
     @project = Project.find(params[:project_id])
 
-    IssuesController.update
-                    .call(client_id:     ENV['github_id'],
-                          client_secret: ENV['github_secret'],
-                          oauth_token:   current_user.token,
-                          user:          current_user.nickname,
-                          repo:          current_user.current_project,
-                          number:        params[:number],
-                          title:         params[:title],
-                          body:          params[:body],
-                          labels:        params[:labels].split)
+    IssuesController.update.call(client: current_user.github,
+                                 number: params[:number],
+                                 title:  params[:title],
+                                 body:   params[:body],
+                                 labels: params[:labels].split)
 
     flash[:success] = "Issue Updated!"
     redirect_to project_path(params[:project_id])
@@ -95,16 +82,10 @@ class IssuesController < ApplicationController
   end
 
   def update_column
-    IssuesController.update_column
-                    .call(client_id:     ENV['github_id'],
-                          client_secret: ENV['github_secret'],
-                          oauth_token:   current_user.token,
-                          user:          current_user.nickname,
-                          repo:          current_user.current_project,
-                          number:        params[:number],
-                          old_column:    params[:oldcolumn],
-                          new_column:    params[:newcolumn],
-                          owner:         params[:owner])
+    IssuesController.update_column.call(client:     current_user.client,
+                                        number:     params[:number],
+                                        old_column: params[:oldcolumn],
+                                        new_column: params[:newcolumn])
     head :ok
   end
 end

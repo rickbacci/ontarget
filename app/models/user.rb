@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  attr_reader :github
   has_many :projects
 
   def self.find_or_create_from_auth(data)
@@ -13,7 +12,7 @@ class User < ActiveRecord::Base
     user
   end
 
-  def client
+  def github
     @github ||= Github.new do |c|
       c.client_id     = ENV['github_id']
       c.client_secret = ENV['github_secret']

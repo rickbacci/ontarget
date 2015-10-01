@@ -1,29 +1,21 @@
 class ProjectsController < ApplicationController
+  before_action :authorize!, only: [:show, :create, :destroy]
 
   def index
-    if current_user
-      @projects = Project.all
-    else
-      redirect_to root_path
-    end
+    @projects = Project.all
   end
 
   def show
-    if current_user
-      @project = Project.find(params[:id])
+    @project = Project.find(params[:id])
 
-      current_user.current_project = @project.name
-      current_user.save
+    set_project_name(@project)
 
-      @issues ||= current_user.client.issues.list(repo: @project.name)
-      @labels ||= current_user.client.issues.labels.list
-    else
-      redirect_to root_path
-    end
+    @issues ||= client.issues.list(repo: @project.name)
+    @labels ||= client.issues.labels.list
   end
 
   def new
-    @repos ||= current_user.client.repos.list user: current_user.client.user, auto_pagination: true
+    @repos ||= client.repos.list user: client.user, auto_pagination: true
   end
 
   def create
@@ -45,13 +37,40 @@ class ProjectsController < ApplicationController
   def destroy
     project_name = Project.find_by(name: params[:id])
 
+    destroy_existing_project(project_name)
+
+    flash[:success] = "Repository removed from your project list!"
+    redirect_to projects_path
+  end
+
+
+  private
+
+  def project_params
+    params.require(:project).permit(:id, :name)
+  end
+
+  def client
+    current_user.github
+  end
+
+  def update_project_name(project)
+    client.repo = project.name
+    current_user.current_project = project.name
+    current_user.save
+  end
+
+  def set_project_name(project)
+    current_user.current_project = project.name
+    client.repo = project.name
+    current_user.save
+  end
+
+  def destroy_existing_project(project_name)
     if project_name
       project_name.destroy
       destroy_labels
     end
-
-    flash[:success] = "Repository removed from your project list!"
-    redirect_to projects_path
   end
 
   def create_labels
@@ -94,19 +113,4 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def update_project_name(project)
-    current_user.client.repo = project.name
-    current_user.current_project = project.name
-    current_user.save
-  end
-
-  private
-
-  def project_params
-    params.require(:project).permit(:id, :name)
-  end
-
-  def client
-    current_user.github
-  end
 end

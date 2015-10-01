@@ -1,29 +1,24 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  let!(:user) { User.create!(nickname: 'ricky', provider: 'github',
+                             token: 'asdf', uid: 175, current_project: 'no_sleep') }
 
-  def mock_auth
-    {
-      "provider" => "github",
-      "uid" => ENV['github_test_uid'],
-      "info" =>
-        {
-          "nickname" => "me",
-          "name" => "JOE SMOE"
-        },
-      "credentials" =>
-      {
-        "token" => ENV['github_test_token'],
-        "secret" => ENV['github_test_secret']
-      }
-    }
+
+  it 'creates a valid user' do
+    expect(User.first).to be_valid
   end
 
-  before do
-    # @user = User.find_or_create_by(mock_auth)
+  it 'can have many projects' do
+    user = User.first
+    expect(user.projects).to eq([])
   end
 
-  it 'creates a valid user from an auth hash' do
-    # expect(@user).to be_valid
+  it 'has a github client' do
+    user = User.first
+    expect(user.github.user).to eq('ricky')
+    expect(user.github.oauth_token).to eq('asdf')
+    expect(user.github.repo).to eq('no_sleep')
+    expect(user.github.oauth_token).to eq('asdf')
   end
 end
