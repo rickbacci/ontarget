@@ -9,6 +9,7 @@ $(document).ready(function() {
   $(function(){
     $(".radio :checked").each(function(index, button){
       var timeValue = this.value;
+
       console.log(timeValue);
     });
   });
@@ -27,18 +28,6 @@ $(document).ready(function() {
   });
 
 
-  $(function() {
-    $('.noscrollbars').submit( function() {
-      add_custom_validation_methods();
-      force_ckeditor_to_update();
-      $(this).validate({
-        meta:"validate",
-        onkeyup:true,
-        validClass:"ok-input",
-        errorPlacement: function(error, element) {}
-      });
-    });
-  });
 
 
   $('.column').height($('.col').height());
@@ -168,31 +157,39 @@ $(document).ready(function() {
             },
 
             success: function(post) {
-              console.log('in success');
-              // success need to change the label name
+              console.log('in-progress  success');
+
+
+
+
             },
             error: function(xhr) {
               console.log(xhr.responseText)
             }
           })
 
-        timeString = this.dataset.timerMilliseconds
-          timeInt = parseInt(timeString)
+
+        timeString = this.dataset.timerSeconds;
+        timeInt = parseInt(timeString)
 
           var timer;
-          timer = new FlipClock($('.timer'), {
-            clockFace: 'MinuteCounter',
-            autoStart: true,
-            countdown: true,
-          });
 
-          // 1500 is 25 minutes
 
-          console.log(timeInt);
-          timer.setTime(1500);
-          timer.start()
-          console.log("Timer set for " + timeString)
-          window.setTimeout(giveAlert, timeInt);
+       timer = new FlipClock($('.timer'), timeInt, {
+                  clockFace: 'MinuteCounter',
+                  autoStart: true,
+                  countdown: true,
+                });
+
+
+        console.log(timeInt);
+        timer.start();
+
+
+        console.log("Timer set for " + timeString)
+          var milliSeconds = timeInt * 1000;
+        window.setTimeout(giveAlert, milliSeconds);
+
 
       }
 
@@ -232,24 +229,22 @@ function giveAlert() {
   alert("Times up!");
 }
 
+
 function autoGrow (oField) {
   if (oField.scrollHeight > oField.clientHeight) {
     oField.style.height = oField.scrollHeight + "px";
   }
 }
 
-function pageLoadStop() {
-  $('.spinner').hide();
-  $('.container-fluid').show();
-}
-
-window.onload = function() {
-  console.log('page loaded');
-  pageLoadStop();
-}
-
-function pageLoadStart() {
-  $('.container-fluid').hide();
-  $('.spinner').show();
-}
-
+$(function() {
+  $('.noscrollbars').submit( function() {
+    add_custom_validation_methods();
+    force_ckeditor_to_update();
+    $(this).validate({
+      meta:"validate",
+      onkeyup:true,
+      validClass:"ok-input",
+      errorPlacement: function(error, element) {}
+    });
+  });
+});

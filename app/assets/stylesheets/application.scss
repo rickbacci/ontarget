@@ -97,6 +97,9 @@ div.row.no-gutters {
   border-right: 1% solid transparent;
 }
 
+.label-check-boxes {
+  padding: 2%;
+}
 
 .project_list {
   width: 100%;
@@ -131,13 +134,10 @@ textarea.noscrollbars {
   overflow: hidden;
 }
 
-.dropdown-menu.issue-labels-dropdown-menu {
-  // bottom: 15%;
-  // top: 15%;
+.issue-labels-dropdown-menu {
+   min-width: 20em;
   right: 5%;
-  left: 5%;
-  padding: 5%;
-  // max-height: 300px;
+  left: -34%;
 }
 
 .row.no-gutters {

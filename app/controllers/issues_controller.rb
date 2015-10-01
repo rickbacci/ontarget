@@ -8,6 +8,7 @@ class IssuesController < ApplicationController
     @project = Project.find(params[:id])
   end
 
+
   def self.update_issue_labels
     @update_issue_labels || GithubIssueLabelUpdater
   end
@@ -19,10 +20,9 @@ class IssuesController < ApplicationController
   def update_issue_labels
     project = Project.find_by(name: current_user.github.repo)
 
-    IssuesController.update_issue_labels
-                    .call(client: current_user.github,
-                          number: params[:number],
-                          labels: params[:updates][:labels])
+    IssuesController.update_issue_labels.call(client: current_user.github,
+                                              number: params[:number],
+                                              labels: params[:updates][:labels])
 
     flash[:success] = "Labels Updated!"
     redirect_to project_path(project.id)
@@ -40,11 +40,10 @@ class IssuesController < ApplicationController
   def create
     @project = Project.find(params[:id])
 
-    IssuesController.create
-                    .call(client: current_user.github,
-                          title:  params[:title],
-                          body:   params[:body],
-                          labels: ["backlog", params[:timer_time]])
+    IssuesController.create.call(client: current_user.github,
+                                 title:  params[:title],
+                                 body:   params[:body],
+                                 labels: ["backlog", params[:timer_time]])
 
     flash[:success] = "Issue Created!"
     redirect_to project_path(params[:id])
@@ -82,7 +81,7 @@ class IssuesController < ApplicationController
   end
 
   def update_column
-    IssuesController.update_column.call(client:    current_user.github,
+    IssuesController.update_column.call(client:     current_user.github,
                                         number:     params[:number],
                                         old_column: params[:oldcolumn],
                                         new_column: params[:newcolumn])

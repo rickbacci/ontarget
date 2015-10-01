@@ -6,24 +6,15 @@
       - @repos.each do |repo|
         %li
           - if added_to_projects(repo.name)
-            .panel.panel-body.added-project
+            .panel.panel-body.added-project#new-projects
               .pull-left
                 = repo.name
               .pull-right
                 = link_to '-', project_path(repo.name), method: :delete, class: 'btn btn-default btn-small minus-button'
           -else
-            .panel.panel-body
+            .panel.panel-body#new-projects
               .pull-left
                 = repo.name
               .pull-right
                 = link_to '+', {controller: "projects", action: "create", name: repo.name }, method: :post, class: "#{repo.name} btn btn-default btn-small"
-
-
-%nav
-  %ul.pager
-    %li
-      = link_to "previous", @repos.links.prev
-    %li
-      = link_to "Next",  @repos.links.next
-
 

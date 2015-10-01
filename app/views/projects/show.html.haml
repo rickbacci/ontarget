@@ -16,7 +16,7 @@
                        repo:   @project.name,
                        number: issue.number,
                        timer: convert_time(get_time(issue.labels)),
-                       timer_milliseconds: get_time(issue.labels) } }
+                       timer_seconds: get_time(issue.labels) } }
             .panel-heading
               .issue
                 %h3.panel-title.pull-right
