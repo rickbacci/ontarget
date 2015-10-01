@@ -6,9 +6,9 @@
       .panel-body
         .well
           = form_tag issues_path, class: "form", id: 'issue-form', method: :post do
-            = text_field_tag :title, nil, placeholder: "Title", class: "issue-test-field form-control"
+            = text_field_tag :title, nil, placeholder: "Title", class: "issue-text-field form-control"
             = text_area_tag :body, nil, rows: 5, placeholder: "User story...", class: "issue-text-area form-control"
-            = hidden_field_tag :id, @project.id
+            = hidden_field_tag :id, @project.id, class: "form-control"
             .radio
               %label
                 %input.form{ checked: true, name: "timer_time", type: "radio", value: "5" }
@@ -30,5 +30,4 @@
                 %input.form{ name: "timer_time", type: "radio", value: "3000" }
                 50 minutes
             .clearfix
-              %button.btn.pull-right.btn-primary.new-issue-btn{:type => "submit"}
-              Create Issue
+              %button.btn.pull-right.btn-primary.tweet-btn{:type => "submit"} Create Issue
