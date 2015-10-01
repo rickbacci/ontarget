@@ -14,10 +14,11 @@ Rails.application.routes.draw do
   get '/projects/:id/issues/new', to: 'issues#new', as: :new_project_issue
 
   resources :issues, only: [:index, :create]
-  patch '/repos/:owner/:repo/issues/:number', to: 'issues#update', as: :update_issue
-  post  '/update_labels', to: 'issues#update_column'
+  patch '/repos/:owner/:repo/issues/:number', to: 'issues#update'
+  post  '/update_issue', to: 'issues#update_column'
 
   # post '/repos/:owner/:repo/issues/:number/labels', to: 'issues#update_issue_labels', as: 'update_issue_labels'
-  post '/update_issue_labels', to: 'issues#update_issue_labels'
+  post '/update_issue_labels/:number', to: 'issues#update_issue_labels', as: :update_issue_labels
+
   root 'dashboard#show'
 end

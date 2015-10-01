@@ -17,16 +17,12 @@ class IssuesController < ApplicationController
   end
 
   def update_issue_labels
-    project = Project.find_by(name: params[:repo])
+    project = Project.find_by(name: current_user.client.repo)
 
     IssuesController.update_issue_labels
-                    .call(client_id:     ENV['github_id'],
-                          client_secret: ENV['github_secret'],
-                          oauth_token:   current_user.token,
-                          user:          current_user.nickname,
-                          repo:          current_user.current_project,
-                          number:        params[:number],
-                          labels:        params[:updates][:labels])
+                    .call(client: current_user.client,
+                          number: params[:number],
+                          labels: params[:updates][:labels])
 
     flash[:success] = "Labels Updated!"
     redirect_to project_path(project.id)

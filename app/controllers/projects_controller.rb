@@ -1,4 +1,5 @@
 class ProjectsController < ApplicationController
+  before_action :authorize!, only: [:show, :create, :destroy]
 
   def index
     if current_user
@@ -75,7 +76,7 @@ class ProjectsController < ApplicationController
   end
 
   def destroy_labels
-    labels = client.issues.labels.list.map { |label| label.name }
+    labels = current_user.client.issues.labels.list.map { |label| label.name }
 
     if labels.include?('backlog')
       client.issues.labels.delete client.user, client.repo, 'backlog'
