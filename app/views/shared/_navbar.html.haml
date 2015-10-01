@@ -14,15 +14,15 @@
       %ul.nav.navbar-nav
         - if current_user
           %li
-            = link_to 'Add Repository', new_project_path
-          %li
             = link_to 'View Projects', projects_path
+          %li
+            = link_to 'Add Repository', new_project_path
         - if current_user && @project
           %li
             = link_to 'New Issue', new_project_issue_path(@project.id)
           %li
-            %span.sr-only
-              Toggle Navigation
+          %span.sr-only
+            Toggle Navigation
       %ul.nav.navbar-nav.navbar-right
         %li
           -if current_user
