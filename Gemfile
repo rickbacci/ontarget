@@ -22,6 +22,8 @@ gem 'omniauth-github'
 gem 'github_api'
 gem 'skylight'
 gem 'sidekiq'
+gem 'bourbon'
+
 
 group :development, :test do
   gem 'byebug'

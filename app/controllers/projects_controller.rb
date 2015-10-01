@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
   before_action :authorize!, only: [:show, :create, :destroy]
 
   def index
-    @projects = Project.all
+    @projects = current_user.projects
   end
 
   def show
@@ -11,12 +11,14 @@ class ProjectsController < ApplicationController
     set_project_name(@project)
 
     @issues ||= client.issues.list(repo: @project.name)
+
     @labels ||= client.issues.labels.list
   end
 
   def new
-    @repos ||= client.repos.list user: client.user, auto_pagination: true
+    @repos ||= client.repos.list(user: client.user, auto_pagination: true).map { |repo| repo if repo.has_issues? }
   end
+
 
   def create
     @project = current_user.projects.create(name: params[:name])
@@ -51,7 +53,7 @@ class ProjectsController < ApplicationController
   end
 
   def client
-    current_user.github
+    current_user.github if current_user
   end
 
   def update_project_name(project)

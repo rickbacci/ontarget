@@ -183,7 +183,7 @@ $(document).ready(function() {
 
 
         console.log(timeInt);
-        timer.start();
+        // timer.start();
 
 
         console.log("Timer set for " + timeString)

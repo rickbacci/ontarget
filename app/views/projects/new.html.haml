@@ -4,8 +4,9 @@
       Your Repositories
     %ul.list-unstyled.pagination.project_list
       - @repos.each do |repo|
+        - next if repo.nil?
         %li
-          - if added_to_projects(repo.name)
+          - if !repo.nil? && added_to_projects(repo.name)
             .panel.panel-body.added-project#new-projects
               .pull-left
                 = repo.name
