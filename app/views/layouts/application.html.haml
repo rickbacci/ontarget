@@ -8,12 +8,6 @@
     = csrf_meta_tags
   %body
     = render 'shared/navbar'
-
-    .spinner
-      .cube1
-      .cube2
-    .container-fluid
-
-      - flash.each do |name, msg|
-        = content_tag :div, msg, class: "text-center alert alert-#{name}", role: "alert"
-      = yield
+    - flash.each do |name, msg|
+      = content_tag :div, msg, class: "text-center alert alert-#{name}", role: "alert"
+    = yield
