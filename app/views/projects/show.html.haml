@@ -27,9 +27,9 @@
             -# .panel-body.card
             .panel-body
               .clearfix
-                .dropdown.pull-left
-                  %button{ class: "dropup-btn btn btn-xs btn-default dropdown-toggle",
-                           id:    "dropup-#{issue.number}",
+                .dropdown.pull-left.issue_label_checkboxes
+                  %button{ class: "dropdown-btn btn btn-xs btn-default dropdown-toggle",
+                           id:    "dropdown-#{issue.number}",
                            'aria-expanded': "true",
                            'aria-haspopup': "true",
                            'data-toggle': "dropdown", type: "button" }
@@ -43,8 +43,8 @@
                                           issue_labels: issue.labels }
 
                 .dropdown.pull-right
-                  %button{ class: "dropup-btn btn btn-xs btn-default dropdown-toggle",
-                           id:    "dropup-#{issue.number}",
+                  %button{ class: "dropdown-btn btn btn-xs btn-default dropdown-toggle",
+                           id:    "dropdown-#{issue.number}",
                            'aria-expanded': "true",
                            'aria-haspopup': "true",
                            'data-toggle': "dropdown", type: "button" }
@@ -54,10 +54,10 @@
                   = render partial: 'shared/dropup_timer_form',
                     locals: { issue_number: issue.number,
                               timer_time: get_time(issue.labels) }
-              .well.card
+              %div{ class: "issue-#{issue.number} well card" }
                 =render partial: 'shared/issue_form',
                         locals:  { project: @project, issue: issue }
-              .clearfix
+              .label-display.clearfix
                 = render partial: 'shared/issue_labels',
                          locals:  { issue_labels: issue.labels }
 

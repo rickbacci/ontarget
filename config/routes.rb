@@ -1,8 +1,4 @@
-require 'sidekiq/web'
-
 Rails.application.routes.draw do
-
-  mount Sidekiq::Web, at: '/sidekiq'
 
   get '/home',                    to: 'home#show'
   get '/auth/github',             as: 'login'
@@ -10,15 +6,13 @@ Rails.application.routes.draw do
   get '/logout',                  to: 'sessions#destroy'
 
   resources :projects, only: [:index, :show, :new, :create, :destroy]
+  resources :issues,   only: [:index, :create]
 
-  get '/projects/:id/issues/new', to: 'issues#new', as: :new_project_issue
-
-  resources :issues, only: [:index, :create]
-  patch '/repos/:owner/:repo/issues/:number', to: 'issues#update'
-  post  '/update_issue', to: 'issues#update_column'
-
-  # post '/repos/:owner/:repo/issues/:number/labels', to: 'issues#update_issue_labels', as: 'update_issue_labels'
+  get '/projects/:id/issues/new',      to: 'issues#new',    as: :new_project_issue
+  patch '/update_issues/:number',      to: 'issues#update', as: :update_issues
   post '/update_issue_labels/:number', to: 'issues#update_issue_labels', as: :update_issue_labels
+
+  post  '/update_column_issue', to: 'issues#update_column'
 
   root 'dashboard#show'
 end

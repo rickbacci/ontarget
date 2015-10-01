@@ -6,7 +6,7 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      - if current_user && current_user.current_project && @project
+      - if current_user
         = link_to "OnTarget", projects_path, class: 'navbar-brand'
       - else
         = link_to "OnTarget", root_path, class: 'navbar-brand'
@@ -14,12 +14,10 @@
       %ul.nav.navbar-nav
         - if current_user
           %li
-            = link_to 'New Project', new_project_path
+            = link_to 'Add Repository', new_project_path
           %li
             = link_to 'View Projects', projects_path
         - if current_user && @project
-          %li
-            = link_to 'View Issues', project_path(@project)
           %li
             = link_to 'New Issue', new_project_issue_path(@project.id)
           %li
