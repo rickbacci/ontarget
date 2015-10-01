@@ -20,9 +20,9 @@ feature "User" do
       project.save
 
       click_on "Add Repository"
-      find('.asset-pipeline-playground').click
+      find('.test_repo4').click
       click_on "View Projects"
-      click_on "asset-pipeline-playground"
+      click_on "test_repo4"
 
       expect(page).to have_content('Backlog')
       expect(page).to have_content('Ready')
@@ -39,15 +39,12 @@ feature "User" do
       expect(page).to have_content('New test issue')
       expect(page).to have_content('As a test user...')
 
-      # within('.issue-15') { expect(page).to have_content('New test issue') }
-      # within('.label-15') { expect(page).to have_content('5000' ) }
-
-      find('.ready-17').check
-      find('.backlog-17').uncheck
+      fill_in "title", with: 'updated test issue'
+      fill_in "body", with: "As a test user updated"
 
       click_on "Update"
 
-      expect(page).to have_content('ready')
+      expect(page).to have_content('updated test issue')
     end
   end
 end
