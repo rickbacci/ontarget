@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get '/auth/github',             as: 'login'
   get '/auth/github/callback',    to: 'sessions#create'
   get '/logout',                  to: 'sessions#destroy'
+  get '/auth/failure',            to: 'home#show'
 
   resources :projects, only: [:index, :show, :new, :create, :destroy]
   resources :issues,   only: [:index, :create]
