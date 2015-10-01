@@ -42,7 +42,7 @@ feature "User" do
       fill_in "title", with: 'updated test issue'
       fill_in "body", with: "As a test user updated"
 
-      click_on "Update"
+      # click_on "Update"
 
       expect(page).to have_content('updated test issue')
     end
