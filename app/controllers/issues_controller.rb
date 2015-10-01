@@ -17,10 +17,10 @@ class IssuesController < ApplicationController
   end
 
   def update_issue_labels
-    project = Project.find_by(name: current_user.client.repo)
+    project = Project.find_by(name: current_user.github.repo)
 
     IssuesController.update_issue_labels
-                    .call(client: current_user.client,
+                    .call(client: current_user.github,
                           number: params[:number],
                           labels: params[:updates][:labels])
 
@@ -41,7 +41,7 @@ class IssuesController < ApplicationController
     @project = Project.find(params[:id])
 
     IssuesController.create
-                    .call(client: current_user.client,
+                    .call(client: current_user.github,
                           title:  params[:title],
                           body:   params[:body],
                           labels: ["backlog", params[:timer_time]])
@@ -62,7 +62,7 @@ class IssuesController < ApplicationController
   def update
     @project = Project.find(params[:project_id])
 
-    IssuesController.update.call(client: current_user.client,
+    IssuesController.update.call(client: current_user.github,
                                  number: params[:number],
                                  title:  params[:title],
                                  body:   params[:body],

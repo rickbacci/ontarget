@@ -16,9 +16,9 @@ RSpec.describe User, type: :model do
 
   it 'has a github client' do
     user = User.first
-    expect(user.client.user).to eq('ricky')
-    expect(user.client.oauth_token).to eq('asdf')
-    expect(user.client.repo).to eq('no_sleep')
-    expect(user.client.oauth_token).to eq('asdf')
+    expect(user.github.user).to eq('ricky')
+    expect(user.github.oauth_token).to eq('asdf')
+    expect(user.github.repo).to eq('no_sleep')
+    expect(user.github.oauth_token).to eq('asdf')
   end
 end
