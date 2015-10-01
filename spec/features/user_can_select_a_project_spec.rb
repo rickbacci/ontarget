@@ -19,7 +19,6 @@ feature "User" do
       project.user = User.first
       project.save
 
-
       expect(page).to have_content('test_repo')
 
       find('.project-name-button').click

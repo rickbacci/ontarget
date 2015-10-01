@@ -10,8 +10,8 @@ feature "User" do
   end
 
 
-  scenario "can add a repository" do
-    VCR.use_cassette("user_add_repo") do
+  scenario "can update an issues labels" do
+    VCR.use_cassette("user_update_issue_labels") do
       visit root_path
 
       click_on "Login"
@@ -19,29 +19,35 @@ feature "User" do
       project.user = User.first
       project.save
 
-      expect(page).to have_content('test_repo')
-      expect(page).to_not have_content('asset-pipeline-playground')
-
       click_on "Add Repository"
-
-      expect(page).to have_content('Your Repositories')
-      expect(page).to have_content('asset-pipeline-playground')
-
       find('.asset-pipeline-playground').click
-
-      expect(page).to have_content('asset-pipeline-playground')
-
       click_on "View Projects"
-
-      expect(page).to have_content('Your Projects')
-      expect(page).to have_content('asset-pipeline-playground')
-
       click_on "asset-pipeline-playground"
 
       expect(page).to have_content('Backlog')
       expect(page).to have_content('Ready')
       expect(page).to have_content('In Progress')
       expect(page).to have_content('Completed')
+
+      click_on "New Issue"
+
+      fill_in "Title", with: 'New test issue'
+      fill_in "User story...", with: "As a test user..."
+
+      click_on "Create Issue"
+
+      expect(page).to have_content('New test issue')
+      expect(page).to have_content('As a test user...')
+
+      # within('.issue-15') { expect(page).to have_content('New test issue') }
+      # within('.label-15') { expect(page).to have_content('5000' ) }
+
+      find('.ready-17').check
+      find('.backlog-17').uncheck
+
+      click_on "Update"
+
+      expect(page).to have_content('ready')
     end
   end
 end
