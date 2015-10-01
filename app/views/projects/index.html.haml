@@ -5,7 +5,7 @@
     %ul.list-unstyled.pagination.project_list
       - @projects.each do |project|
         %li
-          .panel.panel-body.added-project
+          .panel.panel-body.added-project.slategrey
             .row
               .col-md-10
                 = link_to project.name, project_path(project), class: 'btn btn-default btn-large project-name-button'

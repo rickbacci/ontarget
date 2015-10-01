@@ -18,7 +18,6 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import 'rails_bootstrap_forms';
-  // @import 'jquery.ui.all';
 
 
 $gray1: #A1949A;
@@ -26,10 +25,14 @@ $primary-color: #333;
 
 
 body {
-  background-color: $gray1;
   background: url(image-path('6a01287.jpg'));
   background-size: cover;
   -moz-background-size: cover;
+}
+
+
+.slategray, #new-projects {
+  background-color: slategray;
 }
 
 .white {
@@ -113,7 +116,7 @@ div.row.no-gutters {
 }
 
 .added-project {
-  background-color: #99C299;
+  background-color: slategrey;
 }
 
 .minus-button {
