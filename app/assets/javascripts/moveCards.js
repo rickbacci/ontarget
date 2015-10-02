@@ -169,21 +169,21 @@ $(document).ready(function() {
           })
 
 
-        timeString = this.dataset.timerSeconds;
-        timeInt = parseInt(timeString)
+        var timeString = this.dataset.timerSeconds;
+        var timeInt = parseInt(timeString)
 
-          var timer;
+        var timer;
 
 
-       timer = new FlipClock($('.timer'), timeInt, {
+       timer = new FlipClock($('.timer-graphic'), timeInt, {
                   clockFace: 'MinuteCounter',
-                  autoStart: true,
                   countdown: true,
+                  autostart: true
                 });
 
 
         console.log(timeInt);
-        // timer.start();
+        console.log(timer);
 
 
         console.log("Timer set for " + timeString)
