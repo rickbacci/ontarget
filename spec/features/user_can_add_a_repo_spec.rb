@@ -2,7 +2,6 @@ require 'rails_helper'
 
 feature "User" do
   include OmniAuthUser
-  let!(:project) { Project.create!(name: 'test_repo') }
 
   before do
     OmniAuth.config.mock_auth[:github] = nil
@@ -16,8 +15,11 @@ feature "User" do
 
       click_on "Login"
 
-      project.user = User.first
-      project.save
+      user = User.first
+      user.projects.create!(name: 'test_repo')
+      project = user.projects.first
+
+      click_on "View Projects"
 
       expect(page).to have_content('test_repo')
       expect(page).to_not have_content('asset-pipeline-playground')

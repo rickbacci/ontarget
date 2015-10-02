@@ -19,6 +19,8 @@ feature "User" do
       project.user = User.first
       project.save
 
+      click_on "View Projects"
+
       expect(page).to have_content('test_repo')
 
       click_on "Add Repository"
