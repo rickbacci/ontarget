@@ -12,6 +12,11 @@ module ProjectsHelper
     labels.any?{ |label| label.name == name}
   end
 
+  def set_default(label)
+    return true if label.name == 'backlog'
+    false
+  end
+
   def different_repo(issue, current_user)
     issue.repository.name != current_user.current_project
   end

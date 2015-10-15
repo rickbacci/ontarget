@@ -6,6 +6,8 @@ class IssuesController < ApplicationController
 
   def new
     @project = Project.find(params[:id])
+
+    @labels ||= client.issues.labels.list
   end
 
 
@@ -43,7 +45,7 @@ class IssuesController < ApplicationController
     IssuesController.create.call(client: current_user.github,
                                  title:  params[:title],
                                  body:   params[:body],
-                                 labels: ["backlog", params[:timer_time]])
+                                 labels: params[:creation][:labels])
 
     flash[:success] = "Issue Created!"
     redirect_to project_path(params[:id])
@@ -86,6 +88,12 @@ class IssuesController < ApplicationController
                                         old_column: params[:oldcolumn],
                                         new_column: params[:newcolumn])
     head :ok
+  end
+
+  private
+
+  def client
+    current_user.github
   end
 end
 

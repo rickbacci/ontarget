@@ -188,7 +188,7 @@ $(document).ready(function() {
 
         console.log("Timer set for " + timeString)
           var milliSeconds = timeInt * 1000;
-        window.setTimeout(giveAlert, milliSeconds);
+        window.setTimeout(giveAlert, milliSeconds + 1000);
 
 
       }

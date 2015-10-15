@@ -9,25 +9,38 @@
             = text_field_tag :title, nil, placeholder: "Title", class: "issue-text-field form-control"
             = text_area_tag :body, nil, rows: 5, placeholder: "User story...", class: "issue-text-area form-control"
             = hidden_field_tag :id, @project.id, class: "form-control"
-            .radio
-              %label
-                %input.form{ checked: true, name: "timer_time", type: "radio", value: "5" }
-                5 seconds
-            .radio
-              %label
-                %input.form{ name: "timer_time", type: "radio", value: "300" }
-                5 minutes
-            .radio
-              %label
-                %input.form{ name: "timer_time", type: "radio", value: "1500" }
-                25 minutes
-            .radio
-              %label
-                %input.form{ name: "timer_time", type: "radio", value: "600" }
-                10 minutes
-            .radio
-              %label
-                %input.form{ name: "timer_time", type: "radio", value: "3000" }
-                50 minutes
-            .clearfix
-              %button.btn.pull-right.btn-primary.tweet-btn{:type => "submit"} Create Issue
+            .row
+              .col-md-12
+                .times.pull-left
+                  .radio
+                    %label
+                      %input.form{ checked: true, name: "timer_time", type: "radio", value: "5" }
+                      5 seconds
+                  .radio
+                    %label
+                      %input.form{ name: "timer_time", type: "radio", value: "300" }
+                      5 minutes
+                  .radio
+                    %label
+                      %input.form{ name: "timer_time", type: "radio", value: "1500" }
+                      25 minutes
+                  .radio
+                    %label
+                      %input.form{ name: "timer_time", type: "radio", value: "600" }
+                      10 minutes
+                  .radio
+                    %label
+                      %input.form{ name: "timer_time", type: "radio", value: "3000" }
+                      50 minutes
+              .dropdown.pull-right
+                %button#dropdownMenu1.btn.btn-default.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
+                  Labels
+                  %span.caret
+                %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1"}
+                  %li
+                    - @labels.each do |label|
+                      .box{ class: "checkbox btn btn-xs", style: "background-color:\##{label.color}" }
+                        = check_box_tag("creation[labels][]", [label.name], set_default(label), id: label.id, class: "#{label.name} checkbox")
+                        = label.name
+              %button.btn.pull-right.btn-primary{:type => "submit"} Create Issue
+
