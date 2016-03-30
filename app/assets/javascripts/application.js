@@ -18,4 +18,7 @@
 
 //= require_tree .
 
+//= require jquery-ui.min.js
+//= require flipclock.min.js
+
 
