@@ -4,7 +4,6 @@ feature "User" do
   include OmniAuthUser
 
   before do
-    OmniAuth.config.mock_auth[:github] = nil
     stub_omniauth
   end
 
