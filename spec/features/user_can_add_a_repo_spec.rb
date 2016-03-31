@@ -16,6 +16,7 @@ feature "User" do
       click_on "Login"
 
       user = User.first
+
       user.projects.create!(name: 'test_repo')
       project = user.projects.first
 

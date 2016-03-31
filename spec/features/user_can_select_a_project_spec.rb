@@ -2,7 +2,6 @@ require 'rails_helper'
 
 feature "User" do
   include OmniAuthUser
-  let!(:project) { Project.create!(name: 'test_repo') }
 
   before do
     OmniAuth.config.mock_auth[:twitter] = nil
@@ -16,8 +15,8 @@ feature "User" do
 
       click_on "Login"
 
-      project.user = User.first
-      project.save
+      user = User.first
+      project = user.projects.create!(name: 'test_repo')
 
       click_on "View Projects"
 
