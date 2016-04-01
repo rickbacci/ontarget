@@ -1,0 +1,17 @@
+language: ruby
+
+rvm:
+  - 2.3.0
+
+env:
+  global:
+    - github_test_id=ENV['github_test_id']
+    - github_test_secret=ENV['github_test_secret']
+    - github_test_token=ENV['github_test_token']
+
+script:
+  - bundle install
+  - bundle exec rake db:setup
+  - bundle exec rake
+
+

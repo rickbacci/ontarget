@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.2.2'
+ruby '2.3.0'
 
 gem 'rails', '4.2.4'
 gem 'pg'
@@ -40,6 +40,7 @@ group :test do
   gem 'vcr'
   gem 'webmock'
   gem 'simplecov', :require => false
+  gem 'rake'
 end
 
 gem 'rails_12factor', group: :production
