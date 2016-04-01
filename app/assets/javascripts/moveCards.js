@@ -81,23 +81,7 @@ $(document).ready(function() {
           var repo   = this.dataset.repo
           var number = this.dataset.number
 
-          $.ajax({
-            type: "POST",
-            url: '/update_column_issue',
-            data: { owner: owner,
-              repo: repo,
-              number: number,
-              oldcolumn: oldColumn,
-              newcolumn: newColumn,
-            },
-
-            success: function(post) {
-              // success need to change the label name
-            },
-            error: function(xhr) {
-              console.log(xhr.responseText)
-            }
-          })
+        updateColumnIssues(owner, repo, number, oldColumn, newColumn);
 
       }
 
@@ -112,23 +96,7 @@ $(document).ready(function() {
           var repo   = this.dataset.repo
           var number = this.dataset.number
 
-          $.ajax({
-            type: "POST",
-            url: '/update_column_issue',
-            data: { owner: owner,
-              repo: repo,
-              number: number,
-              oldcolumn: oldColumn,
-              newcolumn: newColumn,
-            },
-
-            success: function(post) {
-              // success need to change the label name
-            },
-            error: function(xhr) {
-              console.log(xhr.responseText)
-            }
-          })
+        updateColumnIssues(owner, repo, number, oldColumn, newColumn);
 
       }
 
@@ -141,28 +109,7 @@ $(document).ready(function() {
           var repo   = this.dataset.repo
           var number = this.dataset.number
 
-          $.ajax({
-            type: "POST",
-            url: '/update_column_issue',
-            data: { owner: owner,
-              repo: repo,
-              number: number,
-              oldcolumn: oldColumn,
-              newcolumn: newColumn,
-            },
-
-            success: function(post) {
-              console.log('in-progress  success');
-
-
-
-
-            },
-            error: function(xhr) {
-              console.log(xhr.responseText)
-            }
-          })
-
+        updateColumnIssues(owner, repo, number, oldColumn, newColumn);
 
         var timeString = this.dataset.timerSeconds;
         var timeInt = parseInt(timeString)
@@ -196,24 +143,8 @@ $(document).ready(function() {
         var owner  = this.dataset.owner
           var repo   = this.dataset.repo
           var number = this.dataset.number
+        updateColumnIssues(owner, repo, number, oldColumn, newColumn);
 
-          $.ajax({
-            type: "POST",
-            url: '/update_column_issue',
-            data: { owner: owner,
-              repo: repo,
-              number: number,
-              oldcolumn: oldColumn,
-              newcolumn: newColumn,
-            },
-
-            success: function(post) {
-              // success need to change the label name
-            },
-            error: function(xhr) {
-              console.log(xhr.responseText)
-            }
-          })
       }
     },
   });
