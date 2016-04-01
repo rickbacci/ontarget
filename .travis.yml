@@ -5,9 +5,9 @@ rvm:
 
 env:
   global:
-    - github_test_id=ENV['github_test_id']
-    - github_test_secret=ENV['github_test_secret']
-    - github_test_token=ENV['github_test_token']
+    - github_test_id=175
+    - github_test_secret=super
+    - github_test_token=chuckyCheese
 
 script:
   - bundle install
