@@ -1,18 +1,4 @@
-
 $(document).ready(function() {
-
-  // label radio buttons
-  $('.label-btn').on('click', function() {
-    console.log('asdf');
-  });
-
-  $(function(){
-    $(".radio :checked").each(function(index, button){
-      var timeValue = this.value;
-
-      console.log(timeValue);
-    });
-  });
 
   $('.dropdown-menu input, .dropdown-menu label').click(function(e) {
     e.stopPropagation();
@@ -25,25 +11,22 @@ $(document).ready(function() {
     if(target.form) {
       target.form.submit();
     }
+
   });
-
-
 
 
   $('.column').height($('.col').height());
 
   makeCardsSortable();
 
-  $( ".panel" ).draggable({
+  $('.panel').draggable({
 
-    connectToSortable: ".sortable",
-    // revert: "invalid",
-    cursor: "move",
+    connectToSortable: '.sortable',
+    cursor: 'move',
     zIndex: 100,
-    // containment: "body", this works
 
     stop: function(event, ui) {
-      console.log('dragging stopped');
+
 
       var fromBacklog    = this.className.includes('backlog');
       var fromReady      = this.className.includes('ready');
@@ -72,14 +55,14 @@ $(document).ready(function() {
       var toCompleted  = this.parentElement.className.includes('completed');
 
       if (toBacklog && oldColumn !== 'backlog') {
-        var newColumn = 'backlog'
+        var newColumn = 'backlog';
 
-          $(this).addClass('backlog');
+        $(this).addClass('backlog');
         $(this).removeClass('in-progress ready completed');
 
-        var owner  = this.dataset.owner
-          var repo   = this.dataset.repo
-          var number = this.dataset.number
+        var owner  = this.dataset.owner;
+        var repo   = this.dataset.repo;
+        var number = this.dataset.number;
 
         updateColumnIssues(owner, repo, number, oldColumn, newColumn);
 
@@ -87,90 +70,70 @@ $(document).ready(function() {
 
 
       if (toReady && oldColumn !== 'ready') {
-        var newColumn = 'ready'
-          $(this).addClass('ready');
+        var newColumn = 'ready';
+        $(this).addClass('ready');
         $(this).removeClass('backlog in-progress completed');
 
 
-        var owner  = this.dataset.owner
-          var repo   = this.dataset.repo
-          var number = this.dataset.number
+        var owner  = this.dataset.owner;
+        var repo   = this.dataset.repo;
+        var number = this.dataset.number;
 
         updateColumnIssues(owner, repo, number, oldColumn, newColumn);
 
       }
 
       if (toInprogress && oldColumn !== 'in-progress') {
-        var newColumn = 'in-progress'
-          $(this).addClass('in-progress');
+        var newColumn = 'in-progress';
+        $(this).addClass('in-progress');
         $(this).removeClass('backlog ready completed');
 
-        var owner  = this.dataset.owner
-          var repo   = this.dataset.repo
-          var number = this.dataset.number
+        var owner  = this.dataset.owner;
+        var repo   = this.dataset.repo;
+        var number = this.dataset.number;
 
         updateColumnIssues(owner, repo, number, oldColumn, newColumn);
 
         var timeString = this.dataset.timerSeconds;
-        var timeInt = parseInt(timeString)
+        var timeInt = parseInt(timeString);
 
         var timer;
 
 
-       timer = new FlipClock($('.timer-graphic'), timeInt, {
-                  clockFace: 'MinuteCounter',
-                  countdown: true,
-                  autostart: true
-                });
-
+        timer = new FlipClock($('.timer-graphic'), timeInt, {
+          clockFace: 'MinuteCounter',
+          countdown: true,
+          autostart: true
+        });
 
         console.log(timeInt);
         console.log(timer);
-
-
-        console.log("Timer set for " + timeString)
-          var milliSeconds = timeInt * 1000;
+        console.log('Timer set for ' + timeString);
+        var milliSeconds = timeInt * 1000;
         window.setTimeout(giveAlert, milliSeconds + 1000);
 
 
       }
 
       if (toCompleted && oldColumn !== 'completed') {
-        var newColumn = 'completed'
-          $(this).addClass('completed');
+        var newColumn = 'completed';
+        $(this).addClass('completed');
         $(this).removeClass('backlog ready in-progress');
 
-        var owner  = this.dataset.owner
-          var repo   = this.dataset.repo
-          var number = this.dataset.number
+        var owner  = this.dataset.owner;
+        var repo   = this.dataset.repo;
+        var number = this.dataset.number;
+
         updateColumnIssues(owner, repo, number, oldColumn, newColumn);
 
       }
-    },
+    }
+
   });
 
 });
 
 function giveAlert() {
-  alert("Times up!");
+  alert('Times up!');
 }
 
-
-function autoGrow (oField) {
-  if (oField.scrollHeight > oField.clientHeight) {
-    oField.style.height = oField.scrollHeight + "px";
-  }
-}
-
-$(function() {
-  $('.noscrollbars').submit( function() {
-    add_custom_validation_methods();
-    force_ckeditor_to_update();
-    $(this).validate({
-      meta:"validate",
-      onkeyup:true,
-      validClass:"ok-input",
-      errorPlacement: function(error, element) {}
-    });
-  });
-});
