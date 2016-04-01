@@ -6,3 +6,10 @@
   = hidden_field_tag :project_id, @project.id
   %label{ :for => issue.number }
     %button.btn.pull-right.btn-default.btn-xs.issue-btn{:type => "submit"} Update Issue
+
+:javascript
+  function autoGrow (oField) {
+    if (oField.scrollHeight > oField.clientHeight) {
+      oField.style.height = oField.scrollHeight + "px";
+    }
+  };
