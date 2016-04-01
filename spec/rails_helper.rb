@@ -15,6 +15,7 @@ VCR.configure do |config|
   config.cassette_library_dir = "spec/support/vcr_cassettes"
   config.hook_into :webmock
   config.before_record do |r|
+    r.filter_sensitive_data('<github_test_token>') { ENV['github_test_token'] }
     r.request.headers.delete("Authorization")
   end
 end
