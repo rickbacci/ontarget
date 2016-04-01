@@ -1,3 +1,5 @@
-- issue_labels.map do |label|
-  %div{ class: "btn btn-xs", style: "background-color:\##{label.color};margin-top:10px" }
-    = label.name
+- issue_labels.each do |label|
+  - unless statuses.include?(label.name) || times.include?(label.name)
+    %div{ class: "btn btn-xs", style: "background-color:\##{label.color};margin-top:10px" }
+      = label.name
+

@@ -4,6 +4,10 @@ module ProjectsHelper
     ['backlog', 'ready', 'in-progress', 'completed']
   end
 
+  def times
+    %w{ 5 300 600 1500 3000 }
+  end
+
   def added_to_projects(project_name)
     current_user.projects.pluck(:name).include?(project_name)
   end
@@ -58,4 +62,5 @@ module ProjectsHelper
       "50 Minutes"
     end
   end
+
 end
