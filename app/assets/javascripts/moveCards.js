@@ -11,7 +11,7 @@ $(document).ready(function() {
     zIndex: 100,
 
     stop: function(event, ui) {
-
+      var owner, repo, number, oldColumn, newColumn;
 
       var fromBacklog    = this.className.includes('backlog');
       var fromReady      = this.className.includes('ready');
@@ -19,19 +19,19 @@ $(document).ready(function() {
       var fromCompleted  = this.className.includes('completed');
 
       if (fromBacklog) {
-        var oldColumn = 'backlog';
+        oldColumn = 'backlog';
       }
 
       if (fromReady) {
-        var oldColumn = 'ready';
+        oldColumn = 'ready';
       }
 
       if (fromInprogress) {
-        var oldColumn = 'in-progress';
+        oldColumn = 'in-progress';
       }
 
       if (fromCompleted) {
-        var oldColumn = 'completed';
+        oldColumn = 'completed';
       }
 
       var toBacklog    = this.parentElement.className.includes('backlog');
@@ -40,14 +40,14 @@ $(document).ready(function() {
       var toCompleted  = this.parentElement.className.includes('completed');
 
       if (toBacklog && oldColumn !== 'backlog') {
-        var newColumn = 'backlog';
+        newColumn = 'backlog';
 
         $(this).addClass('backlog');
         $(this).removeClass('in-progress ready completed');
 
-        var owner  = this.dataset.owner;
-        var repo   = this.dataset.repo;
-        var number = this.dataset.number;
+        owner  = this.dataset.owner;
+        repo   = this.dataset.repo;
+        number = this.dataset.number;
 
         updateColumnIssues(owner, repo, number, oldColumn, newColumn);
 
@@ -55,27 +55,27 @@ $(document).ready(function() {
 
 
       if (toReady && oldColumn !== 'ready') {
-        var newColumn = 'ready';
+        newColumn = 'ready';
         $(this).addClass('ready');
         $(this).removeClass('backlog in-progress completed');
 
 
-        var owner  = this.dataset.owner;
-        var repo   = this.dataset.repo;
-        var number = this.dataset.number;
+        owner  = this.dataset.owner;
+        repo   = this.dataset.repo;
+        number = this.dataset.number;
 
         updateColumnIssues(owner, repo, number, oldColumn, newColumn);
 
       }
 
       if (toInprogress && oldColumn !== 'in-progress') {
-        var newColumn = 'in-progress';
+        newColumn = 'in-progress';
         $(this).addClass('in-progress');
         $(this).removeClass('backlog ready completed');
 
-        var owner  = this.dataset.owner;
-        var repo   = this.dataset.repo;
-        var number = this.dataset.number;
+        owner  = this.dataset.owner;
+        repo   = this.dataset.repo;
+        number = this.dataset.number;
 
         updateColumnIssues(owner, repo, number, oldColumn, newColumn);
 
@@ -101,13 +101,13 @@ $(document).ready(function() {
       }
 
       if (toCompleted && oldColumn !== 'completed') {
-        var newColumn = 'completed';
+        newColumn = 'completed';
         $(this).addClass('completed');
         $(this).removeClass('backlog ready in-progress');
 
-        var owner  = this.dataset.owner;
-        var repo   = this.dataset.repo;
-        var number = this.dataset.number;
+        owner  = this.dataset.owner;
+        repo   = this.dataset.repo;
+        number = this.dataset.number;
 
         updateColumnIssues(owner, repo, number, oldColumn, newColumn);
 
