@@ -14,9 +14,7 @@ $(document).ready(function() {
 
   });
 
-
-  $('.column').height($('.col').height());
-
+  setColumnHeight();
   makeCardsSortable();
 
   $('.panel').draggable({
