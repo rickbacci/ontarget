@@ -14,9 +14,9 @@ require 'webmock'
 VCR.configure do |config|
   config.cassette_library_dir = "spec/support/vcr_cassettes"
   config.hook_into :webmock
-  config.before_record do |r|
-    r.request.headers.delete("Authorization")
-  end
+  config.filter_sensitive_data('<github_test_id>')    { ENV['github_test_id'] }
+  config.filter_sensitive_data('<github_test_secret') { ENV['github_test_secret'] }
+  config.filter_sensitive_data('<github_test_token>') { ENV['github_test_token'] }
 end
 
 # Requires supporting ruby files with custom matchers and macros, etc, in

@@ -2,41 +2,36 @@ require 'rails_helper'
 
 feature "User" do
   include OmniAuthUser
-  let!(:project) { Project.create!(name: 'test_repo') }
+  include GithubRepo
 
   before do
-    OmniAuth.config.mock_auth[:github] = nil
     stub_omniauth
+    create_client
   end
 
 
   scenario "can remove a project" do
     VCR.use_cassette("user_remove_project") do
-      visit root_path
+      create_test_repo('test_repo')
 
+      visit root_path
       click_on "Login"
 
-      project.user = User.first
-      project.save
-
-      click_on "View Projects"
-
-      expect(page).to have_content('test_repo')
-
       click_on "Add Repository"
-      find('.asset-pipeline-playground').click
-
-      expect(page).to have_content('asset-pipeline-playground')
+      find('.test_repo').click
 
       click_on "View Projects"
 
       expect(page).to have_content('Your Projects')
-      expect(page).to have_content('asset-pipeline-playground')
+      expect(page).to have_content('test_repo')
 
-      find('.delete-asset-pipeline-playground-button').click
+      find('.delete-test_repo-button').click
 
       expect(page).to have_content('Your Projects')
       expect(page).to have_content('Repository removed from your project list!')
+      expect(page).to_not have_content('test_repo')
+
+      delete_test_repo('test_repo')
     end
   end
 end

@@ -2,27 +2,24 @@ require 'rails_helper'
 
 feature "User" do
   include OmniAuthUser
-  let!(:project) { Project.create!(name: 'test_repo') }
+  include GithubRepo
 
   before do
-    OmniAuth.config.mock_auth[:github] = nil
     stub_omniauth
+    create_client
   end
-
 
   scenario "can update an issues labels" do
     VCR.use_cassette("user_update_issue_labels") do
-      visit root_path
+      create_test_repo('test_repo')
 
+      visit root_path
       click_on "Login"
 
-      project.user = User.first
-      project.save
-
       click_on "Add Repository"
-      find('.test_repo4').click
+      find('.test_repo').click
       click_on "View Projects"
-      click_on "test_repo4"
+      click_on "test_repo"
 
       expect(page).to have_content('Backlog')
       expect(page).to have_content('Ready')
@@ -42,9 +39,11 @@ feature "User" do
       fill_in "title", with: 'updated test issue'
       fill_in "body", with: "As a test user updated"
 
-      # click_on "Update"
+      click_on "Update Issue"
 
       expect(page).to have_content('updated test issue')
+
+      delete_test_repo('test_repo')
     end
   end
 end

@@ -4,12 +4,11 @@ feature "User" do
   include OmniAuthUser
 
   before do
-    OmniAuth.config.mock_auth[:github] = nil
     stub_omniauth
   end
 
   scenario "can logout and destroy the session" do
-    VCR.use_cassette("loggout") do
+    VCR.use_cassette("logout") do
       visit root_path
 
       expect(page).to_not have_link('Logout')

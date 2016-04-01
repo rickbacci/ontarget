@@ -314,6 +314,7 @@ DEPENDENCIES
   puma
   rails (= 4.2.4)
   rails_12factor
+  rake
   rspec-rails (~> 3.0)
   sass-rails (~> 5.0)
   sidekiq
@@ -324,4 +325,4 @@ DEPENDENCIES
   webmock
 
 BUNDLED WITH
-   1.10.6
+   1.11.2
