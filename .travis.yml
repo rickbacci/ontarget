@@ -8,6 +8,11 @@ env:
     - github_test_id=175
     - github_test_secret=super
     - github_test_token=chuckyCheese
+    - github_test_user=RickBacci
+    - test_provider=github
+    - test_uid=252278
+    - test_nickname=RickBacci
+    - test_email=rickbacci@gmail.com
 
 script:
   - bundle install
