@@ -32,12 +32,7 @@ $(document).ready(function() {
 
   $('.column').height($('.col').height());
 
-  $( ".sortable" ).sortable({
-    tolerance: "pointer",
-    dropOnEmpty: true,
-    revert: true,
-    containment: "parent"
-  });
+  makeCardsSortable();
 
   $( ".panel" ).draggable({
 
