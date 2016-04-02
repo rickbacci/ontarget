@@ -20,7 +20,7 @@ gem 'figaro'
 
 gem 'omniauth-github'
 gem 'github_api'
-gem 'skylight'
+gem 'skylight', '~> 0.10.3'
 gem 'sidekiq'
 gem 'bourbon'
 
