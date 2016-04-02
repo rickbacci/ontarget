@@ -8,13 +8,15 @@
 
       %h2.text-center
         = status.titlecase
-      %ul{ class: "#{status} column sortable list-unstyled"}
+      %ul{ class: "#{status} column sortable list-unstyled",
+      data: { columnstatus: status } }
         - @issues.each do |issue|
           - next if different?(issue, status, current_user)
-          %li{ class: "panel cards panel-default #{status}",
-               data: { owner:  @project.user.nickname,
+          %li{ class: "card-panel panel cards panel-default #{status}",
+               data: { owner:  @project.user.nickname.downcase,
                        repo:   @project.name,
                        number: issue.number,
+                       currentcardstatus: status,
                        timer: convert_time(get_time(issue.labels)),
                        timer_seconds: get_time(issue.labels) } }
             .panel-heading

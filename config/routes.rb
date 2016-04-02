@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   patch '/update_issues/:number',      to: 'issues#update', as: :update_issues
   post '/update_issue_labels/:number', to: 'issues#update_issue_labels', as: :update_issue_labels
 
-  post  '/update_column_issue', to: 'issues#update_column'
+  post  '/update_card_status', to: 'issues#update_card_status'
 
   root 'dashboard#show'
 end

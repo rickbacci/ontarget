@@ -1,5 +1,5 @@
 class IssuesController < ApplicationController
-  include GithubColumnUpdater
+  include GithubCardStatusUpdater
   include GithubIssueCreater
   include GithubIssueUpdater
   include GithubIssueLabelUpdater
@@ -73,20 +73,24 @@ class IssuesController < ApplicationController
     redirect_to project_path(params[:project_id])
   end
 
-
-  def self.update_column
-    @update_column || GithubColumnUpdater
+  def self.update_card_status
+    @update_card_status || GithubCardStatusUpdater
   end
 
-  def self.update_column=(update_column)
-    @update_column = update_column
+  def self.update_card_status=(update_card_status)
+    @update_card_status = update_card_status
   end
 
-  def update_column
-    IssuesController.update_column.call(client:     current_user.github,
-                                        number:     params[:number],
-                                        old_column: params[:oldcolumn],
-                                        new_column: params[:newcolumn])
+  def update_card_status
+
+    IssuesController.update_card_status.call(
+      client:     client,
+      owner:      params[:owner],
+      repo:       params[:repo],
+      number:     params[:number],
+      old_column: params[:oldcolumn],
+      new_column: params[:newcolumn])
+
     head :ok
   end
 
