@@ -1,7 +1,7 @@
 module IssuesHelper
 
   def statuses
-    ['backlog', 'ready', 'in-progress', 'completed']
+    ['Backlog', 'Ready', 'In-progress', 'Completed']
   end
 
   def times
