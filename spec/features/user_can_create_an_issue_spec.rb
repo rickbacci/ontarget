@@ -14,7 +14,7 @@ feature "User" do
       create_test_repo('test_repo')
 
       visit root_path
-      click_on "Login"
+      click_on "Login with Github"
 
       click_on "Add Repository"
       find('.test_repo').click
@@ -41,7 +41,7 @@ feature "User" do
       create_test_repo('test_repo')
 
       visit root_path
-      click_on "Login"
+      click_on "Login with Github"
 
       click_on "Add Repository"
       find('.test_repo').click

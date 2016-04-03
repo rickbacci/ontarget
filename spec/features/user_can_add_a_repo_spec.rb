@@ -16,7 +16,7 @@ feature "User" do
 
       visit root_path
 
-      click_on "Login"
+      click_on "Login with Github"
       click_on "View Projects"
 
       expect(page).to_not have_content('test_repo')
