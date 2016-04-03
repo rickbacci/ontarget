@@ -9,15 +9,13 @@ feature "User" do
   end
 
   scenario "can authenticate with Github" do
-    VCR.use_cassette("authenticate") do
-      visit root_path
+    visit root_path
 
-      expect(page).to_not have_link('Logout')
+    expect(page).to_not have_link('Logout')
 
-      click_on "Login with Github"
+    click_on "Login with Github"
 
-      expect(page).to have_link('Logout')
-    end
+    expect(page).to have_link('Logout')
   end
 end
 

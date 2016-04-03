@@ -7,7 +7,7 @@
     .col-md-3.col.border-gutters.column-border.col-color
 
       %h2.text-center
-        = status.titlecase
+        = status
       %ul{ class: "#{status} column sortable list-unstyled",
       data: { columnstatus: status } }
         - @issues.each do |issue|

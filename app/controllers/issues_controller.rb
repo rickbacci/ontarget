@@ -56,7 +56,7 @@ class IssuesController < ApplicationController
 
     labels = params.has_key?(:creation) ? params[:creation][:labels] : []
 
-    labels << params[:timer_time] << 'backlog'
+    labels << params[:timer_time] << 'Backlog'
 
     IssuesController.create.call(client: current_user.github,
                                  title:  params[:title],

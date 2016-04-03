@@ -1,7 +1,7 @@
 module ProjectsHelper
 
   def statuses
-    ['backlog', 'ready', 'in-progress', 'completed']
+    ['Backlog', 'Ready', 'In-progress', 'Completed']
   end
 
   def times
@@ -17,7 +17,7 @@ module ProjectsHelper
   end
 
   def set_default(label)
-    return true if label.name == 'backlog'
+    return true if label.name == 'Backlog'
     false
   end
 

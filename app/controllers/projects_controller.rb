@@ -78,40 +78,40 @@ class ProjectsController < ApplicationController
   def create_labels
     labels = client.issues.labels.list.map { |label| label.name }
 
-    unless labels.include?('backlog')
-      client.issues.labels.create name: 'backlog', color: '1FFFFF'
+    unless labels.include?('Backlog')
+      client.issues.labels.create name: 'Backlog', color: '1FFFFF'
     end
 
-    unless labels.include?('ready')
-      client.issues.labels.create name: 'ready', color: 'F3FFFF'
+    unless labels.include?('Ready')
+      client.issues.labels.create name: 'Ready', color: 'F3FFFF'
     end
 
-    unless labels.include?('in-progress')
-      client.issues.labels.create name: 'in-progress', color: 'FF5FFF'
+    unless labels.include?('In-progress')
+      client.issues.labels.create name: 'In-progress', color: 'FF5FFF'
     end
 
-    unless labels.include?('completed')
-      client.issues.labels.create name: 'completed', color: 'FFF7FF'
+    unless labels.include?('Completed')
+      client.issues.labels.create name: 'Completed', color: 'FFF7FF'
     end
   end
 
   def destroy_labels
     labels = client.issues.labels.list.map { |label| label.name }
 
-    if labels.include?('backlog')
-      client.issues.labels.delete client.user, client.repo, 'backlog'
+    if labels.include?('Backlog')
+      client.issues.labels.delete client.user, client.repo, 'Backlog'
     end
 
-    if labels.include?('ready')
-      client.issues.labels.delete client.user, client.repo, 'ready'
+    if labels.include?('Ready')
+      client.issues.labels.delete client.user, client.repo, 'Ready'
     end
 
-    if labels.include?('in-progress')
-      client.issues.labels.delete client.user, client.repo, 'in-progress'
+    if labels.include?('In-progress')
+      client.issues.labels.delete client.user, client.repo, 'In-progress'
     end
 
-    if labels.include?('completed')
-      client.issues.labels.delete client.user, client.repo, 'completed'
+    if labels.include?('Completed')
+      client.issues.labels.delete client.user, client.repo, 'Completed'
     end
 
     if labels.include?('5')

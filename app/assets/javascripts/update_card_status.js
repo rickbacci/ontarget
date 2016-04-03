@@ -1,6 +1,6 @@
 function updateCardStatus(card, _this) {
 
-  if (card.newcolumn === 'in-progress') {
+  if (card.newcolumn === 'In-progress') {
     startTimer(_this);
   }
 

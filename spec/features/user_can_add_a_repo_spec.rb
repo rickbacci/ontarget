@@ -37,7 +37,7 @@ feature "User" do
 
       expect(page).to have_content('Backlog')
       expect(page).to have_content('Ready')
-      expect(page).to have_content('In Progress')
+      expect(page).to have_content('In-progress')
       expect(page).to have_content('Completed')
 
       delete_test_repo('test_repo')
