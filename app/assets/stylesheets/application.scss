@@ -78,23 +78,20 @@ ul {
 
 .column-border {
   box-sizing: border-box;
-  background-image: -webkit-linear-gradient(rgba( 238, 238, 238, 1), rgba( 238, 238, 238, 1));
-  background-image: linear-gradient(rgba( 238, 238, 238, 1),rgba( 238, 238, 238, 1));
+  // background-image: -webkit-linear-gradient(rgba( 238, 238, 238, 1), rgba( 238, 238, 238, 1));
+  // background-image: linear-gradient(rgba( 238, 238, 238, 1),rgba( 238, 238, 238, 1));
   // border: 5px ridge #333333;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
   -moz-box-sizing: border-box;
-  background-color: blue;
+  background-color: dark-grey;
   border: 1px solid black;
   border-right: 2px solid black;
   border-left: 2px solid black;
 }
 
-.label-check-boxes {
-  padding-left: 10%;
-  padding-right: 10%;
 .new_issue_label_box {
   margin-left: 2%;
   width: fit-content;
@@ -102,12 +99,12 @@ ul {
   vertical-align: sub;
 }
 
-.box {
- width: 45%;
- padding-left: 10%;
- margin-left: 3%;
- text-align: left;
- vertical-align: sub;
+.label-box-dropdown {
+  width: 45%;
+  padding-left: 10%;
+  margin-left: 3%;
+  text-align: left;
+  vertical-align: sub;
 }
 
 .label-btn {
@@ -168,9 +165,10 @@ textarea.noscrollbars {
 }
 
 .issue-labels-dropdown-menu {
-   min-width: 20em;
-  right: 5%;
-  left: -34%;
+  min-width: 22em;
+  left: -20%;
+}
+
 .issue-times-dropdown-menu {
   padding: 10%;
   margin-bottom: 1%;
