@@ -68,6 +68,14 @@ ul {
   width: 15%;
 }
 
+.timer-check-boxes {
+  padding-left: 30%;
+}
+
+.timer-box-dropdown {
+  padding-left: 30%;
+}
+
 .column-border {
   box-sizing: border-box;
   background-image: -webkit-linear-gradient(rgba( 238, 238, 238, 1), rgba( 238, 238, 238, 1));
@@ -163,6 +171,9 @@ textarea.noscrollbars {
    min-width: 20em;
   right: 5%;
   left: -34%;
+.issue-times-dropdown-menu {
+  padding: 10%;
+  margin-bottom: 1%;
 }
 
 .row.no-gutters {

@@ -9,6 +9,19 @@ class IssuesController < ApplicationController
     @labels ||= client.issues.labels.list
   end
 
+  def update_issue_times
+    project = Project.find_by(name: current_user.github.repo)
+
+    issue_number  = params[:issue_number]
+    original_time = params[:time]
+    new_time      = params[:timer_time]
+
+    client.issues.labels.add client.user, client.repo, issue_number, new_time
+    client.issues.labels.remove client.user, client.repo, issue_number, label_name: original_time
+
+    flash[:success] = "Timer Updated!"
+    redirect_to project_path(project.id)
+  end
 
   def self.update_issue_labels
     @update_issue_labels || GithubIssueLabelUpdater

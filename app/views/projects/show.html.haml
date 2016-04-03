@@ -54,8 +54,8 @@
                       = convert_time(get_time(issue.labels))
                     %span.caret
                   = render partial: 'shared/dropdown_timer_form',
-                    locals: { issue_number: issue.number,
-                              timer_time: get_time(issue.labels) }
+                    locals: { issue_number: issue.number.to_s,
+                              time: get_time(issue.labels) }
               %div{ class: "issue-#{issue.number} well card" }
                 =render partial: 'shared/issue_form',
                         locals:  { project: @project, issue: issue }
