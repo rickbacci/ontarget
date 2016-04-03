@@ -113,6 +113,25 @@ class ProjectsController < ApplicationController
     if labels.include?('completed')
       client.issues.labels.delete client.user, client.repo, 'completed'
     end
-  end
 
+    if labels.include?('5')
+      client.issues.labels.delete client.user, client.repo, '5'
+    end
+
+    if labels.include?('300')
+      client.issues.labels.delete client.user, client.repo, '300'
+    end
+
+    if labels.include?('600')
+      client.issues.labels.delete client.user, client.repo, '600'
+    end
+
+    if labels.include?('1500')
+      client.issues.labels.delete client.user, client.repo, '1500'
+    end
+
+    if labels.include?('3000')
+      client.issues.labels.delete client.user, client.repo, '3000'
+    end
+  end
 end
