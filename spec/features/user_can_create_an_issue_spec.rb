@@ -14,7 +14,7 @@ feature "User" do
       create_test_repo('test_repo')
 
       visit root_path
-      click_on "Login"
+      click_on "Login with Github"
 
       click_on "Add Repository"
       find('.test_repo').click
@@ -30,7 +30,7 @@ feature "User" do
 
       expect(page).to have_content('New test issue')
       expect(page).to have_content('As a test user...')
-      expect(page).to have_content('5 minutes')
+      expect(page).to have_content('5 seconds')
 
       delete_test_repo('test_repo')
     end
@@ -41,7 +41,7 @@ feature "User" do
       create_test_repo('test_repo')
 
       visit root_path
-      click_on "Login"
+      click_on "Login with Github"
 
       click_on "Add Repository"
       find('.test_repo').click
@@ -52,7 +52,7 @@ feature "User" do
 
       fill_in "Title", with: 'New test issue'
       fill_in "User story...", with: "As a test user..."
-      find('#25m').click()
+      find('#1500').click()
 
       click_on "Create Issue"
 

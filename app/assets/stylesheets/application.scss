@@ -14,16 +14,28 @@
  * require_self
 
  */
-@import "bourbon";
+
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import 'rails_bootstrap_forms';
+
 @import 'flipclock';
+@import 'spinner';
 
 
 $gray1: #A1949A;
 $primary-color: #333;
 
+.slategray, #new-projects {
+  background-color: $gray1;
+}
+
+.white {
+  color: white;
+}
+
+.col-color {
+  background-color: grey;
+}
 
 body {
   background-color: black;
@@ -33,16 +45,10 @@ body {
   background-repeat:no-repeat;
 }
 
-
-
-
-.slategray, #new-projects {
-  background-color: slategray;
+ul {
+  list-style-type: none;
 }
 
-.white {
-  color: white;
-}
 
 
 .padding-left {
@@ -57,7 +63,6 @@ body {
 }
 
 .timer {
-
   margin-right: auto;
   margin-left: auto;
   width: 15%;
@@ -82,6 +87,11 @@ body {
 .label-check-boxes {
   padding-left: 10%;
   padding-right: 10%;
+.new_issue_label_box {
+  margin-left: 2%;
+  width: fit-content;
+  padding-left: 6%;
+  vertical-align: sub;
 }
 
 .box {
@@ -95,11 +105,6 @@ body {
 .label-btn {
   margin-top: 17%;
   margin-right: 0%;
-}
-
-.dropup-btn {
-  margin-top: 5%;
-  margin-bottom: 5%;
 }
 
 .issue-btn {
@@ -206,60 +211,4 @@ textarea.noscrollbars {
   margin-bottom: 0%;
   padding-bottom: 8%;
 }
-
-
-
-// spinner css
-
-.spinner {
-  margin: 100px auto;
-  width: 40px;
-  height: 40px;
-  position: relative;
-}
-
-.cube1, .cube2 {
-  background-color: #333;
-  width: 15px;
-  height: 15px;
-  position: absolute;
-  top: 0;
-  left: 0;
-
-  -webkit-animation: sk-cubemove 1.8s infinite ease-in-out;
-  animation: sk-cubemove 1.8s infinite ease-in-out;
-}
-
-.cube2 {
-  -webkit-animation-delay: -0.9s;
-  animation-delay: -0.9s;
-}
-
-@-webkit-keyframes sk-cubemove {
-  25% { -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5) }
-  50% { -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg) }
-  75% { -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5) }
-  100% { -webkit-transform: rotate(-360deg) }
-}
-
-@keyframes sk-cubemove {
-  25% {
-    transform: translateX(42px) rotate(-90deg) scale(0.5);
-    -webkit-transform: translateX(42px) rotate(-90deg) scale(0.5);
-  } 50% {
-    transform: translateX(42px) translateY(42px) rotate(-179deg);
-    -webkit-transform: translateX(42px) translateY(42px) rotate(-179deg);
-  } 50.1% {
-    transform: translateX(42px) translateY(42px) rotate(-180deg);
-    -webkit-transform: translateX(42px) translateY(42px) rotate(-180deg);
-  } 75% {
-    transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
-    -webkit-transform: translateX(0px) translateY(42px) rotate(-270deg) scale(0.5);
-  } 100% {
-    transform: rotate(-360deg);
-    -webkit-transform: rotate(-360deg);
-  }
-}
-
-// end spinner
 
