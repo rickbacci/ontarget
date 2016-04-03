@@ -19,7 +19,7 @@ feature "User" do
 
       click_on "Logout"
 
-      expect(page).to have_link('Login')
+      expect(page).to have_link('Login with Github')
     end
   end
 end
