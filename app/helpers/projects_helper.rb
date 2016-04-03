@@ -36,11 +36,11 @@ module ProjectsHelper
   def get_time(labels)
     labels = labels.map { |label| label.name }
 
-    return 3000 if labels.include?('3000')
-    return 1500 if labels.include?('1500')
-    return 600 if labels.include?('600')
-    return 300 if labels.include?('300')
-    5
+    return '3000' if labels.include?('3000')
+    return '1500' if labels.include?('1500')
+    return '600'  if labels.include?('600')
+    return '300'  if labels.include?('300')
+    '5'
   end
 
   def set_time(time, value)
@@ -50,15 +50,15 @@ module ProjectsHelper
 
   def convert_time(seconds)
     case seconds
-    when 5
+    when '5'
       "5 Seconds"
-    when 300
+    when '300'
       "5 Minutes"
-    when 600
+    when '600'
       "10 Minutes"
-    when 1500
+    when '1500'
       "25 Minutes"
-    when 3000
+    when '3000'
       "50 Minutes"
     end
   end
