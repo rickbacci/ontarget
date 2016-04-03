@@ -30,7 +30,7 @@ feature "User" do
 
       expect(page).to have_content('New test issue')
       expect(page).to have_content('As a test user...')
-      expect(page).to have_content('5 minutes')
+      expect(page).to have_content('5 seconds')
 
       delete_test_repo('test_repo')
     end
@@ -52,7 +52,7 @@ feature "User" do
 
       fill_in "Title", with: 'New test issue'
       fill_in "User story...", with: "As a test user..."
-      find('#25m').click()
+      find('#1500').click()
 
       click_on "Create Issue"
 
