@@ -6,7 +6,6 @@ class IssuesController < ApplicationController
 
   def new
     @project = Project.find(params[:id])
-
     @labels ||= client.issues.labels.list
   end
 
@@ -41,6 +40,8 @@ class IssuesController < ApplicationController
 
   def create
     @project = Project.find(params[:id])
+
+    params[:creation][:labels] << params[:timer_time] << 'backlog'
 
     IssuesController.create.call(client: current_user.github,
                                  title:  params[:title],
