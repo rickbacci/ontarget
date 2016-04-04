@@ -13,7 +13,7 @@ module ProjectsHelper
     false
   end
 
-  def different?(issue, status, current_user)
+  def different?(issue, status)
     issue.labels.none? { |label| label.name == status }
   end
 
