@@ -13,16 +13,8 @@ module ProjectsHelper
     false
   end
 
-  def different_repo(issue, current_user)
-    issue.repository.name != current_user.current_project
-  end
-
-  def different_column(issue, status)
-    issue.labels.none? { |label| label.name == status }
-  end
-
   def different?(issue, status, current_user)
-    different_repo(issue, current_user) || different_column(issue, status)
+    issue.labels.none? { |label| label.name == status }
   end
 
   def get_time(labels)
