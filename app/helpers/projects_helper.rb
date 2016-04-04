@@ -1,13 +1,5 @@
 module ProjectsHelper
 
-  def statuses
-    ['Backlog', 'Ready', 'In-progress', 'Completed']
-  end
-
-  def times
-    %w{ 5 300 600 1500 3000 }
-  end
-
   def added_to_projects(project_name)
     current_user.projects.pluck(:name).include?(project_name)
   end
