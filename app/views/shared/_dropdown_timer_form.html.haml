@@ -1,9 +1,18 @@
-.dropdown-menu.issue-times-dropdown-menu{"aria-labelledby" => "dropdown-#{issue_number}" }
-  = form_tag update_issue_times_path(issue_number, time),
-    class: "timer-check-boxes well card form" ,method: :post do
-    .timer-box-dropdown
-      - timer_times.each do |k, v|
-        .radio
-          = radio_button_tag("timer_time", k, time_match?(k, time))
-          = v
-    %button.btn.pull-right.btn-default.btn-xs.label-btn{:type => "submit"} Update Time
+.dropdown.pull-right
+  %button{ class: "dropdown-btn btn btn-xs btn-default dropdown-toggle",
+           id:    "dropdown-#{issue_number}",
+           'aria-expanded': "true",
+           'aria-haspopup': "true",
+           'data-toggle': "dropdown", type: "button" }
+    %span
+      = convert_time(get_time(issue_labels))
+    %span.caret
+  .dropdown-menu.issue-times-dropdown-menu{"aria-labelledby" => "dropdown-#{issue_number}" }
+    = form_tag update_issue_times_path(issue_number, time),
+      class: "timer-check-boxes well card form" ,method: :post do
+      .timer-box-dropdown
+        - timer_times.each do |k, v|
+          .radio
+            = radio_button_tag("timer_time", k, time_match?(k, time))
+            = v
+      %button.btn.pull-right.btn-default.btn-xs.label-btn{:type => "submit"} Update Time
