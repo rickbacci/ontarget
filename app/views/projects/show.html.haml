@@ -19,14 +19,12 @@
                        timer: convert_time(get_time(issue.labels)),
                        timer_seconds: get_time(issue.labels) } }
             .panel-heading
-              .issue
-                %h3.panel-title.pull-right
-                  \##{issue.number}
-                %h3.panel-title.text-left
-                  = issue.milestone.title if issue.milestone
-                  = current_user.current_project unless issue.milestone
-            .panel-body
-              .clearfix.padding-bottom-15
+              %h3.panel-title.pull-right
+                \##{issue.number}
+              %h3.panel-title.text-left
+                = milestone_or_project_name(issue)
+            .panel-body.issue-card-body
+              .issue-card-dropdowns
                 = render partial: 'shared/dropdown_label_form',
                   locals: { project: @project, labels: @labels, issue_number: issue.number, issue_labels: issue.labels }
                 = render partial: 'shared/dropdown_timer_form',

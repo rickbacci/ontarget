@@ -1,5 +1,10 @@
 module ProjectsHelper
 
+  def milestone_or_project_name(issue)
+    return issue.milestone.title if issue.milestone
+    current_user.current_project
+  end
+
   def added_to_projects(project_name)
     current_user.projects.pluck(:name).include?(project_name)
   end
