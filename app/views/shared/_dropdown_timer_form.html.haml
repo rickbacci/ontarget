@@ -11,8 +11,5 @@
     = form_tag update_issue_times_path(issue_number, time),
       class: "timer-check-boxes well card form" ,method: :post do
       .timer-box-dropdown
-        - timer_times.each do |k, v|
-          .radio
-            = radio_button_tag("timer_time", k, time_match?(k, time))
-            = v
+        = render partial: 'shared/timer_radio_buttons', locals: { timer_values: timer_values }
       %button.btn.pull-right.btn-default.btn-xs.label-btn{:type => "submit"} Update Time
