@@ -1,5 +1,4 @@
-=form_tag update_issues_path(issue.number),
-  class: "form", id: "issue-form-#{issue.number}", method: :patch do
+=form_tag update_issues_path(issue.number), class: "issue-card-form", method: :patch do
   = text_area_tag :title, issue.title, { rows: 1, class: "form-control noscrollbars ctrl-enter", :onkeyup => "autoGrow(this);"}
   = text_area_tag :body, issue.body, { rows: 5, class: "form-control noscrollbars ctrl-enter", :onkeyup => "autoGrow(this);"}
   = hidden_field_tag :labels, issue.labels.map { |label| label.name}
