@@ -1,11 +1,8 @@
 module ProjectsHelper
 
-  def statuses
-    ['Backlog', 'Ready', 'In-progress', 'Completed']
-  end
-
-  def times
-    %w{ 5 300 600 1500 3000 }
+  def milestone_or_project_name(issue)
+    return issue.milestone.title if issue.milestone
+    current_user.current_project
   end
 
   def added_to_projects(project_name)
@@ -21,16 +18,8 @@ module ProjectsHelper
     false
   end
 
-  def different_repo(issue, current_user)
-    issue.repository.name != current_user.current_project
-  end
-
-  def different_column(issue, status)
+  def different?(issue, status)
     issue.labels.none? { |label| label.name == status }
-  end
-
-  def different?(issue, status, current_user)
-    different_repo(issue, current_user) || different_column(issue, status)
   end
 
   def get_time(labels)

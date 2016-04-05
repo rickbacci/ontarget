@@ -1,14 +1,19 @@
 function makeCardsDraggable() {
 
-  $('.card-panel').draggable({
+  $('.draggable').draggable({
     connectToSortable: '.sortable',
+    refreshPositions: true,
     cursor: 'move',
     zIndex: 100,
+    revert: 'invalid',
     start: function (event, ui) {
       var newColumn;
       var oldColumn = event.target.dataset.currentcardstatus;
     },
     stop: function(event, ui) {
+
+      setColumnHeight();
+
       newColumn     = event.target.parentElement.dataset.columnstatus;
       oldColumn     = event.target.dataset.currentcardstatus;
 
@@ -20,8 +25,6 @@ function makeCardsDraggable() {
         oldcolumn: oldColumn,
         newcolumn: newColumn
       };
-
-      oldColumn = newColumn;
 
       updateCardStatus(issueCard, _this);
     }

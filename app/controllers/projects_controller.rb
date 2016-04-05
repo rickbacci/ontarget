@@ -10,7 +10,7 @@ class ProjectsController < ApplicationController
 
     set_project_name(@project)
 
-    @issues ||= client.issues.list(repo: @project.name)
+    @issues ||= client.issues.list user: client.user, repo: client.repo
 
     @labels ||= client.issues.labels.list
   end
@@ -18,7 +18,6 @@ class ProjectsController < ApplicationController
   def new
     @repos ||= client.repos.list(user: client.user, auto_pagination: true).map { |repo| repo if repo.has_issues? }
   end
-
 
   def create
     @project = current_user.projects.create(name: params[:name])

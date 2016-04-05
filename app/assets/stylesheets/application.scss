@@ -30,10 +30,9 @@ $primary-color: #333;
   background-color: $gray1;
 }
 
-.white {
+.text-white {
   color: white;
 }
-
 
 body {
   background-color: black;
@@ -45,10 +44,13 @@ body {
 
 //////////---------- Status Columns
 
+
 .column-border {
+  background-color: grey;
+
   box-sizing: border-box;
 
-  border: 5px ridge #333333;
+  border: 3px ridge #333333;
 
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
@@ -57,24 +59,11 @@ body {
 
   -moz-box-sizing: border-box;
 
-  border: 1px solid black;
   border-right: 2px solid black;
   border-left: 2px solid black;
 
-  background-color: grey;
-}
-
-.border-gutters {
-  border-left: 1% solid transparent;
-  border-right: 1% solid transparent;
-}
-
-.col {
-  flex: 1;
-}
-
-.row {
-  display: flex;
+  // border-left: 1% solid transparent;
+  // border-right: 1% solid transparent;
 }
 
 .row.no-gutters {
@@ -95,18 +84,6 @@ div.row.no-gutters {
 
 
 //////////---------- Status Columns End
-
-//////////---------- Padding
-
-.padding-bottom-15 {
-  padding-bottom: 15px;
-}
-
-.padding-left {
-  padding-left: 15px;
-}
-
-//////////---------- Padding End
 
 
 //////////---------- Centering
@@ -129,13 +106,6 @@ div.row.no-gutters {
   width: 15%;
 }
 
-.timer-check-boxes {
-  padding-left: 30%;
-}
-
-.timer-box-dropdown {
-  padding-left: 30%;
-}
 
 //////////---------- Timer End
 
@@ -151,6 +121,10 @@ div.row.no-gutters {
 
 .label-check-boxes {
   padding: 2%;
+}
+
+.new_issue_timer_radio_buttons {
+  margin-left: 40px;
 }
 
 //////////---------- New Issue End
@@ -180,37 +154,52 @@ div.row.no-gutters {
 
 //////////---------- Issue Card
 
+.panel-heading {
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+}
+
 .cards {
   box-sizing: border-box;
-  border: 2px ridge #333333;
+  border: 3px ridge #333333;
   border-top-left-radius: 15px;
   border-top-right-radius: 15px;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
   -moz-box-sizing: border-box;
+  min-height: 24em;
 }
 
-.label-btn {
-  margin-top: 17%;
-  margin-right: 0%;
+ .panel-body {
+   padding: 3%;
+ }
+
+ .card-panel {
+   background-color: #EEEEEE;
+ }
+
+ .well {
+   padding: 3%;
+   margin-bottom: 0%;
+ }
+
+ #title {
+   margin-bottom: 3%;
+ }
+
+.issue-card-dropdowns {
+  padding-bottom: 12%;
 }
 
-.issue-btn {
-  margin-top: 4%;
+.issue-card-form {
   margin-bottom: 4%;
 }
 
-textarea[name=title], textarea[name=body] {
-  resize: none;
-}
-
-textarea.noscrollbars {
-  overflow: hidden;
-}
 
 .issue-labels-dropdown-menu {
-  min-width: 19em;
-  left: -15%;
+  padding: 15%;
+  min-width: 18em;
+  left: -4%;
 }
 
 .label-box-dropdown {
@@ -221,34 +210,34 @@ textarea.noscrollbars {
   vertical-align: sub;
 }
 
-.issue-times-dropdown-menu {
-  padding: 10%;
-  margin-bottom: 1%;
+.update-label-btn {
+  margin-top: 19%;
+  margin-right: -3%;
 }
 
-
-.panel-heading {
-  border-top-left-radius: 15px;
-  border-top-right-radius: 15px;
+textarea[name=title], textarea[name=body] {
+  resize: none;
 }
 
-.card {
-  padding: 4%;
-
+textarea.noscrollbars {
+  overflow: hidden;
 }
 
-.form.form-control {
-  margin: 2%;
+.update-issue-btn {
+  margin-top: -30%;
 }
 
-.well.card {
-  margin-bottom: 10px;
-  margin-bottom: 0%;
-  padding-bottom: 8%;
+.issue-timer-dropdown-menu {
+  padding: 13%;
 }
 
-#title {
-  margin-bottom: 10px;
+.timer-box-dropdown {
+  padding-left: 25%;
+}
+
+.update-timer-btn {
+  margin-top: 10%;
+  margin-right: -4%;
 }
 
 //////////---------- Issue Card End
