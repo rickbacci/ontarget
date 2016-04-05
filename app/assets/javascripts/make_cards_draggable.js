@@ -23,8 +23,6 @@ function makeCardsDraggable() {
         newcolumn: newColumn
       };
 
-      oldColumn = newColumn;
-
       updateCardStatus(issueCard, _this);
     }
   });

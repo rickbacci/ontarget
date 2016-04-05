@@ -3,6 +3,7 @@ function updateCardStatus(card, _this) {
   if (card.newcolumn === 'In-progress') {
     startTimer(_this);
   }
+  _this.dataset.currentcardstatus = newColumn
 
   $.ajax({
     type: "POST",
