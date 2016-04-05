@@ -11,6 +11,9 @@ function makeCardsDraggable() {
       var oldColumn = event.target.dataset.currentcardstatus;
     },
     stop: function(event, ui) {
+
+      setColumnHeight();
+
       newColumn     = event.target.parentElement.dataset.columnstatus;
       oldColumn     = event.target.dataset.currentcardstatus;
 
