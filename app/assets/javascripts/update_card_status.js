@@ -1,6 +1,6 @@
 function updateCardStatus(card, _this) {
 
-  _this.dataset.currentcardstatus = newColumn
+  _this.dataset.currentcardstatus = newColumn;
 
   $.ajax({
     type: "POST",
@@ -13,7 +13,7 @@ function updateCardStatus(card, _this) {
       newcolumn: card.newcolumn,
     },
     success: function() {
-      startTimerIfInProgress(card, _this)
+      startTimerIfInProgress(card, _this);
     },
     error: function(xhr) {
       console.log(xhr.responseText);
