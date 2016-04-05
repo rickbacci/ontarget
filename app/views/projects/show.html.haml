@@ -4,10 +4,10 @@
       .timer-graphic
 .row.no-gutters
   - statuses.each do |status|
-    .col-md-3.col.border-gutters.column-border
+    .col-md-3.status-column.border-gutters.column-border
       %h2.text-center
         = status
-      %ul{ class: "column sortable list-unstyled", data: { columnstatus: status } }
+      %ul{ class: "status-list sortable list-unstyled", data: { columnstatus: status } }
         - @issues.each do |issue|
           - next if different?(issue, status)
           %li{ class: "draggable panel panel-default card-panel cards",
