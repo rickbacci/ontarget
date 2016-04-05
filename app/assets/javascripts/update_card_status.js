@@ -1,8 +1,5 @@
 function updateCardStatus(card, _this) {
 
-  if (card.newcolumn === 'In-progress') {
-    startTimer(_this);
-  }
   _this.dataset.currentcardstatus = newColumn
 
   $.ajax({
@@ -15,7 +12,8 @@ function updateCardStatus(card, _this) {
       oldcolumn: card.oldcolumn,
       newcolumn: card.newcolumn,
     },
-    success: function(a, b, c) {
+    success: function() {
+      startTimerIfInProgress(card, _this)
     },
     error: function(xhr) {
       console.log(xhr.responseText);
@@ -24,3 +22,8 @@ function updateCardStatus(card, _this) {
 
 }
 
+function startTimerIfInProgress(card, _this) {
+  if (card.newcolumn === 'In-progress') {
+    startTimer(_this);
+  }
+}
