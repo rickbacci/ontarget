@@ -14,4 +14,4 @@
         .label-box-dropdown{ class: "checkbox btn btn-xs", style: "background-color:\##{label.color}" }
           = check_box_tag "updates[labels][]", [label.name], has_label?(issue_labels, label.name)
           = label.name
-      %button.btn.pull-right.btn-default.btn-xs.label-btn{:type => "submit"} Update
+      %button.btn.pull-right.btn-default.btn-xs.update-label-btn{:type => "submit"} Update
