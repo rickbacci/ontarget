@@ -10,7 +10,7 @@
       %ul{ class: "column sortable list-unstyled", data: { columnstatus: status } }
         - @issues.each do |issue|
           - next if different?(issue, status)
-          %li{ class: "panel panel-default card-panel cards",
+          %li{ class: "draggable panel panel-default card-panel cards",
                data: { owner:  @project.user.nickname.downcase,
                        repo:   @project.name,
                        number: issue.number,

@@ -1,9 +1,11 @@
 function makeCardsDraggable() {
 
-  $('.card-panel').draggable({
+  $('.draggable').draggable({
     connectToSortable: '.sortable',
+    refreshPositions: true,
     cursor: 'move',
     zIndex: 100,
+    revert: 'invalid',
     start: function (event, ui) {
       var newColumn;
       var oldColumn = event.target.dataset.currentcardstatus;
