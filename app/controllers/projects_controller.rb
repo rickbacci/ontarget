@@ -92,6 +92,17 @@ class ProjectsController < ApplicationController
     unless labels.include?('Completed')
       client.issues.labels.create name: 'Completed', color: 'FFF7FF'
     end
+
+    repo_issues = client.issues.list user: client.user, repo: client.repo, state: 'open'
+
+    repo_issues.each do |issue|
+      issue      = client.issues.get client.user, client.repo, issue.number
+      is_backlog = issue.labels.any? { |l| l.name == 'Backlog' }
+
+      if(!is_backlog)
+        client.issues.labels.add client.user, client.repo, issue.number, 'Backlog'
+      end
+    end
   end
 
   def destroy_labels
