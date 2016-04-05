@@ -6,8 +6,7 @@
   = hidden_field_tag :project_id, @project.id
   %br
   %label.pull-right{ :for => issue.number }
-    %button.btn.btn-default.btn-xs.issue-btn{:type => "submit"} Update Issue
-  .clearfix
+    %button.btn.btn-default.btn-xs.update-issue-btn{:type => "submit"} Update Issue
 
 :javascript
   function autoGrow (oField) {
