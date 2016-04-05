@@ -60,20 +60,6 @@ body {
   border-right: 2px solid black;
   border-left: 2px solid black;
 
-  background-color: grey;
-}
-
-.border-gutters {
-  border-left: 1% solid transparent;
-  border-right: 1% solid transparent;
-}
-
-.col {
-  flex: 1;
-}
-
-.row {
-  display: flex;
 }
 
 .row.no-gutters {
@@ -95,18 +81,6 @@ div.row.no-gutters {
 
 //////////---------- Status Columns End
 
-//////////---------- Padding
-
-.padding-bottom-15 {
-  padding-bottom: 15px;
-}
-
-.padding-left {
-  padding-left: 15px;
-}
-
-//////////---------- Padding End
-
 
 //////////---------- Centering
 
@@ -126,10 +100,6 @@ div.row.no-gutters {
   margin-right: auto;
   margin-left: auto;
   width: 15%;
-}
-
-.timer-check-boxes {
-  padding-left: 30%;
 }
 
 .timer-box-dropdown {
@@ -234,25 +204,15 @@ textarea.noscrollbars {
   border-top-right-radius: 15px;
 }
 
-.card {
-  padding: 4%;
 
 .update-issue-btn {
   margin-top: -30%;
 }
 
-.form.form-control {
-  margin: 2%;
 }
 
-.well.card {
-  margin-bottom: 10px;
-  margin-bottom: 0%;
-  padding-bottom: 8%;
 }
 
-#title {
-  margin-bottom: 10px;
 .update-timer-btn {
   margin-top: 10%;
   margin-right: -4%;
