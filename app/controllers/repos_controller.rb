@@ -1,75 +1,76 @@
-class ProjectsController < ApplicationController
+class ReposController < ApplicationController
   before_action :authorize!, only: [:show, :create, :destroy]
 
   def index
-    @projects = current_user.projects
+    @repos = current_user.repos
   end
 
   def show
-    @project = Project.find(params[:id])
 
-    set_project_name(@project)
+    @repo = Repo.find(params[:id])
+
+    set_repo_name(@repo)
 
     @issues ||= client.issues.list user: client.user, repo: client.repo
-
+    # @repo = client.repos.get user: client.user, name: client.repo
     @labels ||= client.issues.labels.list
+    @repos = client.repos.list(user: client.user, auto_pagination: true).map { |repo| repo if repo.has_issues? }
   end
 
   def new
-    @repos ||= client.repos.list(user: client.user, auto_pagination: true).map { |repo| repo if repo.has_issues? }
+    @repos = client.repos.list(user: client.user, auto_pagination: true).map { |repo| repo if repo.has_issues? }
   end
 
   def create
-    @project = current_user.projects.create(name: params[:name])
+    @repo = current_user.repos.create(name: params[:name])
 
-    update_project_name(@project)
+    update_repo_name(@repo)
 
     create_labels
 
-    if @project
-      flash[:success] = "Repository successfully added to your project list!"
-      redirect_to new_project_path
+    if @repo
+      flash[:success] = "Repository successfully added!"
+      redirect_to new_repo_path
     else
-      flash[:danger] = "Unable to add repository to your project list!"
-      render 'projects'
+      flash[:danger] = "Unable to add repository!"
+      render 'repos'
     end
   end
 
   def destroy
-    project_name = Project.find_by(name: params[:id])
+    repo_name = Repo.find_by(name: params[:id])
 
-    destroy_existing_project(project_name)
+    destroy_existing_repo(repo_name)
 
-    flash[:success] = "Repository removed from your project list!"
-    redirect_to projects_path
+    flash[:success] = "Repository successfully removed!"
+    redirect_to repos_path
   end
-
 
   private
 
-  def project_params
-    params.require(:project).permit(:id, :name)
+  def repo_params
+    params.require(:repo).permit(:id, :name)
   end
 
   def client
     current_user.github if current_user
   end
 
-  def update_project_name(project)
-    client.repo = project.name
-    current_user.current_project = project.name
+  def update_repo_name(repo)
+    client.repo = repo.name
+    current_user.current_repo = repo.name
     current_user.save
   end
 
-  def set_project_name(project)
-    current_user.current_project = project.name
-    client.repo = project.name
+  def set_repo_name(repo)
+    current_user.current_repo = repo.name
+    client.repo = repo.name
     current_user.save
   end
 
-  def destroy_existing_project(project_name)
-    if project_name
-      project_name.destroy
+  def destroy_existing_repo(repo_name)
+    if repo_name
+      repo_name.destroy
       destroy_labels
     end
   end
@@ -149,4 +150,5 @@ class ProjectsController < ApplicationController
       client.issues.labels.delete client.user, client.repo, '3000'
     end
   end
+
 end

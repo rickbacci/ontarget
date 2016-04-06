@@ -5,12 +5,12 @@ class IssuesController < ApplicationController
   include GithubIssueLabelUpdater
 
   def new
-    @project = Project.find(params[:id])
+    @repo = Repo.find(params[:id])
     @labels ||= client.issues.labels.list
   end
 
   def update_issue_times
-    project = Project.find_by(name: current_user.github.repo)
+    repo = Repo.find_by(name: current_user.github.repo)
 
     issue_number  = params[:issue_number]
     original_time = params[:time]
@@ -20,7 +20,7 @@ class IssuesController < ApplicationController
     client.issues.labels.remove client.user, client.repo, issue_number, label_name: original_time
 
     flash[:success] = "Timer Updated!"
-    redirect_to project_path(project.id)
+    redirect_to repo_path(repo.id)
   end
 
   def self.update_issue_labels
@@ -32,14 +32,14 @@ class IssuesController < ApplicationController
   end
 
   def update_issue_labels
-    project = Project.find_by(name: current_user.github.repo)
+    repo = Repo.find_by(name: current_user.github.repo)
 
     IssuesController.update_issue_labels.call(client: current_user.github,
                                               number: params[:number],
                                               labels: params[:updates][:labels])
 
     flash[:success] = "Labels Updated!"
-    redirect_to project_path(project.id)
+    redirect_to repo_path(repo.id)
   end
 
 
@@ -52,7 +52,7 @@ class IssuesController < ApplicationController
   end
 
   def create
-    @project = Project.find(params[:id])
+    @repo = Repo.find(params[:id])
 
     labels = params.has_key?(:creation) ? params[:creation][:labels] : []
 
@@ -64,7 +64,7 @@ class IssuesController < ApplicationController
                                  labels: labels)
 
     flash[:success] = "Issue Created!"
-    redirect_to project_path(params[:id])
+    redirect_to repo_path(params[:id])
   end
 
 
@@ -77,7 +77,7 @@ class IssuesController < ApplicationController
   end
 
   def update
-    @project = Project.find(params[:project_id])
+    @repo = Repo.find(params[:repo_id])
 
     IssuesController.update.call(client: current_user.github,
                                  number: params[:number],
@@ -86,7 +86,7 @@ class IssuesController < ApplicationController
                                  labels: params[:labels].split)
 
     flash[:success] = "Issue Updated!"
-    redirect_to project_path(params[:project_id])
+    redirect_to repo_path(params[:repo_id])
   end
 
   def self.update_card_status

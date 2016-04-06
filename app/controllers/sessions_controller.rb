@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
     if user
       session[:user_id] = user.id
       flash[:success] = "You have successfully logged in!"
-      redirect_to projects_path
+      redirect_to repos_path
     else
       flash[:danger] = "Unable to authenticate you!"
       root_path
@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    @projects = nil
+    @repos = nil
     session[:user_id] = nil
     flash[:success] = "You have successfully logged out!"
     redirect_to root_path
