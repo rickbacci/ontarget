@@ -10,8 +10,8 @@ feature "User" do
   end
 
 
-  scenario "can remove a project" do
-    VCR.use_cassette("user_remove_project") do
+  scenario "can remove a repo" do
+    VCR.use_cassette("user_remove_repo") do
       create_test_repo('test_repo')
 
       visit root_path
@@ -20,15 +20,15 @@ feature "User" do
       click_on "Add Repository"
       find('.test_repo').click
 
-      click_on "View Projects"
+      click_on "View Repositories"
 
-      expect(page).to have_content('Your Projects')
+      expect(page).to have_content('Your Repositories')
       expect(page).to have_content('test_repo')
 
       find('.delete-test_repo-button').click
 
-      expect(page).to have_content('Your Projects')
-      expect(page).to have_content('Repository removed from your project list!')
+      expect(page).to have_content('Your Repositories')
+      expect(page).to have_content('Repository successfully removed!')
       expect(page).to_not have_content('test_repo')
 
       delete_test_repo('test_repo')

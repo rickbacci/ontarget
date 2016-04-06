@@ -18,7 +18,7 @@ feature "User" do
 
       click_on "Add Repository"
       find('.test_repo').click
-      click_on "View Projects"
+      click_on "View Repositories"
       click_on "test_repo"
 
       click_on "New Issue"
@@ -45,7 +45,7 @@ feature "User" do
 
       click_on "Add Repository"
       find('.test_repo').click
-      click_on "View Projects"
+      click_on "View Repositories"
       click_on "test_repo"
 
       click_on "New Issue"

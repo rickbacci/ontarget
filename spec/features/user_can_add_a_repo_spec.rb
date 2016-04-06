@@ -17,7 +17,7 @@ feature "User" do
       visit root_path
 
       click_on "Login with Github"
-      click_on "View Projects"
+      click_on "View Repositories"
 
       expect(page).to_not have_content('test_repo')
 
@@ -28,9 +28,9 @@ feature "User" do
 
       find('.test_repo').click
 
-      click_on "View Projects"
+      click_on "View Repositories"
 
-      expect(page).to have_content('Your Projects')
+      expect(page).to have_content('Your Repositories')
       expect(page).to have_content('test_repo')
 
       click_on "test_repo"
