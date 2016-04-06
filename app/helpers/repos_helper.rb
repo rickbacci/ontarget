@@ -1,12 +1,12 @@
-module ProjectsHelper
+module ReposHelper
 
-  def milestone_or_project_name(issue)
+  def milestone_or_repo_name(issue)
     return issue.milestone.title if issue.milestone
-    current_user.current_project
+    current_user.current_repo
   end
 
-  def added_to_projects(project_name)
-    current_user.projects.pluck(:name).include?(project_name)
+  def added_to_repos(repo_name)
+    current_user.repos.pluck(:name).include?(repo_name)
   end
 
   def has_label?(labels, name)
@@ -51,5 +51,4 @@ module ProjectsHelper
       "50 Minutes"
     end
   end
-
 end
