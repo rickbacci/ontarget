@@ -11,24 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151001163519) do
+ActiveRecord::Schema.define(version: 20160406143147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "projects", force: :cascade do |t|
+  create_table "repos", force: :cascade do |t|
     t.integer  "user_id"
+    t.string   "owner_login"
+    t.integer  "owner_id"
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "description"
+    t.string   "has_issues",  default: "f"
+    t.string   "boolean",     default: "t"
+    t.string   "active",      default: "t"
+    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                null: false
   end
 
-  add_index "projects", ["user_id"], name: "index_projects_on_user_id", using: :btree
-
-  create_table "projects_users", id: false, force: :cascade do |t|
-    t.integer "user_id",    null: false
-    t.integer "project_id", null: false
-  end
+  add_index "repos", ["user_id"], name: "index_repos_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "nickname"
@@ -37,10 +38,10 @@ ActiveRecord::Schema.define(version: 20151001163519) do
     t.string   "token"
     t.string   "uid"
     t.string   "image_url"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-    t.string   "current_project"
+    t.string   "current_repo"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
-  add_foreign_key "projects", "users"
+  add_foreign_key "repos", "users"
 end
