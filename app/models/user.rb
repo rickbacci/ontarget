@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  has_many :projects
+  has_many :repos
+
 
   def self.find_or_create_from_auth(data)
     user = User.find_or_create_by(provider: data['provider'], uid: data['uid'])
@@ -18,7 +19,7 @@ class User < ActiveRecord::Base
       c.client_secret = ENV['github_secret']
       c.oauth_token   = token
       c.user          = nickname
-      c.repo          = current_project
+      c.repo          = current_repo
     end
   end
 end
