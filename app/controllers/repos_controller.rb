@@ -6,17 +6,13 @@ class ReposController < ApplicationController
   end
 
   def show
-
     @repo = Repo.find(params[:id])
 
-    set_repo_name(@repo)
+    set_client_repo_name(@repo)
 
-    @issues ||= client.issues.list user: client.user, repo: client.repo
-    # @repo = client.repos.get user: client.user, name: client.repo
+    @issues = client.issues.list user: client.user, repo: client.repo
+
     @labels ||= client.issues.labels.list
-    @repos = client.repos.list(user: client.user, auto_pagination: true).map { |repo| repo if repo.has_issues? }
-  end
-
   end
 
   def create
@@ -54,13 +50,10 @@ class ReposController < ApplicationController
     current_user.github if current_user
   end
 
-  def update_repo_name(repo)
+  def set_client_repo_name(repo)
     client.repo = repo.name
-    current_user.current_repo = repo.name
-    current_user.save
   end
 
-  def set_repo_name(repo)
     current_user.current_repo = repo.name
     client.repo = repo.name
     current_user.save
