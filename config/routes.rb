@@ -6,8 +6,8 @@ Rails.application.routes.draw do
   get '/logout',                  to: 'sessions#destroy'
   get '/auth/failure',            to: 'home#show'
 
-  resources :repos, only: [:index, :show, :new, :create, :destroy]
-  resources :issues,   only: [:index, :create]
+  resources :repos,  only: [:index, :show, :create, :destroy]
+  resources :issues, only: [:index, :create]
 
   get '/repos/:id/issues/new',      to: 'issues#new',    as: :new_repo_issue
 
