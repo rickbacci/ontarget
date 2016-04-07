@@ -15,8 +15,6 @@
         - if current_user
           %li
             = link_to 'View Repositories', repos_path
-          %li
-            = link_to 'Add Repository', new_repo_path
         - if current_user && @repo
           %li
             = link_to 'New Issue', new_repo_issue_path(@repo.id)

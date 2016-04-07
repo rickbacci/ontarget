@@ -4,12 +4,19 @@
       Your Repositories
     %ul.list-unstyled.pagination.repo_list
       - @repos.each do |repo|
+        - next if repo.nil?
         %li
           .panel.panel-body.added-repo.slategrey
             .row
-              .col-md-10
-                = link_to repo.name, repo_path(repo), class: 'btn btn-default btn-large repo-name-button'
-              .col-md-2
-                .pull-right
-                  = link_to '-', repo_path(repo.name), method: :delete, class: "btn btn-default btn-small delete-#{repo.name}-button"
-
+              - if current_user.repos.find_by(name: repo)
+                .col-md-10
+                  = link_to repo, repo_path(get_repo_id(repo)), class: 'btn btn-default btn-large repo-name-button active add-repo-button'
+                .col-md-2
+                  .pull-right
+                    = link_to '-', repo_path(get_repo_id(repo)), method: 'delete', class: "#{repo} btn btn-default btn-large active"
+              - else
+                .col-md-10.text-center
+                  = link_to repo, {controller: "repos", action: "create", name: repo }, method: 'post', class: "#{repo} btn btn-default btn-small add-repo-button"
+                .col-md-2
+                  .pull-right
+                    = link_to '+', {controller: "repos", action: "create", name: repo }, method: 'post', class: "#{repo} btn btn-default btn-small"

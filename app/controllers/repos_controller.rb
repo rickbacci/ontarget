@@ -17,8 +17,6 @@ class ReposController < ApplicationController
     @repos = client.repos.list(user: client.user, auto_pagination: true).map { |repo| repo if repo.has_issues? }
   end
 
-  def new
-    @repos = client.repos.list(user: client.user, auto_pagination: true).map { |repo| repo if repo.has_issues? }
   end
 
   def create
