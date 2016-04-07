@@ -10,7 +10,7 @@ class IssuesController < ApplicationController
   end
 
   def update_issue_times
-    repo = Repo.find_by(name: current_user.github.repo)
+    repo = Repo.find_by(name: current_user.current_repo)
 
     issue_number  = params[:issue_number]
     original_time = params[:time]
@@ -20,7 +20,7 @@ class IssuesController < ApplicationController
     client.issues.labels.remove client.user, client.repo, issue_number, label_name: original_time
 
     flash[:success] = "Timer Updated!"
-    redirect_to repo_path(repo.id)
+    redirect_to repo_path(repo)
   end
 
   def self.update_issue_labels

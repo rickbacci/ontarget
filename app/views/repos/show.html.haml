@@ -11,7 +11,7 @@
         - @issues.each do |issue|
           - next if different?(issue, status)
           %li{ class: "draggable panel panel-default card-panel cards",
-               data: { owner:  @repo.user.nickname.downcase,
+               data: { owner:  current_user.nickname,
                        repo:   @repo.name,
                        number: issue.number,
                        currentcardstatus: status,
@@ -25,11 +25,11 @@
             .panel-body.issue-card-body
               .issue-card-dropdowns
                 = render partial: 'shared/dropdown_label_form',
-                  locals: { repo: @repo, labels: @labels, issue_number: issue.number, issue_labels: issue.labels }
+                  locals: { repo: @repo.name, labels: @labels, issue_number: issue.number, issue_labels: issue.labels }
                 = render partial: 'shared/dropdown_timer_form',
                   locals: { issue_number: issue.number, issue_labels: issue.labels, time: get_time(issue.labels) }
               .well
-                = render partial: 'shared/issue_form', locals: { repo: @repo, issue: issue }
+                = render partial: 'shared/issue_form', locals: { repo: @repo.name, issue: issue }
               .clearfix
                 = render partial: 'shared/issue_labels', locals: { issue_labels: issue.labels }
 
