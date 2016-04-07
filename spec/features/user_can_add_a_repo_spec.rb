@@ -9,7 +9,6 @@ feature "User" do
     create_client
   end
 
-
   scenario "can add a repository" do
     VCR.use_cassette("user_add_repo") do
       create_test_repo('test_repo')
@@ -17,23 +16,16 @@ feature "User" do
       visit root_path
 
       click_on "Login with Github"
-      click_on "View Projects"
-
-      expect(page).to_not have_content('test_repo')
-
-      click_on "Add Repository"
 
       expect(page).to have_content('Your Repositories')
+      expect(page).to_not have_css('.test_repo-added')
       expect(page).to have_content('test_repo')
 
-      find('.test_repo').click
+      find('.test_repo.add-repo-button').click()
 
-      click_on "View Projects"
+      expect(page).to have_content('Repository successfully added!')
 
-      expect(page).to have_content('Your Projects')
-      expect(page).to have_content('test_repo')
-
-      click_on "test_repo"
+      click_on 'test_repo'
 
       expect(page).to have_content('Backlog')
       expect(page).to have_content('Ready')

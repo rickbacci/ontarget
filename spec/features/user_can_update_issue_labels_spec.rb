@@ -16,9 +16,7 @@ feature "User" do
       visit root_path
       click_on "Login with Github"
 
-      click_on "Add Repository"
-      find('.test_repo').click
-      click_on "View Projects"
+      find('.test_repo.add-repo-button').click()
       click_on "test_repo"
 
       expect(page).to have_content('Backlog')
@@ -41,7 +39,9 @@ feature "User" do
 
       click_on "Update Issue"
 
+      expect(page).to have_content('Issue Updated!')
       expect(page).to have_content('updated test issue')
+      expect(page).to have_content('As a test user updated')
 
       delete_test_repo('test_repo')
     end

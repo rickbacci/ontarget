@@ -7,6 +7,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :token
       t.string :uid
       t.string :image_url
+      t.string :current_repo
 
       t.timestamps null: false
     end

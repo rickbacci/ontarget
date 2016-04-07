@@ -1,0 +1,22 @@
+.row
+  .col-md-6.col-md-offset-3
+    %h3.text-center.white
+      Your Repositories
+    %ul.list-unstyled.pagination.repo_list
+      - @repos.each do |repo|
+        - next if repo.nil?
+        %li
+          .panel.panel-body.added-repo.slategrey
+            .row
+              - if current_user.repos.find_by(name: repo)
+                .col-md-10
+                  = link_to repo, repo_path(get_repo_id(repo)), class: "#{repo}-added btn btn-default btn-large repo-name-button active add-repo-button"
+                .col-md-2
+                  .pull-right
+                    = link_to '-', repo_path(get_repo_id(repo)), method: 'delete', class: "#{repo}-added #{repo}-delete-btn btn btn-default btn-large active"
+              - else
+                .col-md-10.text-center
+                  = link_to repo, {controller: "repos", action: "create", name: repo }, method: 'post', class: "#{repo} btn btn-default btn-small add-repo-button"
+                .col-md-2
+                  .pull-right
+                    = link_to '+', {controller: "repos", action: "create", name: repo }, method: 'post', class: "#{repo} btn btn-default btn-small"

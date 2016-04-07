@@ -2,7 +2,7 @@
   = text_area_tag :title, issue.title, { rows: 1, class: "form-control noscrollbars ctrl-enter", :onkeyup => "autoGrow(this);"}
   = text_area_tag :body, issue.body, { rows: 5, class: "form-control noscrollbars ctrl-enter", :onkeyup => "autoGrow(this);"}
   = hidden_field_tag :labels, issue.labels.map { |label| label.name}
-  = hidden_field_tag :project_id, @project.id
+  = hidden_field_tag :repo_id, @repo.id
   %br
   %label.pull-right{ :for => issue.number }
     %button.btn.btn-default.btn-xs.update-issue-btn{:type => "submit"} Update Issue

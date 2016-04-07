@@ -16,9 +16,7 @@ feature "User" do
       visit root_path
       click_on "Login with Github"
 
-      click_on "Add Repository"
-      find('.test_repo').click
-      click_on "View Projects"
+      find('.test_repo.add-repo-button').click()
       click_on "test_repo"
 
       click_on "New Issue"
@@ -43,9 +41,7 @@ feature "User" do
       visit root_path
       click_on "Login with Github"
 
-      click_on "Add Repository"
-      find('.test_repo').click
-      click_on "View Projects"
+      find('.test_repo.add-repo-button').click()
       click_on "test_repo"
 
       click_on "New Issue"
