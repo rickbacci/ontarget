@@ -1,5 +1,9 @@
 module ReposHelper
 
+  def get_repo_id(repo)
+    current_user.repos.find_by(name: repo)
+  end
+
   def milestone_or_repo_name(issue)
     return issue.milestone.title if issue.milestone
     current_user.current_repo
