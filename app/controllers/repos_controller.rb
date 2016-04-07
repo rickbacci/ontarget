@@ -16,17 +16,18 @@ class ReposController < ApplicationController
   end
 
   def create
-    @repo = current_user.repos.create(name: params[:name])
+    repo = current_user.repos.create(name: params[:name])
 
-    update_repo_name(@repo)
-
-    create_labels
-
-    if @repo
+    if repo
+      set_client_repo_name(repo)
+      set_current_project(repo)
+      create_labels
       flash[:success] = "Repository successfully added!"
-      redirect_to new_repo_path
+
+      redirect_to repos_path
     else
       flash[:danger] = "Unable to add repository!"
+
       render 'repos'
     end
   end
@@ -54,8 +55,8 @@ class ReposController < ApplicationController
     client.repo = repo.name
   end
 
+  def set_current_project(repo)
     current_user.current_repo = repo.name
-    client.repo = repo.name
     current_user.save
   end
 
