@@ -73,23 +73,33 @@ class ReposController < ApplicationController
     end
   end
 
+
+  def statuses
+    {
+      'Backlog'     => '1FFFFF',
+      'Ready'       => 'F3FFFF',
+      'In-progress' => 'FF5FFF',
+      'Completed'   => 'FF7FFF'
+    }
+  end
+
+  def times
+    %w{ 5 300 600 1500 3000 }
+  end
+
   def create_labels
     labels = client.issues.labels.list.map { |label| label.name }
 
-    unless labels.include?('Backlog')
-      client.issues.labels.create name: 'Backlog', color: '1FFFFF'
+    statuses.each do |status, color|
+      unless labels.include?(status)
+        client.issues.labels.create name: status, color: color
+      end
     end
 
-    unless labels.include?('Ready')
-      client.issues.labels.create name: 'Ready', color: 'F3FFFF'
-    end
-
-    unless labels.include?('In-progress')
-      client.issues.labels.create name: 'In-progress', color: 'FF5FFF'
-    end
-
-    unless labels.include?('Completed')
-      client.issues.labels.create name: 'Completed', color: 'FFF7FF'
+    times.each do |time|
+      unless labels.include?(time)
+        client.issues.labels.create name: time, color: '000000'
+      end
     end
 
     repo_issues = client.issues.list user: client.user, repo: client.repo, state: 'open'
@@ -106,7 +116,6 @@ class ReposController < ApplicationController
         end
       end
     end
-
   end
 
   def destroy_labels
