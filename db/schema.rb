@@ -19,14 +19,9 @@ ActiveRecord::Schema.define(version: 20160406143147) do
   create_table "repos", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "owner_login"
-    t.integer  "owner_id"
     t.string   "name"
-    t.string   "description"
-    t.string   "has_issues",  default: "f"
-    t.string   "boolean",     default: "t"
-    t.string   "active",      default: "t"
-    t.datetime "updated_at",                null: false
-    t.datetime "created_at",                null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   add_index "repos", ["user_id"], name: "index_repos_on_user_id", using: :btree
