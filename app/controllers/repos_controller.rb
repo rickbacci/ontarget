@@ -33,11 +33,18 @@ class ReposController < ApplicationController
   end
 
   def destroy
-    repo_name = Repo.find_by(name: params[:id])
+    repo = Repo.find(params[:id])
 
-    destroy_existing_repo(repo_name)
+    if repo.destroy
+      unset_client_repo_name
+      unset_current_project
+      destroy_labels
 
-    flash[:success] = "Repository successfully removed!"
+      flash[:success] = "Repository successfully removed!"
+    else
+      flash[:danger] = "Repository was not removed!"
+    end
+
     redirect_to repos_path
   end
 
@@ -60,13 +67,13 @@ class ReposController < ApplicationController
     current_user.save
   end
 
-  def destroy_existing_repo(repo_name)
-    if repo_name
-      repo_name.destroy
-      destroy_labels
-    end
+  def unset_client_repo_name
+    client.repo = ''
   end
 
+  def unset_current_project
+    current_user.current_repo = ''
+  end
 
   def statuses
     {
