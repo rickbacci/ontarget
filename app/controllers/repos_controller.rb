@@ -2,7 +2,7 @@ class ReposController < ApplicationController
   before_action :authorize!, only: [:show, :create, :destroy]
 
   def index
-    @repos = current_user.repos
+    @repos = client.repos.list(user: client.user, auto_pagination: true).map { |repo| repo.name if repo.has_issues? }
   end
 
   def show
