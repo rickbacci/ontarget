@@ -17,19 +17,14 @@ feature "User" do
       visit root_path
       click_on "Login with Github"
 
-      click_on "Add Repository"
-      find('.test_repo').click
+      find('.test_repo.add-repo-button').click()
 
-      click_on "View Repositories"
+      expect(page).to have_content('Repository successfully added!')
 
-      expect(page).to have_content('Your Repositories')
-      expect(page).to have_content('test_repo')
+      find('.test_repo-delete-btn').click
 
-      find('.delete-test_repo-button').click
-
-      expect(page).to have_content('Your Repositories')
       expect(page).to have_content('Repository successfully removed!')
-      expect(page).to_not have_content('test_repo')
+      expect(page).to_not have_css('.test_repo-added')
 
       delete_test_repo('test_repo')
     end

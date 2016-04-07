@@ -36,9 +36,9 @@ class ReposController < ApplicationController
     repo = Repo.find(params[:id])
 
     if repo.destroy
+      destroy_labels
       unset_client_repo_name
       unset_current_project
-      destroy_labels
 
       flash[:success] = "Repository successfully removed!"
     else
@@ -123,13 +123,13 @@ class ReposController < ApplicationController
     labels = client.issues.labels.list.map { |label| label.name }
 
     statuses.each do |status|
-      unless labels.include?(status)
+      unless !labels.include?(status)
         client.issues.labels.delete client.user, client.repo, status
       end
     end
 
     times.each do |time|
-      unless labels.include?(time)
+      unless !labels.include?(time)
         client.issues.labels.delete client.user, client.repo, time
       end
     end
