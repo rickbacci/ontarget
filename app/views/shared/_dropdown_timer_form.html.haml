@@ -10,5 +10,5 @@
   .dropdown-menu.issue-timer-dropdown-menu{"aria-labelledby" => "dropdown-#{issue_number}" }
     = form_tag update_issue_times_path(issue_number, time), class: "well form" ,method: :post do
       .timer-box-dropdown
-        = render partial: 'shared/timer_radio_buttons', locals: { timer_values: timer_values }
+        = render partial: 'shared/timer_radio_buttons', locals: { time: time }
       %button.btn.pull-right.btn-default.btn-xs.update-timer-btn{:type => "submit"} Update Time
