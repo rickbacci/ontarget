@@ -23,6 +23,7 @@ gem 'github_api'
 gem 'sidekiq'
 gem 'bourbon'
 gem 'skylight', '~> 0.10.3'
+gem 'newrelic_rpm'
 
 
 group :development, :test do
