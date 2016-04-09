@@ -12,7 +12,10 @@
             %br
             .row
               .col-md-3.new_issue_timer_radio_buttons
-                = render partial: 'shared/timer_radio_buttons', locals: { timer_values: timer_values }
+                - timer_values.each do |k, v|
+                  .radio
+                    = radio_button_tag("timer_time", k, set_default_time(k), id: k)
+                    = v
               .col-md-9
                 - @labels.each do |label|
                   - next if label_data?(label.name)
