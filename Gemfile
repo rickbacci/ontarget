@@ -24,6 +24,7 @@ gem 'sidekiq'
 gem 'bourbon'
 gem 'skylight', '~> 0.10.3'
 gem 'newrelic_rpm'
+gem 'delayed_job_active_record'
 
 
 group :development, :test do
