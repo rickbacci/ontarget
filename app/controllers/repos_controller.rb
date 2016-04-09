@@ -91,13 +91,13 @@ class ReposController < ApplicationController
   def create_labels
     labels = client.issues.labels.list.map { |label| label.name }
 
-    statuses.each do |status, color|
+    statuses.delay.each do |status, color|
       unless labels.include?(status)
         client.issues.labels.create name: status, color: color
       end
     end
 
-    times.each do |time|
+    times.delay.each do |time|
       unless labels.include?(time)
         client.issues.labels.create name: time, color: '000000'
       end
@@ -122,13 +122,13 @@ class ReposController < ApplicationController
   def destroy_labels
     labels = client.issues.labels.list.map { |label| label.name }
 
-    statuses.each do |status|
+    statuses.delay.each do |status|
       unless !labels.include?(status)
         client.issues.labels.delete client.user, client.repo, status
       end
     end
 
-    times.each do |time|
+    times.delay.each do |time|
       unless !labels.include?(time)
         client.issues.labels.delete client.user, client.repo, time
       end
