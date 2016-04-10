@@ -10,10 +10,6 @@ module ReposHelper
     end
   end
 
-  def added_to_repos(repo_name)
-    current_user.repos.pluck(:name).include?(repo_name)
-  end
-
   def has_label?(labels, name)
     labels.any?{ |label| label.name == name}
   end
