@@ -15,7 +15,6 @@ feature "User" do
 
       click_on "Login with Github"
 
-      save_and_open_page
       expect(page).to have_link('Logout')
     end
   end
