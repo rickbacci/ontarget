@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 
   get '/repos/:id/issues/new',      to: 'issues#new',    as: :new_repo_issue
 
-  patch '/update_issues/:number',      to: 'issues#update', as: :update_issues
+  patch '/update_issues/:repo/:number',      to: 'issues#update', as: :update_issues
   post '/update_issue_labels/:repo/:number', to: 'issues#update_issue_labels', as: :update_issue_labels
   post '/update_issue_times/:repo/:issue_number/:time',  to: 'issues#update_issue_times', as: :update_issue_times
 

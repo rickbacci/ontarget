@@ -80,7 +80,8 @@ class IssuesController < ApplicationController
   end
 
   def update
-    @repo = Repo.find(params[:repo_id])
+    repo = Repo.find_by(name: params[:repo])
+    set_client_repo_name(repo)
 
     IssuesController.update.call(client: current_user.github,
                                  number: params[:number],
@@ -89,7 +90,7 @@ class IssuesController < ApplicationController
                                  labels: params[:labels].split)
 
     flash[:success] = "Issue Updated!"
-    redirect_to repo_path(params[:repo_id])
+    redirect_to repo_path(repo)
   end
 
   def self.update_card_status
