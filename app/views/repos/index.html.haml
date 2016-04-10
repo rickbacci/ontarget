@@ -12,7 +12,7 @@
                   = link_to repo.name, repo_path(@repo.id), class: "#{repo.name}-added btn btn-default btn-large repo-name-button active add-repo-button"
                 .col-md-2
                   .pull-right
-                    = link_to '-', repo_path(@repo.id), method: 'delete', class: "#{repo.name}-added #{repo.name}-delete-btn btn btn-default btn-large active"
+                    = link_to '-', repo_path(@repo), method: 'delete', class: "#{repo.name}-added #{repo.name}-delete-btn btn btn-default btn-large active"
               - else
                 .col-md-10.text-center
                   = link_to repo.name, {controller: "repos", action: "create", name: repo.name }, method: 'post', class: "#{repo.name} btn btn-default btn-small add-repo-button"

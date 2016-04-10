@@ -33,6 +33,7 @@ class ReposController < ApplicationController
 
   def destroy
     repo = Repo.find(params[:id])
+    client.repo = repo.name
 
     if repo.destroy
       destroy_labels
