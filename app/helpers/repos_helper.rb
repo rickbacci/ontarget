@@ -1,12 +1,13 @@
 module ReposHelper
 
-  def get_repo_id(repo)
-    current_user.repos.find_by(name: repo)
-  end
+  def current_user_added_repo(name)
+    @repo = current_user.repos.find_by(name: name)
 
-  def milestone_or_repo_name(issue)
-    return issue.milestone.title if issue.milestone
-    current_user.current_repo
+    if @repo
+      return @repo
+    else
+      return false
+    end
   end
 
   def added_to_repos(repo_name)
