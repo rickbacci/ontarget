@@ -24,9 +24,6 @@ feature "User" do
       find('.test_repo.add-repo-button').click()
 
       expect(page).to have_content('Repository successfully added!')
-
-      click_on 'test_repo'
-
       expect(page).to have_content('Backlog')
       expect(page).to have_content('Ready')
       expect(page).to have_content('In-progress')

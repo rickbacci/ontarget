@@ -18,4 +18,4 @@
                   = link_to repo.name, {controller: "repos", action: "create", name: repo.name }, method: 'post', class: "#{repo.name} btn btn-default btn-small add-repo-button"
                 .col-md-2
                   .pull-right
-                    = link_to '+', {controller: "repos", action: "create", name: repo.name }, method: 'post', class: "#{repo.name} btn btn-default btn-small"
+                    = link_to '+', {controller: "repos", action: "create", name: repo.name }, method: 'post', class: "#{repo.name}-add-btn btn btn-default btn-small"

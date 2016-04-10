@@ -17,7 +17,6 @@ feature "User" do
       click_on "Login with Github"
 
       find('.test_repo.add-repo-button').click()
-      click_on "test_repo"
 
       expect(page).to have_content('Backlog')
       expect(page).to have_content('Ready')
