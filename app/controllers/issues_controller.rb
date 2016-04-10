@@ -10,7 +10,8 @@ class IssuesController < ApplicationController
   end
 
   def update_issue_times
-    repo = Repo.find_by(name: current_user.current_repo)
+    repo = Repo.find_by(name: params[:repo])
+    set_client_repo_name(repo)
 
     issue_number  = params[:issue_number]
     original_time = params[:time]
