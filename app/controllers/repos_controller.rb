@@ -23,7 +23,7 @@ class ReposController < ApplicationController
       create_labels
       flash[:success] = "Repository successfully added!"
 
-      redirect_to repos_path
+      redirect_to repo_path(repo)
     else
       flash[:danger] = "Unable to add repository!"
 
@@ -54,10 +54,6 @@ class ReposController < ApplicationController
 
   def client
     current_user.github if current_user
-  end
-
-  def set_client_repo_name(repo)
-    client.repo = repo.name
   end
 
   def unset_client_repo_name
