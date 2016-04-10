@@ -17,7 +17,7 @@
             = link_to 'View Repositories', repos_path
         - if current_user && @repo
           %li
-            = link_to 'New Issue', new_repo_issue_path(@repo.id)
+            = link_to 'New Issue', new_repo_issue_path(@repo.name)
           %li
           %span.sr-only
             Toggle Navigation

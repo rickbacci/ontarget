@@ -5,7 +5,9 @@ class IssuesController < ApplicationController
   include GithubIssueLabelUpdater
 
   def new
-    @repo = Repo.find(params[:id])
+    @repo = Repo.find_by(name: params[:repo_name])
+    client.repo = @repo.name
+
     @labels ||= client.issues.labels.list
   end
 
@@ -55,7 +57,8 @@ class IssuesController < ApplicationController
   end
 
   def create
-    @repo = Repo.find(params[:id])
+    repo = Repo.find_by(name: params[:repo_name])
+    client.repo = repo.name
 
     labels = params.has_key?(:creation) ? params[:creation][:labels] : []
 
@@ -67,7 +70,7 @@ class IssuesController < ApplicationController
                                  labels: labels)
 
     flash[:success] = "Issue Created!"
-    redirect_to repo_path(params[:id])
+    redirect_to repo_path(repo)
   end
 
 
