@@ -17,8 +17,6 @@ feature "User" do
       click_on "Login with Github"
       find('.test_repo.add-repo-button').click()
 
-      click_on "test_repo"
-
       click_on "New Issue"
 
       fill_in "Title", with: 'New test issue'

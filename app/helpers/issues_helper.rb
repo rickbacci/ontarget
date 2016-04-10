@@ -11,5 +11,10 @@ module IssuesHelper
   def set_original_time(time, original_time)
     time == original_time ? true : false
   end
+
+  def milestone_or_repo_name(issue)
+    return issue.milestone.title if issue.milestone
+    "No Milestone set"
+  end
 end
 

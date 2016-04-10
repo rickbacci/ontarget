@@ -5,12 +5,15 @@ class IssuesController < ApplicationController
   include GithubIssueLabelUpdater
 
   def new
-    @repo = Repo.find(params[:id])
+    @repo = Repo.find_by(name: params[:repo_name])
+    client.repo = @repo.name
+
     @labels ||= client.issues.labels.list
   end
 
   def update_issue_times
-    repo = Repo.find_by(name: current_user.current_repo)
+    repo = Repo.find_by(name: params[:repo])
+    set_client_repo_name(repo)
 
     issue_number  = params[:issue_number]
     original_time = params[:time]
@@ -20,6 +23,7 @@ class IssuesController < ApplicationController
     client.issues.labels.remove client.user, client.repo, issue_number, label_name: original_time
 
     flash[:success] = "Timer Updated!"
+
     redirect_to repo_path(repo)
   end
 
@@ -32,7 +36,8 @@ class IssuesController < ApplicationController
   end
 
   def update_issue_labels
-    repo = Repo.find_by(name: current_user.github.repo)
+    repo = Repo.find_by(name: params[:repo])
+    set_client_repo_name(repo)
 
     IssuesController.update_issue_labels.call(client: current_user.github,
                                               number: params[:number],
@@ -52,7 +57,8 @@ class IssuesController < ApplicationController
   end
 
   def create
-    @repo = Repo.find(params[:id])
+    repo = Repo.find_by(name: params[:repo_name])
+    client.repo = repo.name
 
     labels = params.has_key?(:creation) ? params[:creation][:labels] : []
 
@@ -64,7 +70,7 @@ class IssuesController < ApplicationController
                                  labels: labels)
 
     flash[:success] = "Issue Created!"
-    redirect_to repo_path(params[:id])
+    redirect_to repo_path(repo)
   end
 
 
@@ -77,7 +83,8 @@ class IssuesController < ApplicationController
   end
 
   def update
-    @repo = Repo.find(params[:repo_id])
+    repo = Repo.find_by(name: params[:repo])
+    set_client_repo_name(repo)
 
     IssuesController.update.call(client: current_user.github,
                                  number: params[:number],
@@ -86,7 +93,7 @@ class IssuesController < ApplicationController
                                  labels: params[:labels].split)
 
     flash[:success] = "Issue Updated!"
-    redirect_to repo_path(params[:repo_id])
+    redirect_to repo_path(repo)
   end
 
   def self.update_card_status

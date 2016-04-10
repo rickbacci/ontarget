@@ -2,7 +2,7 @@ class ReposController < ApplicationController
   before_action :authorize!, only: [:show, :create, :destroy]
 
   def index
-    @repos = client.repos.list(user: client.user, auto_pagination: true).map { |repo| repo.name if repo.has_issues? }
+    @repos = client.repos.list(user: client.user, auto_pagination: true, has_issues: true)#.map { |repo| repo.name if repo.has_issues? }
   end
 
   def show
@@ -20,11 +20,10 @@ class ReposController < ApplicationController
 
     if repo
       set_client_repo_name(repo)
-      set_current_project(repo)
       create_labels
       flash[:success] = "Repository successfully added!"
 
-      redirect_to repos_path
+      redirect_to repo_path(repo)
     else
       flash[:danger] = "Unable to add repository!"
 
@@ -34,11 +33,11 @@ class ReposController < ApplicationController
 
   def destroy
     repo = Repo.find(params[:id])
+    client.repo = repo.name
 
     if repo.destroy
       destroy_labels
       unset_client_repo_name
-      unset_current_project
 
       flash[:success] = "Repository successfully removed!"
     else
@@ -58,21 +57,8 @@ class ReposController < ApplicationController
     current_user.github if current_user
   end
 
-  def set_client_repo_name(repo)
-    client.repo = repo.name
-  end
-
-  def set_current_project(repo)
-    current_user.current_repo = repo.name
-    current_user.save
-  end
-
   def unset_client_repo_name
     client.repo = ''
-  end
-
-  def unset_current_project
-    current_user.current_repo = ''
   end
 
   def statuses

@@ -8,7 +8,7 @@
           = form_tag issues_path, class: "form", id: 'issue-form', method: :post do
             = text_field_tag :title, nil, placeholder: "Title", class: "issue-text-field form-control"
             = text_area_tag :body, nil, rows: 5, placeholder: "User story...", class: "issue-text-area form-control"
-            = hidden_field_tag :id, @repo.id, class: "form-control"
+            = hidden_field_tag :repo_name, @repo.name
             %br
             .row
               .col-md-3.new_issue_timer_radio_buttons
