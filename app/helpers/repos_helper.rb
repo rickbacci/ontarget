@@ -33,11 +33,6 @@ module ReposHelper
     '5'
   end
 
-  def set_time(time, value)
-    return true if time == value
-    false
-  end
-
   def convert_time(seconds)
     case seconds
     when '5'

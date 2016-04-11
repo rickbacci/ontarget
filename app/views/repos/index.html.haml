@@ -4,6 +4,8 @@
       Your Repositories
     %ul.list-unstyled.pagination.repo_list
       - @repos.each do |repo|
+        -# TODO: show or hide repos without issues? Turn on? Prompt?
+        - next unless repo.has_issues
         %li
           .panel.panel-body.added-repo.slategrey
             .row
