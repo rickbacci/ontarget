@@ -9,15 +9,13 @@
         %li
           .panel.panel-body.added-repo.slategrey
             .row
+              .col-md-10
+                = link_to repo.name, repo_path(repo.name), class: "#{repo.name}-added btn btn-default btn-large repo-name-button active add-repo-button"
               - if current_user_added_repo(repo.name)
-                .col-md-10
-                  = link_to repo.name, repo_path(@repo.id), class: "#{repo.name}-added btn btn-default btn-large repo-name-button active add-repo-button"
                 .col-md-2
                   .pull-right
-                    = link_to '-', repo_path(@repo), method: 'delete', class: "#{repo.name}-added #{repo.name}-delete-btn btn btn-default btn-large active"
+                    = link_to '-', repo_path(repo.name), method: 'delete', class: "#{repo.name}-added #{repo.name}-delete-btn btn btn-default btn-large active"
               - else
-                .col-md-10.text-center
-                  = link_to repo.name, {controller: "repos", action: "create", name: repo.name }, method: 'post', class: "#{repo.name} btn btn-default btn-small add-repo-button"
                 .col-md-2
                   .pull-right
-                    = link_to '+', {controller: "repos", action: "create", name: repo.name }, method: 'post', class: "#{repo.name}-add-btn btn btn-default btn-small"
+                    = link_to '+', repo_path(repo.name), method: 'create', class: "#{repo.name} btn btn-default btn-large repo-name-button add-repo-button"
