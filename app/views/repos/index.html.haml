@@ -1,8 +1,10 @@
 .row
   .col-md-6.col-md-offset-3
     .list-group
-      %h3.text-center.list-group-item.color-blue
+      %h3.list-group-item.color-blue
         Your Repositories
+        .pull-right
+          %input#search_repos.text-input{:type => "text", placeholder: 'Search'}
       - @repos.each do |repo|
         - if current_user_added_repo(repo.name) && repo.has_issues
           .list-group-item
