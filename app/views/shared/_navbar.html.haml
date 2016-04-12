@@ -15,9 +15,9 @@
         - if current_user
           %li
             = link_to 'View Repositories', repos_path
-        - if current_user && @repo
+        - if current_user && current_repo
           %li
-            = link_to 'New Issue', new_repo_issue_path(@repo.name)
+            = link_to 'New Issue', new_repo_issue_path(current_repo)
           %li
           %span.sr-only
             Toggle Navigation
