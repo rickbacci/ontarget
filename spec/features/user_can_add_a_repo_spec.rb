@@ -21,7 +21,7 @@ feature "User" do
       expect(page).to_not have_css('.test_repo-added')
       expect(page).to have_content('test_repo')
 
-      find('.test_repo.add-repo-button').click()
+      find('.test_repo-add-btn').click()
 
       expect(page).to have_content('Repository successfully added!')
       expect(page).to have_content('Backlog')

@@ -25,5 +25,4 @@ module ApplicationHelper
       'Completed'   => 'FFF7FF'
     }
   end
-
 end

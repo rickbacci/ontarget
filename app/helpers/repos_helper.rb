@@ -24,4 +24,5 @@ module ReposHelper
   def convert_time(seconds)
     timer_values.each { |time, desc| return desc if time == seconds }
   end
+
 end

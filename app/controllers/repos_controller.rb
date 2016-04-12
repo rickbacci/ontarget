@@ -36,7 +36,6 @@ class ReposController < ApplicationController
   def destroy
     repo_name = params[:repo_name]
     repo      = Repo.find_by(name: repo_name)
-
     if repo.destroy
       destroy_labels
       unset_client_and_current_repo_names
@@ -77,23 +76,39 @@ class ReposController < ApplicationController
     client.repo = nil
   end
 
+
   def statuses
-    {
-      'Backlog'     => '1FFFFF',
-      'Ready'       => 'F3FFFF',
-      'In-progress' => 'FF5FFF',
-      'Completed'   => 'FF7FFF'
-    }
+    ['Backlog', 'Ready', 'In-progress', 'Completed']
   end
 
   def times
     %w{ 5 300 600 1500 3000 }
   end
 
+  def timer_values
+    {
+      '5'    => '5 seconds',
+      '300'  => '5 minutes',
+      '600'  => '10 minutes',
+      '1500' => '25 minutes',
+      '3000' => '50 minutes'
+    }
+  end
+
+  def status_values
+    {
+      'Backlog'     => '1FFFFF',
+      'Ready'       => 'F3FFFF',
+      'In-progress' => 'FF5FFF',
+      'Completed'   => 'FFF7FF'
+    }
+  end
+
+
   def create_labels
     labels = client.issues.labels.list.map { |label| label.name }
 
-    statuses.delay.each do |status, color|
+    status_values.delay.each do |status, color|
       unless labels.include?(status)
         client.issues.labels.create name: status, color: color
       end
