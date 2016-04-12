@@ -1,17 +1,17 @@
 .dropdown.pull-left.issue_label_checkboxes
   %button{ class: "dropdown-btn btn btn-xs btn-default dropdown-toggle",
-           id:    "dropdown-#{issue_number}",
+           id:    "dropdown-#{issue.number}",
            'aria-expanded': "true",
            'aria-haspopup': "true",
            'data-toggle': "dropdown", type: "button" }
     %span
     Labels
     %span.caret
-  .dropdown-menu.issue-labels-dropdown-menu{"aria-labelledby" => "dropdown-#{issue_number}" }
-    = form_tag update_issue_labels_path(repo, issue_number),
+  .dropdown-menu.issue-labels-dropdown-menu{"aria-labelledby" => "dropdown-#{issue.number}" }
+    = form_tag update_issue_labels_path(issue.number),
       class: "label-check-boxes well form" ,method: :post do
       - @labels.each do |label|
         .label-box-dropdown{ class: "checkbox btn btn-xs", style: "background-color:\##{label.color}" }
-          = check_box_tag "updates[labels][]", [label.name], has_label?(issue_labels, label.name)
+          = check_box_tag "updates[labels][]", [label.name], has_label?(issue.labels, label.name)
           = label.name
       %button.btn.pull-right.btn-default.btn-xs.update-label-btn{:type => "submit"} Update

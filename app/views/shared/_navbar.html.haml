@@ -17,7 +17,7 @@
             = link_to 'View Repositories', repos_path
         - if current_user && current_repo
           %li
-            = link_to 'New Issue', new_repo_issue_path(current_repo)
+            = link_to 'New Issue', new_repo_issue_path(current_repo) unless current_repo.empty?
           %li
           %span.sr-only
             Toggle Navigation
