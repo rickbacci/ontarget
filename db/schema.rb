@@ -34,10 +34,10 @@ ActiveRecord::Schema.define(version: 20160409044659) do
 
   create_table "repos", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "owner_login"
+    t.string   "has_issues"
     t.string   "name"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_index "repos", ["user_id"], name: "index_repos_on_user_id", using: :btree
