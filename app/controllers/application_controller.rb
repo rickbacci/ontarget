@@ -3,19 +3,21 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
 
   protect_from_forgery with: :exception
-  # protect_from_forgery with: :null_session,
-  #   if: Proc.new { |c| c.request.format == 'application/json' }
-
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
-  helper_method :current_user
 
-  def set_client_repo_name(repo)
-    client.repo = repo.name
+  def current_repo
+    current_user.current_repo
   end
-  helper_method :set_client_repo_name
+
+  # def set_client_repo_name(repo)
+  #   client.repo = repo.name
+  # end
+  # helper_method :set_client_repo_name
+
+  helper_method :current_user, :current_repo
 
   def authorize!
     redirect_to root_path unless current_user

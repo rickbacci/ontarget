@@ -4,20 +4,22 @@
       Your Repositories
     %ul.list-unstyled.pagination.repo_list
       - @repos.each do |repo|
-        -# TODO: show or hide repos without issues? Turn on? Prompt?
-        - next unless repo.has_issues
         %li
           .panel.panel-body.added-repo.slategrey
             .row
-              - if current_user_added_repo(repo.name)
+              - if current_user_added_repo(repo.name) && repo.has_issues
                 .col-md-10
-                  = link_to repo.name, repo_path(@repo.id), class: "#{repo.name}-added btn btn-default btn-large repo-name-button active add-repo-button"
+                  = link_to repo.name, repo_path(repo.name), class: "#{repo.name}-added btn btn-default btn-large repo-btn"
                 .col-md-2
                   .pull-right
-                    = link_to '-', repo_path(@repo), method: 'delete', class: "#{repo.name}-added #{repo.name}-delete-btn btn btn-default btn-large active"
+                    = link_to '-', repo_path(repo.name), method: 'delete', class: "#{repo.name}-added #{repo.name}-delete-btn btn btn-default btn-large"
               - else
-                .col-md-10.text-center
-                  = link_to repo.name, {controller: "repos", action: "create", name: repo.name }, method: 'post', class: "#{repo.name} btn btn-default btn-small add-repo-button"
-                .col-md-2
-                  .pull-right
-                    = link_to '+', {controller: "repos", action: "create", name: repo.name }, method: 'post', class: "#{repo.name}-add-btn btn btn-default btn-small"
+                - if repo.has_issues
+                  .col-md-10
+                    = link_to repo.name, create_repo_path(repo.name, repo.has_issues.to_s), method: :post, class: "#{repo.name} btn btn-default btn-large repo-btn"
+                  .col-md-2
+                    .pull-right
+                      = link_to '+', create_repo_path(repo.name, repo.has_issues.to_s), method: 'post', class: "#{repo.name}-add-btn btn btn-default btn-large"
+                - else
+                  .col-md-12
+                    = link_to "Click here to turn on Issues for #{repo.name}", activate_repo_issues_path(repo.name), method: :post, class: "#{repo.name}add-btn btn btn-default btn-large repo-btn"

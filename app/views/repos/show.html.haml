@@ -12,10 +12,9 @@
           - next if different?(issue, status)
           %li{ class: "draggable panel panel-default card-panel cards",
                data: { owner:  current_user.nickname,
-                       repo:   @repo.name,
+                       repo:   current_repo,
                        number: issue.number,
                        currentcardstatus: status,
-                       timer: convert_time(get_time(issue.labels)),
                        timer_seconds: get_time(issue.labels) } }
             .panel-heading
               %h3.panel-title.pull-right
@@ -25,11 +24,11 @@
             .panel-body.issue-card-body
               .issue-card-dropdowns
                 = render partial: 'shared/dropdown_label_form',
-                  locals: { repo: @repo.name, labels: @labels, issue_number: issue.number, issue_labels: issue.labels }
+                  locals: { labels: @labels, issue: issue }
                 = render partial: 'shared/dropdown_timer_form',
-                  locals: { repo: @repo.name, issue_number: issue.number, issue_labels: issue.labels, time: get_time(issue.labels) }
+                  locals: { issue: issue, time: get_time(issue.labels) }
               .well
-                = render partial: 'shared/issue_form', locals: { repo: @repo.name, issue: issue }
+                = render partial: 'shared/issue_form', locals: { issue: issue }
               .clearfix
                 = render partial: 'shared/issue_labels', locals: { issue_labels: issue.labels }
 

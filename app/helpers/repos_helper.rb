@@ -1,13 +1,7 @@
 module ReposHelper
 
   def current_user_added_repo(name)
-    @repo = current_user.repos.find_by(name: name)
-
-    if @repo
-      return @repo
-    else
-      return false
-    end
+    current_user.repos.find_by(name: name) ? true : false
   end
 
   def has_label?(labels, name)
@@ -15,8 +9,7 @@ module ReposHelper
   end
 
   def set_default(label)
-    return true if label.name == 'Backlog'
-    false
+    label.name == 'Backlog' ? true : false
   end
 
   def different?(issue, status)
@@ -24,27 +17,12 @@ module ReposHelper
   end
 
   def get_time(labels)
-    labels = labels.map { |label| label.name }
-
-    return '3000' if labels.include?('3000')
-    return '1500' if labels.include?('1500')
-    return '600'  if labels.include?('600')
-    return '300'  if labels.include?('300')
+    labels.map { |label| return label.name if times.include?(label.name) }
     '5'
   end
 
   def convert_time(seconds)
-    case seconds
-    when '5'
-      "5 Seconds"
-    when '300'
-      "5 Minutes"
-    when '600'
-      "10 Minutes"
-    when '1500'
-      "25 Minutes"
-    when '3000'
-      "50 Minutes"
-    end
+    timer_values.each { |time, desc| return desc if time == seconds }
   end
+
 end

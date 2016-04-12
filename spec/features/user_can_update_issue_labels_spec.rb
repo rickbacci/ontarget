@@ -16,7 +16,7 @@ feature "User" do
       visit root_path
       click_on "Login with Github"
 
-      find('.test_repo.add-repo-button').click()
+      find('.test_repo-add-btn').click()
 
       expect(page).to have_content('Backlog')
       expect(page).to have_content('Ready')
