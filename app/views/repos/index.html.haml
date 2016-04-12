@@ -1,25 +1,22 @@
 .row
   .col-md-6.col-md-offset-3
-    %h3.text-center.white
-      Your Repositories
-    %ul.list-unstyled.pagination.repo_list
+    .list-group
+      %h3.text-center.list-group-item.color-blue
+        Your Repositories
       - @repos.each do |repo|
-        %li
-          .panel.panel-body.added-repo.slategrey
-            .row
-              - if current_user_added_repo(repo.name) && repo.has_issues
-                .col-md-10
-                  = link_to repo.name, repo_path(repo.name), class: "#{repo.name}-added btn btn-default btn-large repo-btn"
-                .col-md-2
-                  .pull-right
-                    = link_to '-', repo_path(repo.name), method: 'delete', class: "#{repo.name}-added #{repo.name}-delete-btn btn btn-default btn-large"
-              - else
-                - if repo.has_issues
-                  .col-md-10
-                    = link_to repo.name, create_repo_path(repo.name, repo.has_issues.to_s), method: :post, class: "#{repo.name} btn btn-default btn-large repo-btn"
-                  .col-md-2
-                    .pull-right
-                      = link_to '+', create_repo_path(repo.name, repo.has_issues.to_s), method: 'post', class: "#{repo.name}-add-btn btn btn-default btn-large"
-                - else
-                  .col-md-12
-                    = link_to "Click here to turn on Issues for #{repo.name}", activate_repo_issues_path(repo.name), method: :post, class: "#{repo.name}add-btn btn btn-default btn-large repo-btn"
+        - if current_user_added_repo(repo.name) && repo.has_issues
+          .list-group-item
+            = link_to repo.name, repo_path(repo.name), class: "#{repo.name}-added btn btn-default repo-btn focus"
+            .pull-right
+              = link_to '-', repo_path(repo.name), method: 'delete', class: "#{repo.name}-added #{repo.name}-delete-btn btn btn-default focus"
+        - else
+          - if repo.has_issues
+            .list-group-item
+              = link_to repo.name, create_repo_path(repo.name, repo.has_issues.to_s), method: :post, class: "#{repo.name} btn btn-default repo-btn"
+              .pull-right
+                = link_to '+', create_repo_path(repo.name, repo.has_issues.to_s), method: 'post', class: "#{repo.name}-add-btn btn btn-default btn-large"
+          - else
+            .list-group-item
+              = link_to repo.name, activate_repo_issues_path(repo.name), method: :post, class: "#{repo.name}add-btn btn btn-default repo-btn disabled"
+              .pull-right
+                = link_to '+', activate_repo_issues_path(repo.name), method: 'post', class: "#{repo.name}-add-btn btn btn-default btn-large", :rel => "tooltip", :title => "Activate Issues"
