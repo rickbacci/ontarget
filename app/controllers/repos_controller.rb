@@ -36,7 +36,9 @@ class ReposController < ApplicationController
   def destroy
     repo_name = params[:repo_name]
     repo      = Repo.find_by(name: repo_name)
+
     if repo.destroy
+      set_client_and_current_repo_names(repo_name)
       destroy_labels
       unset_client_and_current_repo_names
 
