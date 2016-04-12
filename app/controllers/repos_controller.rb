@@ -2,7 +2,10 @@ class ReposController < ApplicationController
   before_action :authorize!, only: [:show, :create, :destroy]
 
   def index
-    @repos = client.repos.list(user: client.user, auto_pagination: true, sort: :updated)
+    @repos = client.repos.list(user: client.user,
+                               auto_pagination: true,
+                               sort: :updated)
+
   end
 
   def show
