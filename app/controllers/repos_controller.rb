@@ -9,38 +9,37 @@ class ReposController < ApplicationController
   end
 
   def show
-    @repo = Repo.find(params[:id])
-
-    set_client_repo_name(@repo)
+    repo_name = params[:repo_name]
+    set_client_and_current_repo_names(repo_name)
 
     @issues = client.issues.list user: client.user, repo: client.repo
-
-    @labels ||= client.issues.labels.list
+    @labels = client.issues.labels.list
   end
 
   def create
-    repo = current_user.repos.create(name: params[:name])
+    repo_name  = params[:repo_name]
+    has_issues = params[:has_issues]
 
-    if repo
-      set_client_repo_name(repo)
+    if current_user.repos.create(name: repo_name, has_issues: has_issues)
+
+      set_client_and_current_repo_names(repo_name)
       create_labels
-      flash[:success] = "Repository successfully added!"
 
-      redirect_to repo_path(repo)
+      flash[:success] = "Repository successfully added!"
+      redirect_to repo_path(repo_name)
     else
       flash[:danger] = "Unable to add repository!"
-
       render 'repos'
     end
   end
 
   def destroy
-    repo = Repo.find(params[:id])
-    client.repo = repo.name
+    repo_name = params[:repo_name]
+    repo      = Repo.find_by(name: repo_name)
 
     if repo.destroy
       destroy_labels
-      unset_client_repo_name
+      unset_client_and_current_repo_names
 
       flash[:success] = "Repository successfully removed!"
     else
@@ -49,6 +48,14 @@ class ReposController < ApplicationController
 
     redirect_to repos_path
   end
+
+  def activate_repo_issues
+    repo_name = params[:repo_name]
+    client.repos.edit user: client.user, repo: repo_name,
+      name: repo_name, has_issues: true
+    redirect_to repos_path
+  end
+
 
   private
 
@@ -60,8 +67,14 @@ class ReposController < ApplicationController
     current_user.github if current_user
   end
 
-  def unset_client_repo_name
-    client.repo = ''
+  def set_client_and_current_repo_names(repo_name)
+    current_user.update(current_repo: repo_name)
+    client.repo = current_repo
+  end
+
+  def unset_client_and_current_repo_names
+    current_user.update(current_repo: nil)
+    client.repo = nil
   end
 
   def statuses
