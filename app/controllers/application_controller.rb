@@ -12,11 +12,6 @@ class ApplicationController < ActionController::Base
     current_user.current_repo
   end
 
-  # def set_client_repo_name(repo)
-  #   client.repo = repo.name
-  # end
-  # helper_method :set_client_repo_name
-
   helper_method :current_user, :current_repo
 
   def authorize!
