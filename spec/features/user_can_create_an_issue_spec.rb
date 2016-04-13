@@ -16,13 +16,15 @@ feature "User" do
       visit root_path
       click_on "Login with Github"
 
-      save_and_open_page
       expect(page).to_not have_link('New Issue')
+      expect(page).to_not have_content('New Issue')
 
       fill_in 'Search for a Repo', with: 't'
       find('.test_repo-add-btn').click()
 
       expect(page).to have_link('New Issue')
+
+      delete_test_repo('test_repo')
     end
   end
 

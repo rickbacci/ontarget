@@ -3,6 +3,7 @@ class ReposController < ApplicationController
 
   def index
     return if client.nil?
+    current_user.update(current_repo: nil)
     @repos = client.repos.list(user: client.user,
                                auto_pagination: true,
                                sort: :updated) || []
