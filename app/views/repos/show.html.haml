@@ -1,34 +1,39 @@
-.row
-  .col-md-12
-    .timer-box.center-block
-      .timer-graphic
-.row.no-gutters
-  - statuses.each do |status|
-    .col-md-3.status-column.border-gutters.column-border
-      %h2.text-center
-        = status
-      %ul{ class: "status-list sortable list-unstyled", data: { columnstatus: status } }
-        - @issues.each do |issue|
-          - next if different?(issue, status)
-          %li{ class: "draggable panel panel-default card-panel cards",
-               data: { owner:  current_user.nickname,
-                       repo:   current_repo,
-                       number: issue.number,
-                       currentcardstatus: status,
-                       timer_seconds: get_time(issue.labels) } }
-            .panel-heading
-              %h3.panel-title.pull-right
-                \##{issue.number}
-              %h3.panel-title.text-left
-                = milestone_or_repo_name(issue)
-            .panel-body.issue-card-body
-              .issue-card-dropdowns
-                = render partial: 'shared/dropdown_label_form',
-                  locals: { labels: @labels, issue: issue }
-                = render partial: 'shared/dropdown_timer_form',
-                  locals: { issue: issue, time: get_time(issue.labels) }
-              .well
-                = render partial: 'shared/issue_form', locals: { issue: issue }
-              .clearfix
-                = render partial: 'shared/issue_labels', locals: { issue_labels: issue.labels }
+%body
+  = render 'shared/navbar', locals: { repos: @repos }
+  .container-fluid
+    - flash.each do |name, msg|
+      = content_tag :div, msg, class: "text-center alert alert-#{name}", role: "alert"
+  .row
+    .col-md-12
+      .timer-box.center-block
+        .timer-graphic
+  .row.no-gutters
+    - statuses.each do |status|
+      .col-md-3.status-column.border-gutters.column-border
+        %h2.text-center
+          = status
+        %ul{ class: "status-list sortable list-unstyled", data: { columnstatus: status } }
+          - @issues.each do |issue|
+            - next if different?(issue, status)
+            %li{ class: "draggable panel panel-default card-panel cards",
+                 data: { owner:  current_user.nickname,
+                         repo:   current_repo,
+                         number: issue.number,
+                         currentcardstatus: status,
+                         timer_seconds: get_time(issue.labels) } }
+              .panel-heading
+                %h3.panel-title.pull-right
+                  \##{issue.number}
+                %h3.panel-title.text-left
+                  = milestone_or_repo_name(issue)
+              .panel-body.issue-card-body
+                .issue-card-dropdowns
+                  = render partial: 'shared/dropdown_label_form',
+                    locals: { labels: @labels, issue: issue }
+                  = render partial: 'shared/dropdown_timer_form',
+                    locals: { issue: issue, time: get_time(issue.labels) }
+                .well
+                  = render partial: 'shared/issue_form', locals: { issue: issue }
+                .clearfix
+                  = render partial: 'shared/issue_labels', locals: { issue_labels: issue.labels }
 

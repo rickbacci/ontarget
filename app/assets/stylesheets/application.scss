@@ -25,16 +25,11 @@
 $gray1: #A1949A;
 $primary-color: #333;
 
-.active {
-  font-size: large;
-}
-
-.slategray, #new-repos {
-  background-color: $gray1;
-}
-
-.repo-btn {
-  width: 100%;
+.dropdown-menu {
+  left: 9%;
+  min-width: 50%;
+  padding: 0px;
+  margin: 0px;
 }
 
 .text-white {
@@ -134,21 +129,30 @@ div.row.no-gutters {
 
 //////////---------- Repo Index
 
-.repo_list {
-  width: 100%;
+.repo-btn {
+  width: 93%;
 }
 
-.added-repo {
-  background-color: slategrey;
+.repo-choice {
+  width: 6%;
 }
 
-.minus-button {
-  padding: 6px 14px;
-  width: 100%;
+.head {
+  padding-bottom: 17px;
 }
 
-.repo-name-button {
-  width: 100%;
+.focus {
+  outline: none;
+  border-color: #A9A9A9;
+  box-shadow: 0 0 10px #9ecaed;
+}
+.btn:hover {
+  background-color: #9ecaed;
+
+}
+
+.color-blue {
+  background-color: #9ecaed;
 }
 
 //////////---------- Repo Index End
