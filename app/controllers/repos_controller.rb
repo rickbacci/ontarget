@@ -3,6 +3,8 @@ class ReposController < ApplicationController
 
   def index
     return if client.nil?
+    clear_current_repo
+
     @repos = client.repos.list(user: client.user,
                                auto_pagination: true,
                                sort: :updated) || []
@@ -83,6 +85,9 @@ class ReposController < ApplicationController
     client.repo = nil
   end
 
+  def clear_current_repo
+    current_user.update(current_repo: nil) if current_user
+  end
 
   def statuses
     ['Backlog', 'Ready', 'In-progress', 'Completed']
