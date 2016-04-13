@@ -9,6 +9,23 @@ feature "User" do
     create_client
   end
 
+  scenario "cannot create an Issue until they select a repo" do
+    VCR.use_cassette("no_repo_selected") do
+      create_test_repo('test_repo')
+
+      visit root_path
+      click_on "Login with Github"
+
+      save_and_open_page
+      expect(page).to_not have_link('New Issue')
+
+      fill_in 'Search for a Repo', with: 't'
+      find('.test_repo-add-btn').click()
+
+      expect(page).to have_link('New Issue')
+    end
+  end
+
   scenario "can create an issue with a default time" do
     VCR.use_cassette("user_create_issue") do
       create_test_repo('test_repo')
