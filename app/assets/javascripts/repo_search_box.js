@@ -1,19 +1,39 @@
 function repoSearchBox() {
-  $('input#search_repos').on ('keyup', function() {
-    var value = $(this).val().toLowerCase();
 
-    $('.dropdown-menu').toggle()
+  $("input#search_repos").on('keydown', function(event) {
+    if (event.keyCode === 13 || event.keyCode === 32) {
+      event.preventDefault();
+    }
 
-    $('.repo-btn').each(function(){
-      var repo_text = $(this).text().toLowerCase();
-
-      if (repo_text.includes(value)) {
-        $(this).parent().show();
-      } else {
-        $(this).parent().hide();
+    $("input#search_repos").on('keyup', function(event) {
+      if (event.which === 32) {
+        this.value = this.value.replace(/\s/g, '');
+        return false;
       }
+
+      var value = $(this).val().toLowerCase();
+
+      if (value.length === 0 && event.keyCode === 8) {
+        $('.dropdown-menu').hide();
+      }
+
+      if (value.length >= 1 && event.keyCode !== 8) {
+        $('.dropdown-menu').show();
+      }
+
+      $('.repo-btn').each(function(){
+        var repo_text = $(this).text().toLowerCase();
+
+        if (repo_text.includes(value)) {
+          $(this).parent().show();
+        } else {
+          $(this).parent().hide();
+        }
+      });
+
     });
 
   });
 
 }
+
