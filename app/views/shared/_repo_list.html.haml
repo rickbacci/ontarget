@@ -1,5 +1,5 @@
 .list-group.dropdown-menu{"aria-labelledby" => "dLabel"}
-  - @repos.each do |repo|
+  - repos.each do |repo|
     - if current_user_added_repo(repo.name) && repo.has_issues
       .list-group-item
         = link_to repo.name, repo_path(repo.name), class: "#{repo.name}-added btn btn-default repo-btn focus"

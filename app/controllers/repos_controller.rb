@@ -4,7 +4,7 @@ class ReposController < ApplicationController
   def index
     @repos = client.repos.list(user: client.user,
                                auto_pagination: true,
-                               sort: :updated)
+                               sort: :updated) || []
 
   end
 
