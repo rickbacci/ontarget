@@ -15,6 +15,7 @@ feature "User" do
 
       visit root_path
       click_on "Login with Github"
+      fill_in 'Search for a Repo', with: 't'
       find('.test_repo-add-btn').click()
 
       click_on "New Issue"

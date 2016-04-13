@@ -17,8 +17,10 @@ feature "User" do
 
       click_on "Login with Github"
 
-      expect(page).to have_content('Your Repositories')
       expect(page).to_not have_css('.test_repo-added')
+
+      fill_in 'Search for a Repo', with: 't'
+
       expect(page).to have_content('test_repo')
 
       find('.test_repo-add-btn').click()

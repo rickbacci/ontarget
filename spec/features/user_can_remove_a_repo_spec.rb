@@ -17,11 +17,12 @@ feature "User" do
       visit root_path
       click_on "Login with Github"
 
+      fill_in 'Search for a Repo', with: 't'
       find('.test_repo-add-btn').click()
 
       expect(page).to have_content('Repository successfully added!')
 
-      click_on "View Repositories"
+      fill_in 'Search for a Repo', with: 't'
       find('.test_repo-delete-btn').click
 
       expect(page).to have_content('Repository successfully removed!')

@@ -16,7 +16,12 @@ feature "User" do
       visit root_path
       click_on "Login with Github"
 
+      fill_in 'Search for a Repo', with: 't'
+
+      expect(page).to have_content('test_repo')
+
       find('.test_repo-add-btn').click()
+
 
       click_on "New Issue"
 
@@ -40,6 +45,8 @@ feature "User" do
       visit root_path
       click_on "Login with Github"
 
+      fill_in 'Search for a Repo', with: 't'
+      expect(page).to have_content('test_repo')
       find('.test_repo-add-btn').click()
 
       click_on "New Issue"
