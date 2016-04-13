@@ -25,11 +25,15 @@
 $gray1: #A1949A;
 $primary-color: #333;
 
-.dropdown-menu {
+#dropdown-repos-menu {
   left: 9%;
   min-width: 50%;
   padding: 0px;
   margin: 0px;
+}
+
+#dropdown-timer-menu {
+  padding: 10%;
 }
 
 .text-white {
@@ -230,10 +234,6 @@ textarea.noscrollbars {
 
 .update-issue-btn {
   margin-top: -30%;
-}
-
-.issue-timer-dropdown-menu {
-  padding: 13%;
 }
 
 .timer-box-dropdown {
