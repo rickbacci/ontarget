@@ -14,11 +14,11 @@ function repoSearchBox() {
       var value = $(this).val().toLowerCase();
 
       if (value.length === 0 && event.keyCode === 8) {
-        $('.dropdown-menu').hide();
+        $('#dropdown-repos-menu').hide();
       }
 
       if (value.length >= 1 && event.keyCode !== 8) {
-        $('.dropdown-menu').show();
+        $('#dropdown-repos-menu').show();
       }
 
       $('.repo-btn').each(function(){
