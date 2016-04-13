@@ -22,5 +22,5 @@ Rails.application.routes.draw do
 
   post  '/update_card_status', to: 'issues#update_card_status'
 
-  root 'dashboard#show'
+  root 'repos#index'
 end

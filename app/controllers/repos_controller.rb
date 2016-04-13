@@ -2,6 +2,7 @@ class ReposController < ApplicationController
   before_action :authorize!, only: [:show, :create, :destroy]
 
   def index
+    return if client.nil?
     @repos = client.repos.list(user: client.user,
                                auto_pagination: true,
                                sort: :updated) || []
