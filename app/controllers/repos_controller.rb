@@ -2,8 +2,9 @@ class ReposController < ApplicationController
   before_action :authorize!, only: [:show, :create, :destroy]
 
   def index
-    return if client.nil?
-    current_user.update(current_repo: nil)
+    check_for_nil_client
+    clear_current_repo
+
     @repos = client.repos.list(user: client.user,
                                auto_pagination: true,
                                sort: :updated) || []
@@ -84,6 +85,13 @@ class ReposController < ApplicationController
     client.repo = nil
   end
 
+  def clear_current_repo
+    current_user.update(current_repo: nil)
+  end
+
+  def check_for_nil_client
+    return if client.nil?
+  end
 
   def statuses
     ['Backlog', 'Ready', 'In-progress', 'Completed']
