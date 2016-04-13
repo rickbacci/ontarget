@@ -7,7 +7,7 @@
     %span
       = convert_time(get_time(issue.labels))
     %span.caret
-  .dropdown-menu.issue-timer-dropdown-menu{"aria-labelledby" => "dropdown-#{issue.number}" }
+  #dropdown-timer-menu.dropdown-menu{"aria-labelledby" => "dropdown-#{issue.number}" }
     = form_tag update_issue_times_path(issue.number, time), class: "well form" ,method: :post do
       .timer-box-dropdown
         - timer_values.each do |k, v|
