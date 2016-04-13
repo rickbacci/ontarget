@@ -10,6 +10,10 @@ class ReposController < ApplicationController
   end
 
   def show
+    @repos = client.repos.list(user: client.user,
+                               auto_pagination: true,
+                               sort: :updated) || []
+
     repo_name = params[:repo_name]
     set_client_and_current_repo_names(repo_name)
 
