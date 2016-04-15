@@ -5,6 +5,7 @@ $(document).ready(function() {
   makeCardsSortable();
   makeCardsDraggable();
   repoSearchBox();
+  hideDataLabels();
 
 });
 
