@@ -90,7 +90,7 @@ class ReposController < ApplicationController
   end
 
   def statuses
-    ['Backlog', 'Ready', 'In-progress', 'Completed']
+    ['Backlog', 'Ready', 'Current', 'Completed']
   end
 
   def times
@@ -111,7 +111,7 @@ class ReposController < ApplicationController
     {
       'Backlog'     => '1FFFFF',
       'Ready'       => 'F3FFFF',
-      'In-progress' => 'FF5FFF',
+      'Current' => 'FF5FFF',
       'Completed'   => 'FFF7FF'
     }
   end

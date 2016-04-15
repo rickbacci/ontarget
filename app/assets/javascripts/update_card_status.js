@@ -23,7 +23,7 @@ function updateCardStatus(card, _this) {
 }
 
 function startTimerIfInProgress(card, _this) {
-  if (card.newcolumn === 'In-progress') {
+  if (card.newcolumn === 'Current') {
     startTimer(_this);
   }
 }
