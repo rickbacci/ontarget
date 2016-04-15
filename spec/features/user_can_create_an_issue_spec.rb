@@ -83,5 +83,30 @@ feature "User" do
       delete_test_repo('test_repo')
     end
   end
+
+  scenario "can create an issue with a milestone" do
+    VCR.use_cassette("select_milestone") do
+      create_test_repo('test_repo')
+      create_milestone('test_repo')
+
+      visit root_path
+      click_on "Login with Github"
+
+      fill_in 'Search for a Repo', with: 't'
+      find('.test_repo-add-btn').click()
+      click_on "New Issue"
+      fill_in "Title", with: 'New test issue'
+      fill_in "User story...", with: "As a test user..."
+      find('#1500').click()
+
+      find('#milestone-1').click()
+
+      click_on "Create Issue"
+
+      expect(page).to have_content('milestone')
+
+      delete_test_repo('test_repo')
+    end
+  end
 end
 
