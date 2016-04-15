@@ -56,10 +56,11 @@ class IssuesController < ApplicationController
 
     labels << params[:timer_time] << 'Backlog'
 
-    IssuesController.create.call(client: client,
-                                 title:  params[:title],
-                                 body:   params[:body],
-                                 labels: labels)
+    IssuesController.create.call(client:    client,
+                                 title:     params[:title],
+                                 body:      params[:body],
+                                 milestone: params[:milestone],
+                                 labels:    labels)
 
     flash[:success] = "Issue Created!"
     redirect_to repo_path(repo_name)
