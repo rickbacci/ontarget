@@ -12,6 +12,12 @@
             %br
             .row
               .col-md-3.new_issue_timer_radio_buttons
+                .form-group
+                  %label{:for => "milestone"}
+                    Select Milestone:
+                    %select#milestone.form-control{ name: 'milestone' }
+                      - @milestones.each do |milestone|
+                        %option{ id: "milestone-#{milestone.number}", value: "#{milestone.number}" }=milestone.title
                 - timer_values.each do |k, v|
                   .radio
                     = radio_button_tag("timer_time", k, set_default_time(k), id: k)
