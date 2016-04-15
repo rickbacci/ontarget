@@ -5,7 +5,8 @@ class IssuesController < ApplicationController
   include GithubIssueLabelUpdater
 
   def new
-    @labels = client.issues.labels.list
+    @labels     = client.issues.labels.list
+    @milestones = client.issues.milestones.list
   end
 
   def update_issue_times
