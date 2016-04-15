@@ -31,6 +31,8 @@ feature "User" do
       expect(page).to have_content('In-progress')
       expect(page).to have_content('Completed')
 
+      expect(page).to have_content('TEST_REPO')
+
       delete_test_repo('test_repo')
     end
   end
