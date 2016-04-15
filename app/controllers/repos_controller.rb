@@ -111,7 +111,7 @@ class ReposController < ApplicationController
     {
       'Backlog'     => '1FFFFF',
       'Ready'       => 'F3FFFF',
-      'Current' => 'FF5FFF',
+      'Current'     => 'FF5FFF',
       'Completed'   => 'FFF7FF'
     }
   end

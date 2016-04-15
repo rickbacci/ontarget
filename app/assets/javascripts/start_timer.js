@@ -5,14 +5,30 @@ function startTimer(_this) {
   var timeInt      = parseInt(timeString);
   var milliSeconds = timeInt * 1000;
 
-  timer            = new FlipClock(
+  $.notifyDefaults({
+    allow_dismiss: false,
+    delay: 0,
+    time: milliSeconds
+  });
+
+
+  $.notify({
+    message: '<div class="timer-graphic"></div>'
+  });
+
+  timer = new FlipClock(
     $('.timer-graphic'), timeInt, {
       clockFace: 'MinuteCounter',
       countdown: true,
+      timer: milliSeconds,
       autostart: true
     });
 
-  window.setTimeout(giveAlert, milliSeconds + 1000);
+    setTimeout(function() {
+      $.notifyClose();
+    }, milliSeconds + 1000);
+
+    window.setTimeout(giveAlert, milliSeconds + 1000);
 
 }
 
