@@ -12,6 +12,7 @@ feature "User" do
   scenario "cannot create an Issue until they select a repo" do
     VCR.use_cassette("no_repo_selected") do
       create_test_repo('test_repo')
+      create_milestone('milestone')
 
       visit root_path
       click_on "Login with Github"
@@ -24,6 +25,7 @@ feature "User" do
 
       expect(page).to have_link('New Issue')
 
+      delete_milestone(1)
       delete_test_repo('test_repo')
     end
   end
@@ -31,6 +33,7 @@ feature "User" do
   scenario "can create an issue with a default time" do
     VCR.use_cassette("user_create_issue") do
       create_test_repo('test_repo')
+      create_milestone('milestone')
 
       visit root_path
       click_on "Login with Github"
@@ -53,6 +56,7 @@ feature "User" do
       expect(page).to have_content('As a test user...')
       expect(page).to have_content('5 seconds')
 
+      delete_milestone(1)
       delete_test_repo('test_repo')
     end
   end
@@ -60,6 +64,7 @@ feature "User" do
   scenario "can create an issue with a 25 minute timer" do
     VCR.use_cassette("user_create_issue_with_25_minute_timer") do
       create_test_repo('test_repo')
+      create_milestone('milestone')
 
       visit root_path
       click_on "Login with Github"
@@ -80,6 +85,7 @@ feature "User" do
       expect(page).to have_content('As a test user...')
       expect(page).to have_content('25 minutes')
 
+      delete_milestone(1)
       delete_test_repo('test_repo')
     end
   end
@@ -87,7 +93,7 @@ feature "User" do
   scenario "can create an issue with a milestone" do
     VCR.use_cassette("select_milestone") do
       create_test_repo('test_repo')
-      create_milestone('test_repo')
+      create_milestone('milestone')
 
       visit root_path
       click_on "Login with Github"
@@ -105,6 +111,7 @@ feature "User" do
 
       expect(page).to have_content('milestone')
 
+      delete_milestone(1)
       delete_test_repo('test_repo')
     end
   end

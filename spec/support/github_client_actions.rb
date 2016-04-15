@@ -13,12 +13,17 @@ module GithubRepo
     @github.repos.create name: name
   end
 
-  def create_milestone(name)
-    @github.repo = name
-    @github.issues.milestones.create title: 'milestone',
+  def create_milestone(title)
+    @github.repo = 'test_repo'
+    @github.issues.milestones.create title: title,
       state: 'open',
       description: 'My new milestone',
       due_on: Time.now
+  end
+
+  def delete_milestone(number)
+    @github.repo = 'test_repo'
+    @github.issues.milestones.delete number: number
   end
 
   def delete_test_repo(name)
