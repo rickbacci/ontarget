@@ -20,6 +20,7 @@
 
 @import 'flipclock';
 @import 'spinner';
+@import 'animate';
 
 
 $gray1: #A1949A;
@@ -108,6 +109,11 @@ div.row.no-gutters {
   width: 15%;
 }
 
+.timer-graphic {
+  zoom: 0.25;
+  -moz-transform: scale(0.25)
+}
+
 //////////---------- Timer End
 
 
@@ -180,22 +186,22 @@ div.row.no-gutters {
   min-height: 24em;
 }
 
- .panel-body {
-   padding: 3%;
- }
+.panel-body {
+  padding: 3%;
+}
 
- .card-panel {
-   background-color: #EEEEEE;
- }
+.card-panel {
+  background-color: #EEEEEE;
+}
 
- .well {
-   padding: 3%;
-   margin-bottom: 0%;
- }
+.well {
+  padding: 3%;
+  margin-bottom: 0%;
+}
 
- #title {
-   margin-bottom: 3%;
- }
+#title {
+  margin-bottom: 3%;
+}
 
 .issue-card-dropdowns {
   padding-bottom: 12%;

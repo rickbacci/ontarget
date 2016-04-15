@@ -28,7 +28,7 @@ feature "User" do
       expect(page).to have_content('Repository successfully added!')
       expect(page).to have_content('Backlog')
       expect(page).to have_content('Ready')
-      expect(page).to have_content('In-progress')
+      expect(page).to have_content('Current')
       expect(page).to have_content('Completed')
 
       expect(page).to have_content('TEST_REPO')

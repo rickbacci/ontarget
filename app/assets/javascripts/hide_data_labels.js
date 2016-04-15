@@ -3,7 +3,7 @@ function hideDataLabels() {
     $('.' + time).hide()
   });
 
-  $.each(['Backlog', 'Ready', 'In-progress', 'Completed'] , function(index, status) {
+  $.each(['Backlog', 'Ready', 'Current', 'Completed'] , function(index, status) {
     $('.' + status).hide()
   });
 

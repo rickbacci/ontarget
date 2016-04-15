@@ -1,6 +1,6 @@
 module ApplicationHelper
   def statuses
-    ['Backlog', 'Ready', 'In-progress', 'Completed']
+    ['Backlog', 'Ready', 'Current', 'Completed']
   end
 
   def times
@@ -21,7 +21,7 @@ module ApplicationHelper
     {
       'Backlog'     => '1FFFFF',
       'Ready'       => 'F3FFFF',
-      'In-progress' => 'FF5FFF',
+      'Current'     => 'FF5FFF',
       'Completed'   => 'FFF7FF'
     }
   end

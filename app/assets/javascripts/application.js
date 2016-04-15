@@ -20,4 +20,5 @@
 
 //= require jquery-ui.min.js
 //= require flipclock.min.js
+//= require bootstrap-notify.min.js
 
