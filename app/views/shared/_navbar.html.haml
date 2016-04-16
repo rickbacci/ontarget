@@ -1,30 +1,29 @@
-%nav.navbar.navbar-default.navbar-inverse
+%nav.navbar.navbar-fixed-top.navbar-inverse
   .container-fluid
     .navbar-header
-      %button.navbar-toggle.collapsed{"aria-expanded" => "false", "data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+      %button.navbar-toggle{"data-toggle" => "collapse", "data-target" => "#ontarget-navbar"}
         %span.sr-only Toggle navigation
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      - if current_user
-        = link_to "OnTarget", repos_path, class: 'navbar-brand'
-      - else
-        = link_to "OnTarget", root_path, class: 'navbar-brand'
-    #bs-example-navbar-collapse-1.collapse.navbar-collapse
+      = link_to "OnTarget", root_path, class: 'navbar-brand'
+    #ontarget-navbar.collapse.navbar-collapse
       - if current_user
         %form.navbar-form.navbar-left{:role => "search"}
           .form-group
             %input#search_repos.form-control{ :placeholder => "Search for a Repo", :type => "text" }
         = render partial: 'shared/dropdown_repo_list', locals: { repos: @repos }
-      %ul.nav.navbar-nav
-        - if current_user && current_repo
+        %ul.nav.navbar-nav
+          - if current_repo
+            %li
+              = link_to 'New Issue', new_repo_issue_path(current_repo) unless current_repo.empty?
+        %span.sr-only
+          Toggle Navigation
+        %ul.nav.navbar-nav.navbar-right
           %li
-            = link_to 'New Issue', new_repo_issue_path(current_repo) unless current_repo.empty?
-          %span.sr-only
-            Toggle Navigation
-      %ul.nav.navbar-nav.navbar-right
-        %li
-          -if current_user
             =link_to "Logout", logout_path, id: 'logout'
-          -else
+      - else
+        %ul.nav.navbar-nav.navbar-right
+          %li
             =link_to 'Login with Github', login_path
+

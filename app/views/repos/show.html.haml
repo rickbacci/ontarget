@@ -1,10 +1,12 @@
 %body
   = render 'shared/navbar', locals: { repos: @repos }
   .container-fluid
-    - flash.each do |name, msg|
-      = content_tag :div, msg, class: "text-center alert alert-#{name}", role: "alert"
-    %h1.text-center.text-white
-      = current_user.current_repo.upcase if current_user.current_repo
+    .row
+      .col-md-12
+        - flash.each do |name, msg|
+          = content_tag :div, msg, class: "text-center alert alert-#{name}", role: "alert"
+        %h1.text-center.text-white
+          = current_user.current_repo.upcase if current_user.current_repo
     .row.no-gutters
       - statuses.each do |status|
         .col-md-3.status-column.border-gutters.column-border
