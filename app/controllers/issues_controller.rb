@@ -83,7 +83,9 @@ class IssuesController < ApplicationController
                                  labels: params[:labels].split)
 
     flash[:success] = "Issue Updated!"
-    redirect_to repo_path(current_repo)
+
+    head :ok
+    # redirect_to repo_path(current_repo)
   end
 
   def self.update_card_status
