@@ -1,17 +1,21 @@
 function updateIssueListener() {
 
-  $('.dropdown-menu input, .dropdown-menu label').click(function(e) {
-    e.stopPropagation();
-  });
+  $('li.card-panel').on('focusout', function() {
 
-  $('.form').on('keydown', function(e) {
-    if(!(e.keyCode == 13 && e.metaKey)) return;
+    var issueNumber   = this.dataset.number;
+    var issueTitle    = $('.title-' + issueNumber).val();
+    var issueBody     = $('.body-' + issueNumber).val();
+    var checkedLabels = $('.labels-' + issueNumber + ' input:checked');
+    var issueLabels   = $.map(checkedLabels, function(label) { return label.value; }).join(' ');
 
-    var target = e.target;
+    var issue         = {
+      number: issueNumber,
+      title:  issueTitle,
+      body:   issueBody,
+      labels: issueLabels
+    };
 
-    if(target.form) {
-      target.form.submit();
-    }
+    updateIssue(issue, this);
 
   });
 
