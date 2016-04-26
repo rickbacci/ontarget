@@ -10,10 +10,7 @@
     Labels
     %span.caret
   .dropdown-menu.issue-labels-dropdown-menu{"aria-labelledby" => "dropdown-#{issue.number}" }
-    = form_tag update_issue_labels_path(issue.number),
-      class: "label-check-boxes well form" ,method: :post do
-      - @labels.each do |label|
-        .label-box-dropdown{ class: "#{label.name} checkbox btn btn-xs", style: "background-color:\##{label.color}" }
-          = check_box_tag "updates[labels][]", [label.name], has_label?(issue.labels, label.name)
-          = label.name
-      %button.btn.pull-right.btn-default.btn-xs.update-label-btn{:type => "submit"} Update
+    - @labels.each do |label|
+      .label-box-dropdown{ class: "#{label.name} labels-#{issue.number} checkbox btn btn-xs", style: "background-color:\##{label.color}" }
+        = check_box_tag "updates[labels][]", [label.name], has_label?(issue.labels, label.name)
+        = label.name

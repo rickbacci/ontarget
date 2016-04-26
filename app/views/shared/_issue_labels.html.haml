@@ -1,4 +1,4 @@
-- issue_labels.each do |label|
+- issue.labels.each do |label|
   - unless statuses.include?(label.name) || times.include?(label.name)
     %div{ class: "btn btn-xs card-labels-#{label.name}", style: "background-color:\##{label.color};margin-top:10px" }
       = label.name

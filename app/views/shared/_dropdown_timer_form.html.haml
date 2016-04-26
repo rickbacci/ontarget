@@ -8,10 +8,8 @@
       = convert_time(get_time(issue.labels))
     %span.caret
   #dropdown-timer-menu.dropdown-menu{"aria-labelledby" => "dropdown-#{issue.number}" }
-    = form_tag update_issue_times_path(issue.number, time), class: "well form" ,method: :post do
-      .timer-box-dropdown
-        - timer_values.each do |k, v|
-          .radio
-            = radio_button_tag("timer_time", k, set_original_time(k, time), id: k)
-            = v
-      %button.btn.pull-right.btn-default.btn-xs.update-timer-btn{:type => "submit"} Update Time
+    .timer-box-dropdown
+      - timer_values.each do |k, v|
+        .radio
+          = radio_button_tag("timer_time", k, set_original_time(k, time), id: k)
+          = v
