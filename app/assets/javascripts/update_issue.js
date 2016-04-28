@@ -1,4 +1,6 @@
 function updateIssue(issue, _this) {
+  var issue = issue;
+
   $.ajax({
     type: 'PATCH',
     url: '/update_issues/' + issue.number,
@@ -9,8 +11,11 @@ function updateIssue(issue, _this) {
       labels: issue.labels
     },
     success: function() {
-      console.log('in success');
-      console.log(_this);
+
+      $.notify({
+        message: 'Issue updated!'
+      });
+
     },
     error: function(xhr) {
       console.log(xhr.responseText);
