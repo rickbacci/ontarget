@@ -6,7 +6,7 @@
     %span
     Labels
     %span.caret
-  .dropdown-menu.issue-labels-dropdown-menu{"aria-labelledby" => "dropdown-#{issue.number}" }
+  .dropdown-menu{"aria-labelledby" => "dropdown-#{issue.number}" }
     - @labels.each do |label|
       .label-box-dropdown{ class: "#{label.name} labels-#{issue.number} checkbox btn btn-xs",
                            style: "background-color:\##{label.color}" }

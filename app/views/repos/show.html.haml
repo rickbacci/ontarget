@@ -24,8 +24,8 @@
                     \##{issue.number}
                   %h3.panel-title.text-left
                     = milestone_or_repo_name(issue)
-                .panel-body.issue-card-body
-                  .well
+                .panel-body
+                  .well.issue-card-body
                     = render partial: 'shared/dropdown_label_form',
                       locals: { labels: @labels, issue: issue }
                     = render partial: 'shared/dropdown_timer_form',

@@ -89,19 +89,6 @@ div.row.no-gutters {
 
 //////////---------- Status Columns End
 
-
-//////////---------- Centering
-
-.center-block {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 300px;
-}
-
-//////////---------- Centering End
-
-
 //////////---------- Timer
 
 .timer {
@@ -117,7 +104,6 @@ div.row.no-gutters {
 
 //////////---------- Timer End
 
-
 //////////---------- New Issue
 
 .new_issue_label_box {
@@ -127,16 +113,11 @@ div.row.no-gutters {
   vertical-align: sub;
 }
 
-.label-check-boxes {
-  padding: 2%;
-}
-
 .new_issue_timer_radio_buttons {
   margin-left: 40px;
 }
 
 //////////---------- New Issue End
-
 
 //////////---------- Repo Index
 
@@ -168,7 +149,6 @@ div.row.no-gutters {
 
 //////////---------- Repo Index End
 
-
 //////////---------- Issue Card
 
 .panel-heading {
@@ -195,7 +175,7 @@ div.row.no-gutters {
   background-color: #EEEEEE;
 }
 
-.well {
+.issue-card-body {
   padding: 3%;
   margin-bottom: 0%;
 }
@@ -204,20 +184,9 @@ div.row.no-gutters {
   margin-bottom: 3%;
 }
 
-.issue-card-form {
-  margin-bottom: 4%;
-}
-
-.issue-labels-dropdown-menu {
-  padding: 15%;
-  min-width: 18em;
-  left: -4%;
-}
-
 .label-box-dropdown {
-  width: 45%;
-  padding-left: 10%;
-  margin-left: 3%;
+  width: 90%;
+  margin-left: 5%;
   text-align: left;
   vertical-align: sub;
 }
