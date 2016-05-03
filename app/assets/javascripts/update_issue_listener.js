@@ -10,21 +10,19 @@ function updateIssueListener() {
     var oldTimerTime  = this.dataset.timerSeconds;
     var newTimerTime  = $('.timer-time-' + issueNumber).val()
 
-    // remove the old timer value label and add the new
 
-     issueLabels =  $.map(issueLabels, function(label){
-        if (label === oldTimerTime) {
-          return newTimerTime;
-        } else {
-          return label;
-        }
+    issueLabels =  $.map(issueLabels, function(label){
+      if (label === oldTimerTime) {
+        return newTimerTime;
+      } else {
+        return label;
+      }
 
-      });
+    });
 
     this.dataset.timerSeconds = newTimerTime;
-    issueLabels = issueLabels.join(' ');
 
-    var issue         = {
+    var issue = {
       number: issueNumber,
       title:  issueTitle,
       body:   issueBody,
@@ -33,10 +31,11 @@ function updateIssueListener() {
 
     var checkedLabels = $('.labels-' + issueNumber + ' input:checked');
     var issueLabels   = $.map(checkedLabels, function(label) { return label.value; });
-    $('.issue-labels-' + issue.number).text(issue.labels)
+    $('.issue-labels-' + issue.number).text(issue.labels.join(' '))
     hideDataLabels();
 
-    updateIssue(issue, this);
+    var _this = this;
+    updateIssue(issue, _this);
 
   });
 
