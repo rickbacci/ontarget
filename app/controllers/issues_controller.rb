@@ -2,7 +2,6 @@ class IssuesController < ApplicationController
   include GithubCardStatusUpdater
   include GithubIssueCreater
   include GithubIssueUpdater
-  include GithubIssueLabelUpdater
 
   def new
     @labels     = client.issues.labels.list
@@ -21,25 +20,6 @@ class IssuesController < ApplicationController
 
     redirect_to repo_path(current_repo)
   end
-
-  # def self.update_issue_labels
-  #   @update_issue_labels || GithubIssueLabelUpdater
-  # end
-  #
-  # def self.update_issue_labels=(update_issue_labels)
-  #   @update_issue_labels = update_issue_labels
-  # end
-  #
-  # def update_issue_labels
-  #   IssuesController.update_issue_labels.call(client: client,
-  #                                             number: params[:number],
-  #                                             labels: params[:updates][:labels])
-  #
-  #   flash[:success] = "Labels Updated!"
-  #   redirect_to repo_path(current_repo)
-  # end
-
-
   def self.create
     @create || GithubIssueCreater
   end

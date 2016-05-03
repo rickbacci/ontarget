@@ -11,7 +11,6 @@ function updateIssue(issue, _this) {
       labels: issue.labels
     },
     success: function() {
-
       $.notify({
         message: 'Issue updated!'
       });
