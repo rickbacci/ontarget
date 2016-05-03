@@ -14,11 +14,11 @@
             - @issues.each do |issue|
               - next if different?(issue, status)
               %li{ class: "draggable panel panel-default card-panel cards",
-                   data: { owner:  current_user.nickname,
-                           repo:   current_repo,
-                           number: issue.number,
+                   data: { owner:             current_user.nickname,
+                           repo:              current_repo,
+                           number:            issue.number,
                            currentcardstatus: status,
-                           timer_seconds: get_time(issue.labels) } }
+                           timer_seconds:     get_time(issue.labels) } }
                 .panel-heading
                   %h3.panel-title.pull-right
                     \##{issue.number}
