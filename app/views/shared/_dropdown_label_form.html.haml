@@ -1,8 +1,5 @@
--# .dropdown.pull-left.issue_label_checkboxes
-%div{ class: "dropdown pull-left issue_label_checkboxes",
-      id:    "#{issue.number}" }
-  %button{ class: "dropdown-btn btn btn-default dropdown-toggle",
-           id:    "dropdown-#{issue.number}",
+%div{ class: "dropdown pull-left", id: "#{issue.number}" }
+  %button{ class: "btn btn-default dropdown-toggle", id: "dropdown-#{issue.number}",
            'aria-expanded': "true",
            'aria-haspopup': "true",
            'data-toggle': "dropdown", type: "button" }
@@ -11,6 +8,7 @@
     %span.caret
   .dropdown-menu.issue-labels-dropdown-menu{"aria-labelledby" => "dropdown-#{issue.number}" }
     - @labels.each do |label|
-      .label-box-dropdown{ class: "#{label.name} labels-#{issue.number} checkbox btn btn-xs", style: "background-color:\##{label.color}" }
+      .label-box-dropdown{ class: "#{label.name} labels-#{issue.number} checkbox btn btn-xs",
+                           style: "background-color:\##{label.color}" }
         = check_box_tag "updates[labels][]", [label.name], has_label?(issue.labels, label.name)
         = label.name
