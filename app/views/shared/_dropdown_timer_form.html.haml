@@ -1,18 +1,3 @@
--# .dropdown.pull-right
--#   %button{ class: "dropdown-btn btn btn-xs btn-default dropdown-toggle",
--#            id:    "dropdown-#{issue.number}",
--#            'aria-expanded': "true",
--#            'aria-haspopup': "true",
--#            'data-toggle': "dropdown", type: "button" }
--#     %span
--#       = convert_time(get_time(issue.labels))
--#     %span.caret
--#   #dropdown-timer-menu.dropdown-menu{"aria-labelledby" => "dropdown-#{issue.number}" }
--#     .timer-box-dropdown
--#       - timer_values.each do |k, v|
--#         .radio
--#           = radio_button_tag("timer_time", k, set_original_time(k, time), id: k, class: "timer-time-#{issue.number}")
--#           = v
 .form-group.pull-right
   %label{:for => "timer-time"}
     %select#timer-time.form-control{ class: "timer-time-#{issue.number}", name: 'timer-time' }
