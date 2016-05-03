@@ -10,5 +10,6 @@
     - @labels.each do |label|
       .label-box-dropdown{ class: "#{label.name} labels-#{issue.number} checkbox btn btn-xs",
                            style: "background-color:\##{label.color}" }
-        = check_box_tag "updates[labels][]", [label.name], has_label?(issue.labels, label.name)
-        = label.name
+        %label
+          = check_box_tag "updates[labels][]", [label.name], has_label?(issue.labels, label.name)
+          = label.name
