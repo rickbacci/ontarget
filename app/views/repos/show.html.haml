@@ -32,7 +32,6 @@
                       locals: { issue: issue, time: get_time(issue.labels) }
                   .well
                     = render partial: 'shared/issue_form', locals: { issue: issue }
-                  -# %div{class: "clearfix labels-#{issue.number}"}
                   %div{class: "clearfix issue-labels-#{issue.number}"}
                     = render partial: 'shared/issue_labels', locals: { issue: issue }
 
