@@ -25,12 +25,11 @@
                   %h3.panel-title.text-left
                     = milestone_or_repo_name(issue)
                 .panel-body.issue-card-body
-                  .issue-card-dropdowns
+                  .well
                     = render partial: 'shared/dropdown_label_form',
                       locals: { labels: @labels, issue: issue }
                     = render partial: 'shared/dropdown_timer_form',
                       locals: { issue: issue, time: get_time(issue.labels) }
-                  .well
                     = render partial: 'shared/issue_form', locals: { issue: issue }
                   %div{class: "clearfix issue-labels-#{issue.number}"}
                     = render partial: 'shared/issue_labels', locals: { issue: issue }
