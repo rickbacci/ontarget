@@ -25,9 +25,9 @@ function repoSearchBox() {
         var repo_text = $(this).text().toLowerCase();
 
         if (repo_text.includes(value)) {
-          $(this).parent().show();
+          $(this).parent().parent().show();
         } else {
-          $(this).parent().hide();
+          $(this).parent().parent().hide();
         }
       });
 

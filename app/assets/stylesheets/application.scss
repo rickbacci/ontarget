@@ -35,7 +35,7 @@ $primary-color: #333;
 
 #dropdown-repos-menu {
   left: 9%;
-  min-width: 50%;
+  min-width: 82%;
   padding: 0px;
   margin: 0px;
 }
@@ -126,11 +126,13 @@ div.row.no-gutters {
 //////////---------- Repo Index
 
 .repo-btn {
-  width: 80%;
+  width: 100%;
 }
 
 .repo-choice {
-  width: 15%;
+  width: 100%;
+  max-width: 34px;
+  min-width: 34px;
 }
 
 .head {
