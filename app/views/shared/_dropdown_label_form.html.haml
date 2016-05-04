@@ -3,12 +3,12 @@
            'aria-expanded': "true",
            'aria-haspopup': "true",
            'data-toggle': "dropdown", type: "button" }
-    %span
-    Labels
+    %strong
+      Labels
     %span.caret
   .dropdown-menu{"aria-labelledby" => "dropdown-#{issue.number}" }
     - @labels.each do |label|
-      .label-box-dropdown{ class: "#{label.name} labels-#{issue.number} checkbox btn btn-xs",
+      .label-box-dropdown{ class: "#{label.name} labels-#{issue.number} btn btn-xs",
                            style: "background-color:\##{label.color}" }
         %label
           = check_box_tag "updates[labels][]", [label.name], has_label?(issue.labels, label.name)
