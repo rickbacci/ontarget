@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   patch '/update_issues/:number', to: 'issues#update', as: :update_issues
 
   post  '/update_card_status', to: 'issues#update_card_status'
+  get  '/issue_labels/:number', to: 'repos#issue_labels', as: 'issue_labels'
 
   root 'repos#index'
 end

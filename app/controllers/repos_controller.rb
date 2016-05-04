@@ -1,6 +1,11 @@
 class ReposController < ApplicationController
   before_action :authorize!, only: [:show, :create, :destroy]
 
+  def issue_labels
+    issue = client.issues.get client.user, client.repo, params[:number]
+    render json: issue.labels
+  end
+
   def index
     return if client.nil?
     clear_current_repo
