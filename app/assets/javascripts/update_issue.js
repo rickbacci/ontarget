@@ -12,7 +12,7 @@ function updateIssue(issue, _this) {
     },
     success: function() {
       $.notify({
-        message: 'Issue updated!'
+        message: 'Issue Updated!'
       });
 
     },

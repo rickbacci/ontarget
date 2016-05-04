@@ -32,8 +32,7 @@ function startTimer(_this) {
 
   $.notifyDefaults({
     allow_dismiss: true,
-    delay: 1,
-    time: milliSeconds
+    delay: 2
   });
 
 }
