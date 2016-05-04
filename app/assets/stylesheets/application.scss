@@ -110,12 +110,15 @@ div.row.no-gutters {
 //////////---------- New Issue
 
 .new-issue-labels {
-
-  padding-left: 10%;
+  padding-left: 5%;
   text-align: left;
   vertical-align: sub;
   width: 100%;
   margin-bottom: 3px;
+}
+
+.max-width {
+  width: 100%;
 }
 
 //////////---------- New Issue End

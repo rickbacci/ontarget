@@ -12,21 +12,22 @@
             %br
             .row.form-group
               .col-md-4
-                %strong
-                  Select Labels:
+                .text-center
+                  %strong
+                    Select Labels
                 - @labels.each do |label|
                   %label{ class: "#{label.name} btn btn-default new-issue-labels", style: "background-color:\##{label.color}" }
                     = check_box_tag "creation[labels][]", [label.name]
                     = label.name
               .col-md-4
-                %label{:for => "milestone"}
-                  Select Milestone:
+                %label.max-width.text-center{:for => "milestone"}
+                  Select Milestone
                   %select#milestone.form-control{ name: 'milestone' }
                     - @milestones.each do |milestone|
                       %option{ id: "milestone-#{milestone.number}", value: "#{milestone.number}" }=milestone.title
               .col-md-4
-                %label{:for => "timer_time"}
-                  Select Timer:
+                %label.max-width.text-center{:for => "timer_time"}
+                  Select Timer
                   %select#timer_time.form-control{ name: 'timer_time' }
                     - timer_values.each do |k, v|
                       %option{ id: "#{k}", selected: "#{set_default_time(k)}", value: "#{k}" }=v
