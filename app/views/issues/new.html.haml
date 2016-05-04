@@ -10,23 +10,25 @@
             = text_area_tag :body, nil, rows: 5, placeholder: "User story...", class: "issue-text-area form-control"
             = hidden_field_tag :repo_name, current_repo
             %br
-            .row
-              .col-md-3.new_issue_timer_radio_buttons
-                .form-group
-                  %label{:for => "milestone"}
-                    Select Milestone:
-                    %select#milestone.form-control{ name: 'milestone' }
-                      - @milestones.each do |milestone|
-                        %option{ id: "milestone-#{milestone.number}", value: "#{milestone.number}" }=milestone.title
-                - timer_values.each do |k, v|
-                  .radio
-                    = radio_button_tag("timer_time", k, set_default_time(k), id: k)
-                    = v
-              .col-md-9
+            .row.form-group
+              .col-md-4
+                %strong
+                  Select Labels:
                 - @labels.each do |label|
-                  - next if label_data?(label.name)
-                  .new_issue_label_box{ class: "checkbox-inline btn btn-xs", style: "background-color:\##{label.color}" }
-                    = check_box_tag("creation[labels][]", [label.name], set_default(label), id: label.id, class: "#{label.name}")
+                  %label{ class: "#{label.name} btn btn-default new-issue-labels", style: "background-color:\##{label.color}" }
+                    = check_box_tag "creation[labels][]", [label.name]
                     = label.name
+              .col-md-4
+                %label{:for => "milestone"}
+                  Select Milestone:
+                  %select#milestone.form-control{ name: 'milestone' }
+                    - @milestones.each do |milestone|
+                      %option{ id: "milestone-#{milestone.number}", value: "#{milestone.number}" }=milestone.title
+              .col-md-4
+                %label{:for => "timer_time"}
+                  Select Timer:
+                  %select#timer_time.form-control{ name: 'timer_time' }
+                    - timer_values.each do |k, v|
+                      %option{ id: "#{k}", selected: "#{set_default_time(k)}", value: "#{k}" }=v
             .clearfix
-              %button.btn.pull-right.btn-primary{:type => "submit"} Create Issue
+              %button.btn.btn-primary.pull-right{:type => "submit"} Create Issue

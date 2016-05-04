@@ -26,15 +26,18 @@
 $gray1: #A1949A;
 $primary-color: #333;
 
+.card-labels {
+  padding-left: 4px;
+  padding-right: 4px;
+  margin-left: 2px;
+  margin-right: 2px;
+}
+
 #dropdown-repos-menu {
   left: 9%;
   min-width: 50%;
   padding: 0px;
   margin: 0px;
-}
-
-#dropdown-timer-menu {
-  padding: 10%;
 }
 
 .text-white {
@@ -106,15 +109,13 @@ div.row.no-gutters {
 
 //////////---------- New Issue
 
-.new_issue_label_box {
-  margin-left: 2%;
-  width: fit-content;
-  padding-left: 6%;
-  vertical-align: sub;
-}
+.new-issue-labels {
 
-.new_issue_timer_radio_buttons {
-  margin-left: 40px;
+  padding-left: 10%;
+  text-align: left;
+  vertical-align: sub;
+  width: 100%;
+  margin-bottom: 3px;
 }
 
 //////////---------- New Issue End
@@ -122,11 +123,11 @@ div.row.no-gutters {
 //////////---------- Repo Index
 
 .repo-btn {
-  width: 93%;
+  width: 80%;
 }
 
 .repo-choice {
-  width: 6%;
+  width: 15%;
 }
 
 .head {

@@ -3,4 +3,3 @@
     %select#timer-time.form-control{ class: "timer-time-#{issue.number}", name: 'timer-time' }
       - timer_values.each do |k, v|
         %option{ class: "", name: 'timer-time', value: "#{k}" }=v
-.clearfix
