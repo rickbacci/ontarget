@@ -32,15 +32,16 @@ feature "User" do
 
       expect(page).to have_content('New test issue')
       expect(page).to have_content('As a test user...')
+      expect(page).to have_content('Issue Created!')
 
       fill_in "title", with: 'updated test issue'
       fill_in "body", with: "As a test user updated"
 
-      click_on "Update Issue"
+      find('textarea#title').click()
 
-      expect(page).to have_content('Issue Updated!')
       expect(page).to have_content('updated test issue')
       expect(page).to have_content('As a test user updated')
+      # expect(page).to have_content('Issue Updated!')
 
       delete_test_repo('test_repo')
     end
