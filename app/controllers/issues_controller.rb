@@ -2,43 +2,11 @@ class IssuesController < ApplicationController
   include GithubCardStatusUpdater
   include GithubIssueCreater
   include GithubIssueUpdater
-  include GithubIssueLabelUpdater
 
   def new
     @labels     = client.issues.labels.list
     @milestones = client.issues.milestones.list
   end
-
-  def update_issue_times
-    issue_number  = params[:issue_number]
-    original_time = params[:time]
-    new_time      = params[:timer_time]
-
-    client.issues.labels.add client.user, client.repo, issue_number, new_time
-    client.issues.labels.remove client.user, client.repo, issue_number, label_name: original_time
-
-    flash[:success] = "Timer Updated!"
-
-    redirect_to repo_path(current_repo)
-  end
-
-  def self.update_issue_labels
-    @update_issue_labels || GithubIssueLabelUpdater
-  end
-
-  def self.update_issue_labels=(update_issue_labels)
-    @update_issue_labels = update_issue_labels
-  end
-
-  def update_issue_labels
-    IssuesController.update_issue_labels.call(client: client,
-                                              number: params[:number],
-                                              labels: params[:updates][:labels])
-
-    flash[:success] = "Labels Updated!"
-    redirect_to repo_path(current_repo)
-  end
-
 
   def self.create
     @create || GithubIssueCreater
@@ -76,14 +44,13 @@ class IssuesController < ApplicationController
   end
 
   def update
-    IssuesController.update.call(client: client,
-                                 number: params[:number],
-                                 title:  params[:title],
-                                 body:   params[:body],
-                                 labels: params[:labels].split)
-
-    flash[:success] = "Issue Updated!"
-    redirect_to repo_path(current_repo)
+    IssuesController.update.call(
+      client: client,
+      number: params[:number],
+      title:  params[:title],
+      body:   params[:body],
+      labels: params[:labels])
+    head :ok
   end
 
   def self.update_card_status

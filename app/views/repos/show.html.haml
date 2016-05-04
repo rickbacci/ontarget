@@ -3,8 +3,6 @@
   .container-fluid
     .row
       .col-md-12
-        - flash.each do |name, msg|
-          = content_tag :div, msg, class: "text-center alert alert-#{name}", role: "alert"
         %h1.text-center.text-white
           = current_user.current_repo.upcase if current_user.current_repo
     .row.no-gutters
@@ -16,24 +14,22 @@
             - @issues.each do |issue|
               - next if different?(issue, status)
               %li{ class: "draggable panel panel-default card-panel cards",
-                   data: { owner:  current_user.nickname,
-                           repo:   current_repo,
-                           number: issue.number,
+                   data: { owner:             current_user.nickname,
+                           repo:              current_repo,
+                           number:            issue.number,
                            currentcardstatus: status,
-                           timer_seconds: get_time(issue.labels) } }
+                           timer_seconds:     get_time(issue.labels) } }
                 .panel-heading
                   %h3.panel-title.pull-right
                     \##{issue.number}
                   %h3.panel-title.text-left
                     = milestone_or_repo_name(issue)
-                .panel-body.issue-card-body
-                  .issue-card-dropdowns
+                .panel-body
+                  .well.issue-card-body
                     = render partial: 'shared/dropdown_label_form',
                       locals: { labels: @labels, issue: issue }
                     = render partial: 'shared/dropdown_timer_form',
                       locals: { issue: issue, time: get_time(issue.labels) }
-                  .well
                     = render partial: 'shared/issue_form', locals: { issue: issue }
-                  .clearfix
-                    = render partial: 'shared/issue_labels', locals: { issue_labels: issue.labels }
+                  %div{class: "clearfix issue-labels-#{issue.number}"}
 

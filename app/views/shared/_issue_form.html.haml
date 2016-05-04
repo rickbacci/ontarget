@@ -1,10 +1,6 @@
-=form_tag update_issues_path(issue.number), class: "issue-card-form", method: :patch do
-  = text_area_tag :title, issue.title, { rows: 1, class: "form-control noscrollbars ctrl-enter", :onkeyup => "autoGrow(this);"}
-  = text_area_tag :body, issue.body, { rows: 5, class: "form-control noscrollbars ctrl-enter", :onkeyup => "autoGrow(this);"}
-  = hidden_field_tag :labels, issue.labels.map { |label| label.name}
-  %br
-  %label.pull-right{ :for => issue.number }
-    %button.btn.btn-default.btn-xs.update-issue-btn{:type => "submit"} Update Issue
+= text_area_tag :title, issue.title, { rows: 1, class: "form-control noscrollbars ctrl-enter title-#{issue.number}", :onkeyup => "autoGrow(this);"}
+= text_area_tag :body, issue.body, { rows: 5, class: "form-control noscrollbars ctrl-enter body-#{issue.number}", :onkeyup => "autoGrow(this);"}
+= hidden_field_tag :labels, issue.labels.map { |label| label.name}
 
 :javascript
   function autoGrow (oField) {

@@ -30,6 +30,12 @@ function startTimer(_this) {
 
     window.setTimeout(giveAlert, milliSeconds + 1000);
 
+  $.notifyDefaults({
+    allow_dismiss: true,
+    delay: 1,
+    time: milliSeconds
+  });
+
 }
 
 function giveAlert() {
