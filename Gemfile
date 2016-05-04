@@ -26,7 +26,6 @@ gem 'skylight', '~> 0.10.3'
 gem 'newrelic_rpm'
 gem 'delayed_job_active_record'
 
-
 group :development, :test do
   gem 'byebug'
   gem 'pry'
@@ -43,6 +42,7 @@ group :test do
   gem 'webmock'
   gem 'simplecov', :require => false
   gem 'rake'
+  gem 'selenium-webdriver'
 end
 
 gem 'rails_12factor', group: :production
