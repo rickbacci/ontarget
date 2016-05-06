@@ -1,5 +1,13 @@
 $(document).ready(function() {
 
+  $(document).ajaxStart(function(){
+    $(".modal").show();
+  });
+
+  $(document).ajaxStop(function(){
+    $(".modal").hide();
+  });
+
   updateIssueListener();
 
   setColumnHeight();

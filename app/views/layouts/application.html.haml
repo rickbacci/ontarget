@@ -4,12 +4,17 @@
     %meta{:charset => "utf-8"}
     %meta{:content => "IE=edge", "http-equiv" => "X-UA-Compatible"}
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
-
-    -# %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title Ontarget
     = stylesheet_link_tag    'application'
     = javascript_include_tag 'application'
     = csrf_meta_tags
-    - flash.each do |name, msg|
-      = content_tag :div, msg, class: "text-center alert alert-#{name}", role: "alert"
-    = yield
+
+  %body
+    = render 'shared/navbar'
+    .container-fluid
+      - flash.each do |name, msg|
+        = content_tag :div, msg, class: "text-center alert alert-#{name}", role: "alert"
+      .modal{"aria-labelledby" => "mySpinner", :role => "document", :tabindex => "-1"}
+        .modal-backdrop
+          .spinner
+      = yield

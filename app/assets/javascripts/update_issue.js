@@ -4,6 +4,7 @@ function updateIssue(issue, _this) {
   $.ajax({
     type: 'PATCH',
     url: '/update_issues/' + issue.number,
+    global: false,
     data: {
       issue_number: issue.number,
       title: issue.title,

@@ -26,6 +26,11 @@
 $gray1: #A1949A;
 $primary-color: #333;
 
+.modal-backdrop {
+  background-color: black;
+  opacity:0.5 !important;
+}
+
 .card-labels {
   padding-left: 4px;
   padding-right: 4px;
@@ -47,10 +52,6 @@ $primary-color: #333;
 html, body {
   height: 100%;
   background-color: black;
-  background: url(image-path('6a01287.jpg'));
-  background-size: cover;
-  -moz-background-size: cover;
-  background-repeat:no-repeat;
   padding-top: 20px;
 }
 
