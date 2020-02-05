@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   get '/home',                    to: 'home#show'
-  get '/auth/github',             as: 'login'
+  post '/auth/github',            as: 'login'
   get '/auth/github/callback',    to: 'sessions#create'
   get '/logout',                  to: 'sessions#destroy'
   get '/auth/failure',            to: 'home#show'

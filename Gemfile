@@ -20,6 +20,8 @@ gem 'uglifier'
 gem 'puma'
 gem 'figaro'
 
+
+gem 'omniauth-rails_csrf_protection'
 gem 'omniauth-github'
 gem 'github_api'
 gem 'sidekiq'
