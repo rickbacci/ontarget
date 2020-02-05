@@ -1,0 +1,7 @@
+tmp/*
+log/*
+
+# Ignore application configuration
+/config/application.yml
+coverage/*
+spec/support/vcr_cassettes/*

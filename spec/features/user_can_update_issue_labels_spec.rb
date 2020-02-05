@@ -9,7 +9,7 @@ feature "User" do
     create_client
   end
 
-  scenario "can update an issues labels" do
+  xscenario "can update an issues labels" do
     VCR.use_cassette("user_update_issue_labels") do
       create_test_repo('test_repo')
 
