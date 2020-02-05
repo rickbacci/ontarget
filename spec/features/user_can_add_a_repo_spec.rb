@@ -9,7 +9,7 @@ feature "User" do
     create_client
   end
 
-  scenario "can add a repository" do
+  xscenario "can add a repository" do
     VCR.use_cassette("user_add_repo") do
       create_test_repo('test_repo')
 

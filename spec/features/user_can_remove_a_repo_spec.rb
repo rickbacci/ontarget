@@ -10,7 +10,7 @@ feature "User" do
   end
 
 
-  scenario "can remove a repo" do
+  xscenario "can remove a repo" do
     VCR.use_cassette("user_remove_repo") do
       create_test_repo('test_repo')
 

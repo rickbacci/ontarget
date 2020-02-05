@@ -9,7 +9,7 @@ feature "User" do
     create_client
   end
 
-  scenario "cannot create an Issue until they select a repo" do
+  xscenario "cannot create an Issue until they select a repo" do
     VCR.use_cassette("no_repo_selected") do
       create_test_repo('test_repo')
       create_milestone('milestone')
@@ -30,7 +30,7 @@ feature "User" do
     end
   end
 
-  scenario "can create an issue with a default time" do
+  xscenario "can create an issue with a default time" do
     VCR.use_cassette("user_create_issue") do
       create_test_repo('test_repo')
       create_milestone('milestone')
@@ -61,7 +61,7 @@ feature "User" do
     end
   end
 
-  scenario "can create an issue with a 25 minute timer" do
+  xscenario "can create an issue with a 25 minute timer" do
     VCR.use_cassette("user_create_issue_with_25_minute_timer") do
       create_test_repo('test_repo')
       create_milestone('milestone')
@@ -90,7 +90,7 @@ feature "User" do
     end
   end
 
-  scenario "can create an issue with a milestone" do
+  xscenario "can create an issue with a milestone" do
     VCR.use_cassette("select_milestone") do
       create_test_repo('test_repo')
       create_milestone('milestone')

@@ -9,7 +9,7 @@ feature "User" do
     create_client
   end
 
-  scenario "does not see data labels in cards" do
+  xscenario "does not see data labels in cards" do
     VCR.use_cassette("user_does_not_see_data_labels") do
       create_test_repo('test_repo')
 
